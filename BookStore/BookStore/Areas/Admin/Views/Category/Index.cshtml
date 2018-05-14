@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "Thể loại";
+    var listImage = ViewBag.listImage;
+    var listCatalog = ViewBag.listCatalog;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section cssHeader {
+    <link href="~/Assets/admin/css/category.css" rel="stylesheet" />
+}
+
+@section jsFooter {
+    <script src="~/Assets/admin/js/category.js"></script>
+}
+<div class="row">
+    <div class="col-sm-12 list-book">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-list">
+                    <div class="float-left">
+                        <span class="title-list">DANH SÁCH - Thể loại</span><span class="result-list"> (<span class="amount"></span> results)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row  mt-3 mb-3">
+            <div class="col-sm-12">
+                <div class="display-search">
+                    <div class="float-left">
+                        <input type="text" name="searchText" id="search-text" value="" class="search-box" placeholder="Search" />
+                        <select name="sel-list" class="sel-list">
+                            <option value="">All</option>
+                            <option value="true">Publish</option>
+                            <option value="false">Unpublish</option>
+                        </select>
+                        <a href="#" class="btn-reset">Reset</a>
+                    </div>
+                    <div class="float-right">
+                        <a class="my-btn btn-action btn-create">create</a>
+                        <a class="my-btn btn-export">export</a>
+                        <a class="my-btn btn-import">import</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="my-table table table-sm">
+                    <thead>
+                        <tr class="my-thead text-center">
+                            <td width="7%"></td>
+                            <td width="40%" class="text-left">THỂ LOẠI</td>
+                            <td width="20%">Danh mục</td>
+                            <td width="12%">Display Order</td>
+                            <td width="21%"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="resultBook"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr class="text-center" style="font-size:14px;">
+        <td>
+            <img class="" alt="alt" src="{{Image}}" style="width:55px;" />
+        </td>
+        <td class="text-left">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a id="{{ID}}" class="title-book">{{Name}}</a>
+                    <a href="#" class="alias-book">{{Alias}}</a>
+                </div>
+            </div>
+        </td>
+        <td>{{CatalogName}}</td>
+        <td>{{DisplayOrder}}</td>
+        <td class="text-left">
+            <a class="my-btn btn-action btn-edit" data-id="{{ID}}">Edit</a>
+            <a class="my-btn btn-delete" data-id="{{ID}}">Delete</a>
+            {{{btnStatus}}}
+        </td>
+    </tr>
+</script>
+
+<!-- MODAL THE LOAI -->
+<div class="blurBackground"></div>
+<div id="#modalBox" class="modalBox animated" style="width:760px;margin-left:-380px">
+    <div class="closeModalBox">
+        <span><i class="ti-close"></i></span>
+    </div>
+    <div class="container">
+        <form class="form-category" role="form" id="form-save">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box">
+                        <span class="title-modal"></span> THỂ LOẠI
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="categoryModal">Thể loại</label>
+                        <input type="text" class="form-control" name="title" onkeyup="ChangeToSlug();" id="title" placeholder="...">
+                        <input type="hidden" id="id" value="" name="id">
+                        <small class="error-email"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="AliasModal">URL</label>
+                        <input type="text" class="form-control" id="slug" name="slug" placeholder="..." readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="catalog">Danh mục</label>
+                        <select class="form-control" id="catalog" name="catalog">
+                            <option value="" disabled selected>Chọn danh mục</option>
+                            @foreach (var item in listCatalog)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <a class="btn-save"></a>
+                </div>
+                <div class="col-sm-4">
+                    <div class="hinh-anh">
+                        <img src="~/Assets/admin/css/images/alter-image.jpg" class="img-selected" />
+                    </div>
+                    <input type="button" name="name" value="Chọn ảnh" class="btn-chon-anh" />
+                    <input type="hidden" name="Image" id="img-book" value="" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- end MODAL THE LOAI -->
+<!-- MANAGE IMAGE -->
+<div class="background-black"></div>
+<div class="manage-image animated bounceInDown">
+    <div class="row relative">
+        <div class="col-sm-3 list-category-img">
+            <form action="/" method="post" id="form-data">
+                <input type="file" id="upload" name="file" onchange="readURL(this);" style="display:none" />
+            </form>
+            <a href="#" id="upload-link">Chọn ảnh</a>
+            <div class="hinh-duoc-chon">
+                <img src="~/Assets/admin/css/images/alter-image.jpg" class="img-selected" />
+                <span class="image-selected">...</span>
+            </div>
+            <a href="#" id="delete-link"><i class="fa fa-trash-alt"></i></a>
+            <a href="#" id="reset-link"><i class="fa fa-undo"></i></a>
+        </div>
+        <div class="col-sm-9 list-img">
+            <div class="row search-box-img">
+                <input type="text" class="search-box" name="name" value="" />
+                <a href="#" class="btn-search"><i class="fa fa-search"></i></a>
+            </div>
+            <div class="row" id="result">
+                @foreach (var item in listImage)
+                {
+                    <div class="col-sm-3 a-book">
+                        <img src="@item.path" class="hinh-anh" data-request-url="@Url.Action("deleteBook", "Book")" alt="Alternate Text" id="@item.name" />
+                        <span class="ten-hinh-anh">@item.name</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end MANAGE IMAGE -->

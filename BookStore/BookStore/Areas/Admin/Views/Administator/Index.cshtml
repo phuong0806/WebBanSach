@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "Danh sách User";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section cssHeader {
+    <style>
+        .material-switch > input[type="checkbox"] {
+            display: none;
+        }
+
+        .material-switch > label {
+            cursor: pointer;
+            height: 0px;
+            position: relative;
+            width: 40px;
+        }
+
+            .material-switch > label::before {
+                background: rgb(0, 0, 0);
+                box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+                border-radius: 8px;
+                content: '';
+                height: 16px;
+                margin-top: -8px;
+                position: absolute;
+                opacity: 0.3;
+                transition: all 0.4s ease-in-out;
+                width: 40px;
+            }
+
+            .material-switch > label::after {
+                background: rgb(255, 255, 255);
+                border-radius: 16px;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+                content: '';
+                height: 24px;
+                left: -4px;
+                margin-top: -8px;
+                position: absolute;
+                top: -4px;
+                transition: all 0.3s ease-in-out;
+                width: 24px;
+            }
+
+        .material-switch > input[type="checkbox"]:checked + label::before {
+            background: #5cb85c;
+            opacity: 0.5;
+        }
+
+        .material-switch > input[type="checkbox"]:checked + label::after {
+            background: #5cb85c;
+            left: 20px;
+        }
+    </style>
+}
+
+@section jsFooter {
+    <script src="~/Assets/admin/js/authority.js"></script>
+}
+<div id="fakeLoader"></div>
+<div class="row">
+    <div class="col-sm-12 list-book">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <div class="title-list">
+                    <div class="float-right">
+                        <a class="my-btn btn-action btn-create">create</a>
+                    </div>
+                    <div class="float-left">
+                        <span class="title-list">DANH SÁCH - Thành viên</span><span class="result-list"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="my-table table table-sm">
+                    <thead>
+                        <tr class="my-thead text-center">
+                            <td width="7%"></td>
+                            <td width="32%" class="text-left">Name</td>
+                            <td width="20%">Email</td>
+                            <td width="20%">Authority</td>
+                            <td width="21%"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="result"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr class="text-center" style="font-size:14px;">
+        <td>
+            <img class="" alt="alt" src="{{Image}}" style="width:55px" />
+        </td>
+        <td class="text-left">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a id="{{ID}}" class="title-book">{{Fullname}}</a>
+                    <a href="#" class="alias-book">{{Username}}</a>
+                </div>
+            </div>
+        </td>
+        <td>{{Email}}</td>
+        <td>{{isAdmin}}</td>
+        <td class="text-left">
+            <a class="my-btn btn-action btn-edit" data-id="{{Username}}">Edit</a>
+            <a class="my-btn btn-delete" data-id="{{ID}}">Delete</a>
+            {{{btnStatus}}}
+        </td>
+    </tr>
+</script>
+
+<!-- MODAL -->
+<div class="blurBackground"> </div>
+<div class="container-modal">
+    <div id="#modalBox" class="modalBox animated" style="width:680px;margin-left:-340px;top:4%">
+        <div class="closeModalBox">
+            <span><i class="ti-close"></i></span>
+        </div>
+        <div class="container">
+            <form class="form-category" role="form" id="form-save">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="title-box">
+                            <span class="title-modal"></span> QUYỀN HẠN - <span class="username"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input type="hidden" class="username" value="">
+                        <div class="form-group" id="result-business">
+                            
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script id="business-template" type="x-tmpl-mustache">
+    <div class="form-group">
+        <a>{{ID}} - {{Name}}</a>
+        <div class="material-switch float-right">
+            <input id="{{ID}}-{{Name}}" name="{{ID}}-{{Name}}" type="checkbox" {{Status}}/>
+            <label for="{{ID}}-{{Name}}" data-id="{{ID}}" class="label-default btn-status"></label>
+        </div>
+    </div>
+</script>
+<!-- end MODAL -->

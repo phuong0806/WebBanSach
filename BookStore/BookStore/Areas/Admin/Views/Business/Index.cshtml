@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Business";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter { 
+    <script src="~/Assets/admin/js/business.js"></script>
+}
+
+@if (ViewBag.Success == true)
+{
+    <script>
+        notify({
+            type: "success", //alert | success | error | warning | info
+            title: "Thêm sách thành công!",
+            position: {
+                x: "right", //right | left | center
+                y: "top" //top | bottom | center
+            },
+            spacing: 20,
+            size: "small",
+            overflowHide: true,
+            autoHide: true,
+            delay: 3000,
+        })
+    </script>
+    ViewBag.Success = false;
+}
+<div class="row">
+    <div class="col-sm-12 list-book">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <div class="title-list">
+                    <div class="float-left">
+                        <span class="title-list">DANH SÁCH - Business</span><span class="result-list"> (<span class="amount"></span> @ViewBag.CountBusiness results)</span>
+                    </div>
+                          <div class="float-right">
+                        <a href="/Admin/Business/UpdateBusiness" class="my-btn btn-create">Update</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="my-table table table-sm">
+                    <thead>
+                        <tr class="my-thead text-center">
+                            <td width="45%" class="text-left">Name</td>
+                            <td width="34%">Description</td>
+                            <td width="21%"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="resultBook">
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr>
+        <td class="text-left">
+            <a class="">{{ID}}</a>
+        </td>
+        <td>
+            <a class="">{{Name}}</a>
+        </td>
+        <td>
+            <a class="my-btn btn-view">View</a>
+            <a class="my-btn btn-action btn-edit" href="#" data-id="{{ID}}">Edit</a>
+        </td>
+    </tr>
+</script>
+
+<!-- MODAL BUSINESS -->
+<div class="blurBackground"> </div>
+    <div class="container-modal">
+        <div id="#modalBox" class="modalBox animated" style="width:500px;margin-left:-250px">
+            <div class="closeModalBox">
+                <span><i class="ti-close"></i></span>
+            </div>
+            <div class="container">
+                <form class="form-category" role="form" id="form-save">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title-box">
+                                <span class="title-modal"></span> MÔ TẢ
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="description" id="description" placeholder="...">
+                                <input type="hidden" id="id" value="" name="id">
+                            </div>
+                            <a class="btn-save"></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- end MODAL BUSINESS -->
+

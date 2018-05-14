@@ -1,0 +1,42 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADMIN | LOGIN</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Assets/admin/css/login.css" rel="stylesheet" />
+    <script src="~/Content/fontawesome-all.min.js"></script>
+
+</head>
+<body>
+    <form action="/Admin/Home/Login" method="post">
+        <div class="container">
+            <div class="login">
+                <img src="~/Assets/admin/css/images/aaaaaaaaaaaaaaaa.png" style="width:100px" />
+                <div class="username">
+                    <input type="text" name="username" id="username" value="admin" placeholder="Username" />
+                </div>
+                <div class="password">
+                    <input type="password" name="password" id="password" value="admin" placeholder="Password" />
+                    <a href="#" class="btn" id="submit"><i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="error">
+                <span>@ViewBag.Error</span>
+            </div>
+        </div>
+    </form>
+
+    <script>
+    $(function () {
+        $("#submit").click(function () {
+            document.forms[0].submit();
+            return true;
+        });
+    });
+    </script>
+</body>
+</html>
