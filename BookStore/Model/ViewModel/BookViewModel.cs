@@ -10,6 +10,8 @@ namespace Model.ViewModel
 {
     public class BookViewModel
     {
+        internal string AuthorsName;
+
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Bạn phải nhập tiêu đề")]
@@ -65,5 +67,7 @@ namespace Model.ViewModel
         public DateTime? CreatedDate { get; set; }
 
         public virtual ICollection<Author> Authors { get; set; }
+
+        public string AuthorName { get; set; }
     };
 }
