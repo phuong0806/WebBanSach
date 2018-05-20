@@ -43,6 +43,7 @@ namespace BookStore
 
 
             routes.MapRoute(
+<<<<<<< HEAD
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
@@ -50,6 +51,20 @@ namespace BookStore
 
                 );
 
+=======
+             name: "Danh mục",
+             url: "the-loai",
+             defaults: new { controller = "Category", action = "Index", id = UrlParameter.Optional },
+             namespaces: new[] { "SanGiaoDichBatDongSan.Controllers" }
+         );
+
+            routes.MapRoute(
+             name: "Danh mục sách",
+             url: "the-loai/{Alias}",
+             defaults: new { controller = "Category", action = "loadBookByAliasCategory", id = UrlParameter.Optional },
+             namespaces: new[] { "BookStore.Controllers" }
+         );
+>>>>>>> 7fc648254adb26a71d33f271eb200e0f04f58720
         }
     }
 }

@@ -44,6 +44,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto col-sm-12">
+<<<<<<< HEAD
                     @if (Session["Username"] != null)
                     {
                         var listMenu = new Model.DAO.BusinessDAO().getListBusinessOfUser(Session["Username"].ToString());
@@ -55,6 +56,31 @@
                         }
                     }
 
+=======
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Sách <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/Actor/Index">Tác giả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Danh mục</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/Category/Index">Thể loại</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Khuyến mãi
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+>>>>>>> 7fc648254adb26a71d33f271eb200e0f04f58720
                     <li class="nav-item dropdown float-right">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @Session["FullName"]
