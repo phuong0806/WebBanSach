@@ -131,7 +131,7 @@
                                 Quanlity: item.Quanlity,
                                 ViewCount: item.ViewCount,
                                 Status: item.Status == true ? "<span class=\"badge badge-success\">ON</span>" : "<span class=\"badge badge-secondary\">OFF</span>",
-                                btnStatus: item.Status == true ? `<a class="my-btn btn-status btn-publish" data-id=${item.ID}>Publish</a>` : `<a class="my-btn btn-status btn-unpublish" data-id=${item.ID}>Unpublish</a>`,
+                                btnStatus: item.Status == true ? `<a class="my-btn btn-status btn-unpublish" data-id=${item.ID}>Unpublish</a>` : `<a class="my-btn btn-status btn-publish" data-id=${item.ID}>Publish</a>`,
                                 Image: item.Image != null ? item.Image : "/Assets/admin/css/images/alter-image.jpg",
                         
                             });

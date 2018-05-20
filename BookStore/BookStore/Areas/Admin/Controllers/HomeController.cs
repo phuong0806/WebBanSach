@@ -29,7 +29,7 @@ namespace BookStore.Areas.Admin.Controllers
 
             if (userDAO.checkIfDontHaveUserThenCreate() == true)
             {
-                ViewBag.Error = "Đã khởi tạo Admin và User";
+                ViewBag.Error = "Đã khởi tạo Admin";
                 return View();
             }
 
@@ -39,10 +39,19 @@ namespace BookStore.Areas.Admin.Controllers
 
             if (user != null)
             {
-                Session["Username"] = user.Username;
-                Session["Fullname"] = user.Fullname;
-                Session["Image"] = user.Image;
-                return RedirectToAction("Index");
+                if (user.Status == true)
+                {
+                    Session["Username"] = user.Username;
+                    Session["Fullname"] = user.Fullname;
+                    Session["Image"] = user.Image;
+                    Session["Menu"] = new BusinessDAO().getListBusinessOfUser(username);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Tài khoản đã khóa";
+                    return View();
+                }
             }
             ViewBag.Error = "Username hoặc Password không xác định";
 

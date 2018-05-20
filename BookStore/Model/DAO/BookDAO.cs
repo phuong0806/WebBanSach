@@ -237,5 +237,16 @@ namespace Model.DAO
                 return false;
             }
         }
+
+        public IEnumerable<Book> getListBooksInCart(List<Book> listBook)
+        {
+            List<Book> listBookInCart = new List<Book>();
+            foreach (var item in listBook)
+            {
+                var entity = db.Books.Find(item.ID);
+                listBookInCart.Add(entity);
+            }
+            return listBookInCart;
+        }
     }
 }

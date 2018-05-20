@@ -1,6 +1,11 @@
 ﻿@font-face {
-    font-family: helventica;
+    font-family: Helvetica Light;
     src: url(../fonts/HelveticaNeue-Light.otf);
+}
+
+@font-face {
+    font-family: Helvetica;
+    src: url(../fonts/HelveticaNeue.otf);
 }
 
 @font-face {
@@ -19,7 +24,7 @@
 }
 
 * {
-    font-family: helventica;
+    font-family: sans-serif;
 }
 
 html, body {
@@ -33,12 +38,18 @@ main {
 
 .title-list {
     font-size: 38px;
-    font-weight: 600;
+    font-family: 'Helvetica';
 }
 
 .result-list {
-    color: #696969;
-    font-size: 32px;
+    color: #6f6f6f;
+    font-size: 26px;
+    font-family: 'Helvetica Light';
+    font-weight: normal;
+}
+
+.table tr:nth-child(even) {
+    background:#f9f9f9;
 }
 
 .table tr:first-child td {
@@ -47,17 +58,19 @@ main {
 
 .my-table {
     border: 1px solid #ddd;
+    font-family: sans-serif !important;
 }
 
     .my-table tr {
         text-align: center;
+        border: none;
     }
 
 .my-thead {
-    background: #f2f2f2;
+    background: #f5f5f5;
     font-weight: bold;
-    height: 40px;
-    line-height: 40px;
+    height: 25px;
+    line-height: 25px;
     color: #007bff;
     font-size: 14px !important;
 }
@@ -65,6 +78,7 @@ main {
 .my-table tr td {
     vertical-align: middle;
     padding: 7px 12px;
+    border: none;
 }
 
 .title-list p {
@@ -82,6 +96,14 @@ main {
 
 .navbar {
     border-radius: 0px !important;
+    background: #333!important;
+    font-size: .8125rem;
+    height: 46px;
+}
+
+.nav-link {
+    margin-right:10px !important;
+    color: #FFFFFF !important;
 }
 
 .chosen-container-multi .chosen-choices {
@@ -103,15 +125,11 @@ main {
 
 .my-btn {
     text-decoration: none !important;
-    background: #ddd;
     color: #fefefe !important;
     display: inline-block;
-    padding: 0px 22px;
+    padding: .625rem 1.25rem .6875rem;
     margin-left: 0px;
-    font-size: 12px;
-    height: 37px;
-    line-height: 38px;
-    border: 1px solid transparent;
+    font-size: .6875rem;
 }
 
     .my-btn:hover {
@@ -425,7 +443,7 @@ main {
 }
 
 .title-book {
-    font-weight: 600;
+    /* font-weight: 600; */
     color: #333;
     cursor: pointer;
     text-decoration: none !important;
@@ -450,7 +468,7 @@ main {
     height:100%;
 }
 
-.modalBox {
+.modalBox, .modalBoxAdd {
     visibility: hidden;
     display: none;
 }
@@ -470,7 +488,7 @@ main {
         visibility: visible;
     }
 
-.modalBox.active {
+.modalBox.active, .modalBoxAdd.active {
     display: block;
     background: whitesmoke;
     position: fixed;

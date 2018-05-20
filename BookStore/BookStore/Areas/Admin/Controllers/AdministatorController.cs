@@ -1,4 +1,5 @@
-﻿using Model.DAO;
+﻿using Common;
+using Model.DAO;
 using Model.EF;
 using Model.ViewModel;
 using Newtonsoft.Json;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
@@ -21,7 +23,8 @@ namespace BookStore.Areas.Admin.Controllers
         [HttpGet]
         public string loadData ()
         {
-            var model = new UserDAO().getListUser();
+            var userCurrent = Session["Username"].ToString();
+            var model = new UserDAO().getListUser(userCurrent);
             ViewBag.CountBusiness = model;
             var json = JsonConvert.SerializeObject(model, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             return json;
@@ -68,6 +71,53 @@ namespace BookStore.Areas.Admin.Controllers
         {
             return Json(new {
                 status = new BusinessDAO().updateStatus(username, business)
+            });
+        }
+
+        [HttpPost]
+        public JsonResult add(string userStr)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            Administrator user = serializer.Deserialize<Administrator>(userStr);
+
+            var password = RandomString.CreateRandomPassword(12);
+            user.Password = Encryptor.MD5Hash(password);
+            user.Status = true;
+
+            var dao = new UserDAO();
+
+            if (dao.checkUsername(user.Username))
+            {
+                return Json(new
+                {
+                    status = dao.add(user)
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    status = dao.add(user)
+                });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult delete(string username)
+        {
+            return Json(new
+            {
+                status = new UserDAO().deleteUser(username)
+            });
+        }
+
+        [HttpPost]
+        public JsonResult changeStatus(string username)
+        {
+            return Json(new
+            {
+                status = new UserDAO().changeStatus(username)
             });
         }
     }

@@ -59,6 +59,7 @@ namespace Model.DAO
         {
             try
             {
+                category.Status = true;
                 db.BookCategories.Add(category);
                 db.SaveChanges();
                 return true;

@@ -14,18 +14,42 @@ namespace BookStore
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "BookStore.Controllers" }
+              name: "Giỏ hàng",
+              url: "gio-hang",
+              defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
+              namespaces: new[] { "BookStore.Controllers" }
+           );
+
+            routes.MapRoute(
+             name: "Chi tiết sản phẩm",
+             url: "chi-tiet-san-pham",
+             defaults: new { controller = "Detail", action = "Index", id = UrlParameter.Optional },
+             namespaces: new[] { "BookStore.Controllers" }
             );
 
             routes.MapRoute(
-             name: "Danh mục",
-             url: "the-loai",
-             defaults: new { controller = "Category", action = "Index", id = UrlParameter.Optional },
-             namespaces: new[] { "SanGiaoDichBatDongSan.Controllers" }
-         );
+              name: "Đặt hàng",
+              url: "dat-hang",
+              defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional },
+              namespaces: new[] { "BookStore.Controllers" }
+           );
+
+            routes.MapRoute(
+                 name: "Danh mục",
+                 url: "the-loai",
+                 defaults: new { controller = "Category", action = "Index", id = UrlParameter.Optional },
+                 namespaces: new[] { "SanGiaoDichBatDongSan.Controllers" }
+            );
+
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                                namespaces: new[] { "BookStore.Controllers" }
+
+                );
+
         }
     }
 }

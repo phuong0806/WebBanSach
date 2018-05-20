@@ -1,0 +1,213 @@
+﻿.amount {
+    text-align: left;
+    padding-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+.title {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+    .title small {
+        font-size: 13px;
+    }
+
+.content {
+    width: 100%;
+    margin-top: 20px;
+}
+
+    .content .left {
+        width: 75%;
+        float: left;
+    }
+
+    .content .right {
+        width: 25%;
+        float: right;
+    }
+
+.list-product .product:nth-child(1) {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.list-product .product:last-child {
+    border: none;
+}
+
+.list-product {
+    margin-right: 20px;
+    padding: 5px 20px;
+}
+
+    .list-product .product {
+        width: 100%;
+        display: flex;
+        padding-top: 0px;
+        padding-bottom: 15px;
+        border-bottom: 1px dashed #ddd;
+        margin-top: 15px;
+    }
+
+        .list-product .product .image {
+            width: 13%;
+            display: inline-block;
+        }
+
+            .list-product .product .image img {
+                width: 77%;
+            }
+
+        .list-product .product .detail {
+            width: 40%;
+            display: inline-block;
+            color: #333;
+        }
+
+            .list-product .product .detail .title {
+                font-weight: bold;
+                font-size: 13px;
+                margin-top: 1px;
+            }
+
+            .list-product .product .detail .author {
+                font-size: 11px;
+                padding-top: 5px;
+                color: gray;
+            }
+
+            .list-product .product .detail .bookcover {
+                font-size: 11px;
+                padding-top: 5px;
+                color: gray;
+            }
+
+            .list-product .product .detail .delete {
+                font-size: 13px;
+                padding-top: 10px;
+            }
+
+        .list-product .product .price {
+            width: 20%;
+            display: inline-block;
+            text-align: center;
+        }
+
+            .list-product .product .price .price-sale {
+                font-weight: bold;
+                color: #f63;
+            }
+
+            .list-product .product .price .price-promotion {
+            }
+
+                .list-product .product .price .price-promotion span {
+                    padding: 2px 6px;
+                    background: #ff9601;
+                    color: white;
+                    border-radius: 2px;
+                    font-weight: bold;
+                    font-size: 10px;
+                }
+
+            .list-product .product .price .price-market {
+                color: gray;
+                font-size: 13px;
+                text-decoration: line-through;
+            }
+
+.count-product {
+    display: inline-block;
+    width: 18%;
+    padding-top: 4px;
+}
+
+    .count-product .group {
+        line-height: 21px;
+        height: 27px;
+        width: 77px;
+        float: right;
+        border: 1px solid #ddd;
+    }
+
+        .count-product .group .add {
+            width: 25px;
+            height: 25px;
+            float: left;
+            border: none;
+            background: transparent;
+            border-right: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .count-product .group .number {
+            width: 25px;
+            height: 25px;
+            float: left;
+            border: none;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .count-product .group .minus {
+            width: 25px;
+            height: 25px;
+            float: left;
+            border: none;
+            background: transparent;
+            border-left: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+.total-cost {
+    background: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+    .total-cost .total-price {
+        display: flex;
+    }
+
+        .total-cost .total-price .text {
+            display: inline-block;
+            width: 40%;
+            font-size: 14px;
+            line-height: 30px;
+        }
+
+        .total-cost .total-price .value {
+            display: inline-block;
+            font-size: 20px;
+            width: 60%;
+            text-align: right;
+            color: #FE3834;
+            font-weight: bold;
+        }
+
+            .total-cost .total-price .value small {
+                display: block;
+                color: gray;
+                font-size: 11px !important;
+            }
+
+.btn-order {
+    width: 100%;
+    text-align: center;
+    background: #ff424e;
+    border-color: #ff424e;
+    color: white;
+    padding: 7px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+    .btn-order:hover {
+        opacity: .9;
+    }

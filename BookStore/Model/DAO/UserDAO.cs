@@ -31,22 +31,29 @@ namespace Model.DAO
                     Status = true,
                 };
                 db.Administrators.Add(newAdmin);
-
-                var newUser = new Administrator()
-                {
-                    Username = "user",
-                    Password = "ee11cbb19052e40b07aac0ca060c23ee",
-                    Fullname = "user",
-                    Image = "/Assets/admin/images/avatars/avatar2.png",
-                    Email = "user@gmail.com",
-                    isAdmin = false,
-                    Status = true,
-                };
-                db.Administrators.Add(newUser);
                 db.SaveChanges();
                 return true;
             }
             return false;
+        }
+
+        public bool checkUsername(string username)
+        {
+            return db.Administrators.Any(x => x.Username == username);
+        }
+
+        public bool add(Administrator ad)
+        {
+            try
+            {
+                db.Administrators.Add(ad);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public Administrator getUser(string username, string password)
@@ -55,10 +62,40 @@ namespace Model.DAO
             return model;
         }
         
-        public IEnumerable<Administrator> getListUser()
+        public IEnumerable<Administrator> getListUser(string username)
         {
-            var model = db.Administrators.ToList();
+            var model = db.Administrators.Where(x => x.Username != username).ToList();
             return model;
+        }
+
+        public bool deleteUser(string username)
+        {
+            try
+            {
+                var user = db.Administrators.Find(username);
+                db.Administrators.Remove(user);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool changeStatus(string username)
+        {
+            try
+            {
+                var user = db.Administrators.Find(username);
+                user.Status = !user.Status;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

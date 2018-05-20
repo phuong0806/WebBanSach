@@ -148,8 +148,11 @@
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
     <Compile Include="Areas\Admin\Models\BusinessModel\AuthorizeBusiness.cs" />
     <Compile Include="Areas\Admin\Models\BusinessModel\MyReflectionController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,6 +161,10 @@
   <ItemGroup>
     <Content Include="Assets\admin\css\addBook.css" />
     <Content Include="Assets\admin\css\animate.css" />
+    <Content Include="Assets\admin\css\images\shopping-bag.png" />
+    <Content Include="Assets\client\cart.js" />
+    <Content Include="Assets\client\cartEvent.js" />
+    <Content Include="Assets\client\css\cart.css" />
     <Content Include="Assets\admin\css\category.css" />
     <Content Include="Assets\admin\css\images\aaaaaaaaaaaaaaaa.png" />
     <Content Include="Assets\admin\css\images\alter-image.jpg" />
@@ -224,6 +231,7 @@
     <Content Include="Assets\admin\js\category.js" />
     <Content Include="Assets\admin\js\index.js" />
     <Content Include="Assets\admin\js\list-book.js" />
+    <Content Include="Assets\admin\js\login.js" />
     <Content Include="Assets\admin\js\test.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\release\angular-ui-router.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\release\angular-ui-router.min.js" />
@@ -656,10 +664,13 @@
     <Content Include="Assets\admin\theme\ckeditor\skins\moono-lisa\images\refresh.png" />
     <Content Include="Assets\admin\theme\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Assets\admin\theme\ckeditor\styles.js" />
+    <Content Include="Assets\client\css\chitietsanpham.css" />
     <Content Include="Assets\client\css\index.css" />
     <Content Include="Assets\client\css\index2.css" />
+    <Content Include="Assets\client\css\order.css" />
     <Content Include="Assets\client\css\sachtheodanhmuc.css" />
     <Content Include="Assets\client\css\trangchu.css" />
+    <Content Include="Assets\client\detail.js" />
     <Content Include="Assets\client\img\books\22-Quy-Luat-Bat-Bien-Trong-Marketing-2738.jpg" />
     <Content Include="Assets\client\img\books\bv1.jpg" />
     <Content Include="Assets\client\img\books\bv2.jpg" />
@@ -2326,6 +2337,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Detail\Index.cshtml" />
+    <Content Include="Views\Cart\emptyCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

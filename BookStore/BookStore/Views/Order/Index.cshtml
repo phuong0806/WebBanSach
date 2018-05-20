@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter {
+    
+}
+
+@section cssHeader {
+    <link href="~/Assets/client/css/order.css" rel="stylesheet" />
+}
+
+<div class="page">
+    <div class="left">
+        <div class="title">Địa chỉ giao hàng</div>
+        <div class="detail">
+            <div class="input-row">
+                <div class="text">Họ tên</div>
+                <div class="input">
+                    <input type="text" class="input-value">
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="text">Điện thoại di động</div>
+                <div class="input">
+                    <input type="text" class="input-value">
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="text">Email</div>
+                <div class="input">
+                    <input type="text" class="input-value">
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="text">Điện thoại di động</div>
+                <div class="input">
+                    <textarea class="input-value" placeholder="Số nhà, tòa nhà(nếu có), tên đường, tên thành phố..."></textarea>
+                </div>
+            </div>
+            <div class="btn-continue">Tiếp tục</div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="title">Đơn hàng <small>(3 sản phẩm)</small> </div>
+        <div class="list-product">
+            <div class="product">
+                <div class="title-product"><span>1</span> x HIỆP SĨ LƯU BAN – TẬP 4 </div>
+                <div class="price">83.500 đ</div>
+            </div>
+        </div>
+        <div class="total-cost">Tổng tiền: <span>181.887.900 ₫</span></div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section cssHeader {
+    <link href="~/Assets/client/css/cart.css" rel="stylesheet" />
+}
+
+@section jsFooter {
+    <script src="~/Assets/client/cart.js"></script>
+    <script src="~/Assets/client/cartEvent.js"></script>
+}
+
+<div class="content">
+    <div class="left">
+        <div class="list-product">
+            
+        </div>
+    </div>
+    <div class="right">
+        <div class="total-cost">
+            <div class="amount">
+                Số lượng <span class="total-product"></span> sản phẩm
+            </div>
+            <div class="total-price">
+                <div class="text">Tổng tiền:</div>
+                <div class="value"><span class="cost">0</span><small>(Đã bao gồm VAT)</small></div>
+            </div>
+        </div>
+        <div class="btn-order">
+            Tiến hành đặt hàng
+        </div>
+    </div>
+</div>
+
+<script id="data-template" type="x-tmpl-mustache">
+    <div class="product">
+        <div class="image">
+            <img src="{{Image}}" alt="alter">
+        </div>
+        <div class="detail">
+            <div class="title">{{Name}}</div>
+            <div class="author">Tác giả: <a href="">{{Authors}}</a></div>
+            <div class="bookcover">{{BookCover}}</div>
+            <div class="delete"><a href="#" data-id="{{ID}}" class="removeItem">Xóa</a></div>
+        </div>
+        <div class="price">
+            <div class="price-sale">{{Price}}</div>
+            <div class="price-market">108.000 ₫</div>
+            <div class="price-promotion"><span>-25%</span></div>
+        </div>
+        <div class="count-product">
+            <div class="group">
+                <button class="add" data-id="{{ID}}">+</button>
+                <input type="text" value="1" class="number id{{ID}}" data-id="{{ID}}">
+                <button class="minus" data-id="{{ID}}">-</button>
+            </div>
+        </div>
+    </div>
+</script>
+

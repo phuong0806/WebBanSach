@@ -32,6 +32,7 @@ function ChangeToSlug() {
     //In slug ra textbox có id “slug”
     document.getElementById('slug').value = slug;
 }
+//$.validator.setDefaults({ ignore: ":hidden:not(select)" })
 
 
 /* MODAL IMAGE */
@@ -42,7 +43,6 @@ $(function () {
     });
 });
 
-//$.validator.setDefaults({ ignore: ":hidden:not(select)" })
 function readURL(input) {
     let url = URL.createObjectURL(input.files[0]);
     $('.img-selected')

@@ -24,6 +24,7 @@
     <link href="~/Assets/client/css/index.css" rel="stylesheet" />
     <link href="~/Assets/client/css/trangchu.css" rel="stylesheet" />
     @RenderSection("cssHeader", required: false)
+  
 </head>
 <body>
     <div id="page" class="content">
@@ -45,7 +46,12 @@
             </div>
             <div class="right-header">
                 <div class="user-account">
-                    <a href="">Đăng nhập </a> & <a href=""> Đăng ký</a>
+                    <a href="#">Đăng nhập </a> | <a href=""> Đăng ký</a>
+                </div>
+                <div class="cart ">
+                    <a href="/gio-hang">
+                        <span class="number-item-cart">0</span>
+                    </a>
                 </div>
             </div>
         </header>
@@ -128,8 +134,10 @@
         </div>
         <!-- end /FOOTER -->
     </div>
+    <!-- JS -->
+    <script src="~/Content/plugins/mustache.js"></script>
+    @RenderSection("jsFooter", required: false)
 </body>
-
 </html>
 <script type="text/javascript">
 $(document).ready(function() {

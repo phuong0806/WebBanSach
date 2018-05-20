@@ -30,9 +30,18 @@ namespace Model.DAO
 
         public IEnumerable<Business> getListBusinessOfUser(string username)
         {
-            var model = (from b in db.Businesses
+            var user = db.Administrators.Find(username);
+            var model = new List<Business>();
+            if (user.isAdmin == true)
+            {
+                model = db.Businesses.ToList();
+            }
+            else
+            {
+                model = (from b in db.Businesses
                          where b.Administrators.Any(x => x.Username == username)
                          select b).ToList();
+            }
             return model;
         }
 
