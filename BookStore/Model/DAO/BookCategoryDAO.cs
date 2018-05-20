@@ -130,6 +130,17 @@ namespace Model.DAO
                 }
                 return false;
             }
+
+        }
+
+        public List<BookCategory> GetCTL()
+        {
+            return db.BookCategories.ToList();
+        }
+
+        public List<BookCategory> Alias(string Alias)
+        {
+            return db.BookCategories.Where(x => x.Alias == Alias).ToList();
         }
     }
 }

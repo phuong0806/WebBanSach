@@ -237,5 +237,90 @@ namespace Model.DAO
                 return false;
             }
         }
+
+        public List<Book> GetBook()
+        {
+            DateTime a = DateTime.Now;
+            int month = a.Month;
+            var listBook = db.Books.ToList();
+            //var listBook = (from book in db.Books
+            //                from author in book.Authors
+            //                join author_book in db.Books on book.ID equals author_book.ID
+            //                where book.Status == true && book.PublicationDate.Value.Month == month
+            //                select new BookViewModel()
+            //                {
+            //                    Authors = author.Name,
+            //                    Name = book.Name,
+            //                    Image = book.Image,
+            //                    Price = book.Price,
+            //                    PublicationDate = book.PublicationDate
+
+            //                }).ToList();
+            return listBook;
+            //return db.Books.Where(x => x.Status == true).ToList();
+        }
+
+        public List<BookViewModel> GetBookPre()
+        {
+            DateTime a = DateTime.Now;
+            int month = a.Month - 1;
+
+            var listBook = (from book in db.Books
+                            from author in book.Authors
+                            join author_book in db.Books on book.ID equals author_book.ID
+                            where book.Status == true && book.PublicationDate.Value.Month == month
+                            select new BookViewModel()
+                            {
+                                AuthorsName = author.Name,
+                                Name = book.Name,
+                                Image = book.Image,
+                                Price = book.Price,
+                                PublicationDate = book.PublicationDate
+
+                            }).ToList();
+            return listBook;
+        }
+
+        public List<BookViewModel> GetBookByAliasCategory(string Alias)
+        {
+            var ctlg = db.BookCategories.Where(x => x.Alias == Alias).FirstOrDefault();
+            var listBook = (from book in db.Books
+                            from author in book.Authors
+                            join author_book in db.Books on book.ID equals author_book.ID
+                            where book.Status == true && book.CategoryID == ctlg.ID
+                            select new BookViewModel()
+                            {
+                                AuthorsName = author.Name,
+                                Name = book.Name,
+                                Image = book.Image,
+                                Price = book.Price,
+                                Alias = book.Alias
+
+                            }).ToList();
+            return listBook;
+        }
+        public List<BookViewModel> GetNewBook()
+        {
+            DateTime a = DateTime.Now;
+            int month = a.Month;
+
+            var listBook = (from book in db.Books
+                            from author in book.Authors
+                            join author_book in db.Books on book.ID equals author_book.ID
+                            where book.Status == true && book.PublicationDate.Value.Month == month
+                            select new BookViewModel()
+                            {
+                                AuthorsName = author.Name,
+                                Name = book.Name,
+                                Image = book.Image,
+                                Price = book.Price,
+                                Alias = book.Alias,
+                                PublicationDate = book.PublicationDate
+
+                            }).ToList();
+            return listBook;
+        }
+
+
     }
 }
