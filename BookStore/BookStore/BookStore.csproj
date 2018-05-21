@@ -168,6 +168,7 @@
     <Content Include="Assets\admin\css\addBook.css" />
     <Content Include="Assets\admin\css\animate.css" />
     <Content Include="Assets\admin\css\images\shopping-bag.png" />
+    <Content Include="Assets\admin\js\author.js" />
     <Content Include="Assets\client\js\cart.js" />
     <Content Include="Assets\client\js\cartEvent.js" />
     <Content Include="Assets\client\css\cart.css" />
@@ -2318,6 +2319,8 @@
     <Content Include="Areas\Admin\Views\Administator\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_404.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Author\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2355,7 +2358,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Author\" />
     <Folder Include="Areas\Admin\Views\Common\" />
     <Folder Include="Assets\admin\img\upload\" />
     <Folder Include="Helpers\" />
