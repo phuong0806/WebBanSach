@@ -238,7 +238,6 @@ namespace Model.DAO
             }
         }
 
-<<<<<<< HEAD
         public IEnumerable<Book> getListBooksInCart(List<Book> listBook)
         {
             List<Book> listBookInCart = new List<Book>();
@@ -249,7 +248,6 @@ namespace Model.DAO
             }
             return listBookInCart;
         }
-=======
         public List<Book> GetBook()
         {
             DateTime a = DateTime.Now;
@@ -332,8 +330,5 @@ namespace Model.DAO
                             }).ToList();
             return listBook;
         }
-
-
->>>>>>> 7fc648254adb26a71d33f271eb200e0f04f58720
     }
 }
