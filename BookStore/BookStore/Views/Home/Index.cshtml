@@ -129,7 +129,12 @@
                     </div>
                     <div class="bot">
                         <a href="" class="title">@item.Name</a>
-                        <a href="" class="author">@item.AuthorsName</a>
+                        <a href="" class="author">
+                            @foreach (var author in item.Authors)
+                            {
+                                @author.Name
+                            }
+                        </a>
                         <span class="price-sale">@item.Price ₫</span>
                         <span class="price-regular">@item.Price ₫</span>
                     </div>
@@ -154,7 +159,12 @@
                     </div>
                     <div class="bot">
                         <a href="" class="title">@item.Name</a>
-                        <a href="" class="author">@item.AuthorsName</a>
+                        <a href="" class="author">
+                            @foreach (var author in item.Authors)
+                            { 
+                                @author.Name
+                            }    
+                        </a>
                         <span class="price-sale">@item.Price ₫</span>
                         <span class="price-regular">@item.Price ₫</span>
                     </div>

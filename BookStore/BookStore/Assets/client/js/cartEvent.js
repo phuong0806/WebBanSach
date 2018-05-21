@@ -11,6 +11,7 @@ var cartController = {
             var id = $(this).data('id');
             $('.number.id' + id).val(BookStore.increaseItemInCart(id, 1));
             BookStore.totalCost();
+            BookStore.totalItem();
         });
 
         $(document).on('click', '.minus', function () {
@@ -18,6 +19,7 @@ var cartController = {
             var id = $(this).data('id');
             $('.number.id' + id).val(BookStore.decreaseItemInCart(id, 1));
             BookStore.totalCost();
+            BookStore.totalItem();
         });
 
         $(document).on('click', '.removeItem', function () {

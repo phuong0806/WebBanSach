@@ -1,11 +1,13 @@
-﻿
+﻿    
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section jsFooter {
-    
+    <script src="~/Assets/client/js/loadAddress.js"></script>
+    <script src="~/Assets/client/js/cart.js"></script>
+    <script src="~/Assets/client/js/order.js"></script>
 }
 
 @section cssHeader {
@@ -14,43 +16,60 @@
 
 <div class="page">
     <div class="left">
-        <div class="title">Địa chỉ giao hàng</div>
-        <div class="detail">
-            <div class="input-row">
-                <div class="text">Họ tên</div>
-                <div class="input">
-                    <input type="text" class="input-value">
+        <form action="/Order/Add" id="form-save-add" method="post">
+            <div class="title">Địa chỉ giao hàng</div>
+            <div class="detail">
+                <div class="input-row">
+                    <div class="text">Họ tên</div>
+                    <div class="input">
+                        <input type="text" class="input-value" id="name" name="name">
+                    </div>
                 </div>
-            </div>
-            <div class="input-row">
-                <div class="text">Điện thoại di động</div>
-                <div class="input">
-                    <input type="text" class="input-value">
+                <div class="input-row">
+                    <div class="text">Điện thoại di động</div>
+                    <div class="input">
+                        <input type="text" class="input-value" id="phone" name="phone">
+                    </div>
                 </div>
-            </div>
-            <div class="input-row">
-                <div class="text">Email</div>
-                <div class="input">
-                    <input type="text" class="input-value">
+                <div class="input-row">
+                    <div class="text">Email</div>
+                    <div class="input">
+                        <input type="text" class="input-value" id="email" name="email">
+                    </div>
                 </div>
-            </div>
-            <div class="input-row">
-                <div class="text">Điện thoại di động</div>
-                <div class="input">
-                    <textarea class="input-value" placeholder="Số nhà, tòa nhà(nếu có), tên đường, tên thành phố..."></textarea>
+                <div class="input-row">
+                    <div class="text">Tỉnh/Thành</div>
+                    <div class="input">
+                        <select id="ddlProvince" name="Province" class="form-control-select"></select>
+                    </div>
                 </div>
+                <div class="input-row">
+                    <div class="text">Quận/Huyện</div>
+                    <div class="input">
+                        <select id="ddlDistrict" name="District" class="form-control-select"></select>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="text">Phường/Xã</div>
+                    <div class="input">
+                        <select id="ddlPrecinct" name="Precinct" class="form-control-select"></select>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="text">Địa chỉ</div>
+                    <div class="input">
+                        <textarea class="input-value" placeholder="Số nhà, tòa nhà(nếu có), tên đường" id="address" name="address"></textarea>
+                    </div>
+                </div>
+                <div class="btn-continue">Đặt hàng</div>
             </div>
-            <div class="btn-continue">Tiếp tục</div>
-        </div>
+        </form>
     </div>
     <div class="right">
-        <div class="title">Đơn hàng <small>(3 sản phẩm)</small> </div>
+        <div class="title">Đơn hàng (<small class="total-product"></small> sản phẩm)</div>
         <div class="list-product">
-            <div class="product">
-                <div class="title-product"><span>1</span> x HIỆP SĨ LƯU BAN – TẬP 4 </div>
-                <div class="price">83.500 đ</div>
-            </div>
+           <!-- LIST -->
         </div>
-        <div class="total-cost">Tổng tiền: <span>181.887.900 ₫</span></div>
+        <div class="total-cost">Tổng tiền: <span class="cost"></span></div>
     </div>
 </div>

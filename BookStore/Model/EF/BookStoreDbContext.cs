@@ -20,6 +20,7 @@ namespace Model.EF
         public virtual DbSet<Business> Businesses { get; set; }
         public virtual DbSet<MenuGroup> MenuGroups { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<Order_Book> Order_Book { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<PostCategory> PostCategories { get; set; }
@@ -63,7 +64,7 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Book>()
-                .HasMany(e => e.OrderDetails)
+                .HasMany(e => e.Order_Book)
                 .WithRequired(e => e.Book)
                 .WillCascadeOnDelete(false);
 
@@ -85,8 +86,12 @@ namespace Model.EF
                 .Property(e => e.Target)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<OrderDetail>()
+                .Property(e => e.Phone)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Order>()
-                .HasMany(e => e.OrderDetails)
+                .HasMany(e => e.Order_Book)
                 .WithRequired(e => e.Order)
                 .WillCascadeOnDelete(false);
 

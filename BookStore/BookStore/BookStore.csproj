@@ -45,11 +45,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -146,6 +146,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Models\BusinessModel\AuthorizeBusiness.cs" />
     <Compile Include="Areas\Admin\Models\BusinessModel\MyReflectionController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -156,14 +157,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DistrictModel.cs" />
+    <Compile Include="Models\PrecinctModel.cs" />
+    <Compile Include="Models\ProductCartModel.cs" />
+    <Compile Include="Models\ProvinceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\admin\css\addBook.css" />
     <Content Include="Assets\admin\css\animate.css" />
     <Content Include="Assets\admin\css\images\shopping-bag.png" />
-    <Content Include="Assets\client\cart.js" />
-    <Content Include="Assets\client\cartEvent.js" />
+    <Content Include="Assets\client\js\cart.js" />
+    <Content Include="Assets\client\js\cartEvent.js" />
     <Content Include="Assets\client\css\cart.css" />
     <Content Include="Assets\admin\css\category.css" />
     <Content Include="Assets\admin\css\images\aaaaaaaaaaaaaaaa.png" />
@@ -670,7 +675,8 @@
     <Content Include="Assets\client\css\order.css" />
     <Content Include="Assets\client\css\sachtheodanhmuc.css" />
     <Content Include="Assets\client\css\trangchu.css" />
-    <Content Include="Assets\client\detail.js" />
+    <Content Include="Assets\client\data\Provinces_District.xml" />
+    <Content Include="Assets\client\js\detail.js" />
     <Content Include="Assets\client\img\books\22-Quy-Luat-Bat-Bien-Trong-Marketing-2738.jpg" />
     <Content Include="Assets\client\img\books\bv1.jpg" />
     <Content Include="Assets\client\img\books\bv2.jpg" />
@@ -2139,6 +2145,8 @@
     <Content Include="Assets\client\img\slides\slide2.jpg" />
     <Content Include="Assets\client\img\slides\slide3.jpg" />
     <Content Include="Assets\client\img\slides\slide4.jpg" />
+    <Content Include="Assets\client\js\loadAddress.js" />
+    <Content Include="Assets\client\js\order.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.js" />
@@ -2308,6 +2316,7 @@
     <Content Include="Areas\Admin\Views\Business\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Administator\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_404.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2341,13 +2350,13 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Detail\Index.cshtml" />
     <Content Include="Views\Cart\emptyCart.cshtml" />
+    <Content Include="Views\Order\SuccessOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Common\" />
     <Folder Include="Assets\admin\img\upload\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
