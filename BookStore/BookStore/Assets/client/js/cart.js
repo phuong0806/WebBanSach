@@ -2,8 +2,9 @@
 
     var cart = [];
 
-    function Item(id, price, count) {
+    function Item(id,name, price, count) {
         this.id = id;
+        this.name = name;
         this.count = count;
         this.price = price;
     };
@@ -19,13 +20,13 @@
     //Public methods and properties
     var obj = {};
 
-    obj.addItemToCart = function (id, price) { // add a item
+    obj.addItemToCart = function (id,name, price) { // add a item
         for (var i in cart) {
             if (cart[i].id === id) {
                 return;
             }
         }
-        var item = new Item(id, price, 1);
+        var item = new Item(id,name, price, 1);
         if (cart === null)
             cart = [];
         cart.push(item);
@@ -70,6 +71,28 @@
         }
     }
 
+    obj.listID = function () {
+        var list = [];
+        console.log(cart);
+        for (var i in cart) {
+            list.push(cart[i]);
+        }
+        return list;
+    };
+
+    obj.loadCart = function () {
+        var output = "";
+        for (var i in cart) {
+            output += '<div class="product id'+ cart[i].id +'" data-id="' + cart[i].id + '">';
+            output += '<div class="title-product"><span>' + cart[i].count + '</span> x ' + cart[i].name + ' </div>';
+            output += '<div class="price"> ' + obj.format_money(cart[i].price) + '</div>';
+            output += '</div>';
+        };
+        $('.list-product').html(output);
+        obj.totalItem();
+        obj.totalCost();
+    }
+
     obj.totalItem = function () {
         var total = 0;
         for (var i in cart) {
@@ -86,6 +109,14 @@
         $('.cost').html(obj.format_money(total));
     }
 
+    obj.returnTotalCost = function () {
+        var total = 0;
+        for (var i in cart) {
+            total += cart[i].price * cart[i].count;
+        }
+        return total;
+    }
+
     obj.removeItemInCart = function (id) {
         for (var i in cart) {
             if (cart[i].id === id) {
@@ -97,6 +128,9 @@
     }
 
     obj.countItemInCart = function (id) {
+        if (cart == null) {
+            cart = [];
+        }
         $('.number-item-cart').html(cart.length);
     }
 
@@ -115,7 +149,8 @@ $('.add-to-cart').click(function (event) { // thêm sản phẩm vào giỏ hàn
     event.preventDefault();
     var id = $(this).data('id');
     var price = $(this).data('price');
-    BookStore.addItemToCart(id, price);
+    var name = $(this).data('name');
+    BookStore.addItemToCart(id,name, price);
     BookStore.countItemInCart();
 });
 

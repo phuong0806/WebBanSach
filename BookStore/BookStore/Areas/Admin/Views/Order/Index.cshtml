@@ -1,0 +1,233 @@
+﻿@model List<Model.ViewModel.BookViewModel>
+@{
+    ViewBag.Title = "Đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section cssHeader {
+
+}
+
+@section jsFooter {
+    <script src="~/Content/plugins/jquery.twbsPagination.min.js"></script>
+ 
+}
+<div id="fakeLoader"></div>
+<div class="row">
+    <div class="col-sm-12 list-book">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-list">
+                    <div class="float-left">
+                        <span class="title-list">DANH SÁCH - Đơn hàng</span><span class="result-list"> (<span class="amount"></span> results)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row  mt-3 mb-3">
+            <div class="col-sm-12">
+                <div class="display-search">
+                    <div class="float-left">
+                        <input type="text" name="searchText" id="search-text" value="" class="search-box" placeholder="Search" />
+                        <select name="sel-list" class="sel-list">
+                            <option value="">All</option>
+                            <option value="true">Đơn hàng mới</option>
+                            <option value="false">Hoàn tất</option>
+                            <option value="false">Chưa duyệt</option>
+                        </select>
+                        <a href="#" class="btn-reset">Reset</a>
+                    </div>
+                    <div class="float-right">
+                        <a href="AddBook" class="my-btn btn-create">create</a>
+                        <a href="#" class="my-btn btn-export">export</a>
+                        <a href="#" class="my-btn btn-import">import</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="my-table table table-sm">
+                    <thead>
+                        <tr class="my-thead text-center">
+                            <td width="16%" class="text-left">Ngày đặt hàng</td>
+                            <td width="16%">Mã Đơn Hàng</td>
+                            <td width="16%">Tổng Tiền</td>
+                            <td width="16%">Trạng Thái</td>
+                            <td width="16%">Người Duyệt</td>
+                            <td width="20%"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="resultBook">
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-default">Đơn hàng mới</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-success">Hoàn tất</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-primary">Đang chuyển</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-default">Đơn hàng mới</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-success">Hoàn tất</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-primary">Đang chuyển</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-default">Đơn hàng mới</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-success">Hoàn tất</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-primary">Đang chuyển</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-default">Đơn hàng mới</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-success">Hoàn tất</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="text-center" style="font-size:14px;">
+                            <td class="text-left">
+                                10/10/2017
+                            </td>
+                            <td><a href="#">#33993399</a></td>
+                            <td>330.000đ</td>
+                            <td><label class="badge badge-primary">Đang chuyển</label></td>
+                            <td>Chưa có</td>
+                            <td class="text-left">
+                                <a class="my-btn btn-edit" href="/Admin/Book/UpdateBook/" data-id="">Apply</a>
+                                <a class="my-btn btn-delete" data-id="">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pagination" class="pagination">
+
+</div>
+
+<script id="data-template" type="x-tmpl-mustache">
+   
+</script>
+

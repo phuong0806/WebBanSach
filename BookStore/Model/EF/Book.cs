@@ -11,7 +11,7 @@ namespace Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
-            OrderDetails = new HashSet<OrderDetail>();
+            Order_Book = new HashSet<Order_Book>();
             Authors = new HashSet<Author>();
             Tags = new HashSet<Tag>();
         }
@@ -82,7 +82,7 @@ namespace Model.EF
         public virtual Publisher Publisher { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<Order_Book> Order_Book { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Author> Authors { get; set; }

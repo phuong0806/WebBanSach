@@ -8,19 +8,30 @@ namespace Model.EF
 
     public partial class OrderDetail
     {
-        [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int OrderId { get; set; }
+        public int ID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int BookID { get; set; }
+        [StringLength(250)]
+        public string CustomerName { get; set; }
 
-        public int? Quality { get; set; }
+        [StringLength(50)]
+        public string Phone { get; set; }
 
-        public virtual Book Book { get; set; }
+        [StringLength(250)]
+        public string Email { get; set; }
+
+        [StringLength(250)]
+        public string Province { get; set; }
+
+        [StringLength(250)]
+        public string District { get; set; }
+
+        [StringLength(250)]
+        public string Precinct { get; set; }
+
+        [StringLength(250)]
+        public string Address { get; set; }
+
+        public int? OrderID { get; set; }
 
         public virtual Order Order { get; set; }
     }

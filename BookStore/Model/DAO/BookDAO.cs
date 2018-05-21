@@ -34,19 +34,19 @@ namespace Model.DAO
         {
             var result =
                     (from book in db.Books
-                    where book.Name.Contains(searchText)
-                    select new BookViewModel()
-                    {
-                        ID = book.ID,
-                        Name = book.Name,
-                        Alias = book.Alias,
-                        Price = book.Price,
-                        Quanlity = book.Quanlity,
-                        ViewCount = book.ViewCount,
-                        Status = book.Status,
-                        Image = book.Image,
-                        MoreImages = book.MoreImages,
-                    }).ToList();
+                     where book.Name.Contains(searchText)
+                     select new BookViewModel()
+                     {
+                         ID = book.ID,
+                         Name = book.Name,
+                         Alias = book.Alias,
+                         Price = book.Price,
+                         Quanlity = book.Quanlity,
+                         ViewCount = book.ViewCount,
+                         Status = book.Status,
+                         Image = book.Image,
+                         MoreImages = book.MoreImages,
+                     }).ToList();
             return result;
         }
 

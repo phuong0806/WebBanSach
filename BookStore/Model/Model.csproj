@@ -92,6 +92,8 @@
     <Compile Include="DAO\BookCategoryDAO.cs" />
     <Compile Include="DAO\BookDAO.cs" />
     <Compile Include="DAO\BusinessDAO.cs" />
+    <Compile Include="DAO\OrderDAO.cs" />
+    <Compile Include="DAO\OrderDetailDAO.cs" />
     <Compile Include="DAO\PublisherDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="EF\Administrator.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="EF\MenuGroup.cs" />
     <Compile Include="EF\Order.cs" />
     <Compile Include="EF\OrderDetail.cs" />
+    <Compile Include="EF\Order_Book.cs" />
     <Compile Include="EF\Post.cs" />
     <Compile Include="EF\PostCategory.cs" />
     <Compile Include="EF\Publisher.cs" />
@@ -116,6 +119,7 @@
     <Compile Include="ViewModel\BusinessViewModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\ImageViewModel.cs" />
+    <Compile Include="ViewModel\ProductCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
