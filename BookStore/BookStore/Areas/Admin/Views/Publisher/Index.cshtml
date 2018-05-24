@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "Tác giả";
-    var listAuthor = ViewBag.listAuthor;
+    ViewBag.Title = "Danh mục";
+    var listPub = ViewBag.listPub;
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 }
 
 @section jsFooter {
-<script src="~/Assets/admin/js/author.js"></script>
+    <script src="~/Assets/admin/js/pub.js"></script>
 }
 <div class="row">
     <div class="col-sm-12 list-book">
@@ -18,7 +18,7 @@
             <div class="col-sm-12">
                 <div class="title-list">
                     <div class="float-left">
-                        <span class="title-list">DANH SÁCH - Tác giả</span><span class="result-list"> (<span class="amount"></span> results)</span>
+                        <span class="title-list">DANH SÁCH - Nhà xuất bản</span><span class="result-list"> (<span class="amount"></span> results)</span>
                     </div>
                 </div>
             </div>
@@ -46,14 +46,13 @@
                 <table class="my-table table table-sm">
                     <thead>
                         <tr class="my-thead text-center">
-                            <td width="20%" class="text-left">TÁC GIẢ</td>
-                            <td width="20%">Ngày sinh</td>
-                            <td width="39%">Thông tin</td>
+                            <td width="20%" class="text-left">Nhà xuất bản</td>
+                            <td width="20%">Số điện thoại</td>
+                            <td width="39%">Địa chỉ</td>
                             <td width="21%"></td>
                         </tr>
                     </thead>
-                    <tbody id="resultAuthor">
-                    </tbody>
+                    <tbody id="resultPub"></tbody>
                 </table>
             </div>
         </div>
@@ -61,9 +60,16 @@
 </div>
 <script id="data-template" type="x-tmpl-mustache">
     <tr class="text-center" style="font-size:14px;">
-        <td class="text-left">{{Name}}</td>
-        <td>{{Birthday}}</td>
-        <td>{{Info}}</td>
+        <td class="text-left">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a id="{{ID}}" class="title-book">{{Name}}</a>
+                    <a href="#" class="alias-book">{{Alias}}</a>
+                </div>
+            </div>
+        </td>
+        <td>{{PhoneNumber}}</td>
+        <td>{{Address}}</td>
         <td class="text-left">
             <a class="my-btn btn-action btn-edit" data-id="{{ID}}">Edit</a>
             <a class="my-btn btn-delete" data-id="{{ID}}">Delete</a>
@@ -83,24 +89,28 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="title-box">
-                        <span class="title-modal"></span> TÁC GIẢ
+                        <span class="title-modal"></span> NHÀ XUẤT BẢN
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="AuthorModal">Tác giả</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="...">
+                        <label for="AuthorModal">Nhà xuất bản</label>
+                        <input type="text" class="form-control" name="tittle" onkeyup="ChangeToSlug();" id="title" placeholder="...">
                         <input type="hidden" id="id" value="" name="id">
                     </div>
                     <div class="form-group">
-                        <label for="AuthorModal">Ngày sinh</label>
-                        <input type="date" class="form-control" name="date" id="date" placeholder="...">
+                        <label for="AuthorModal">URL</label>
+                        <input type="text" name="slug" id="slug" placeholder="...">
                     </div>
                     <div class="form-group">
-                        <label for="AuthorModal">Thông tin</label>
-                        <textarea name="info" id="info" placeholder="..."></textarea>
+                        <label for="AuthorModal">Số điện thoại</label>
+                        <input type="text" name="PhoneNumber" id="PhoneNumber" placeholder="...">
+                    </div>
+                    <div class="form-group">
+                        <label for="AuthorModal">Địa chỉ</label>
+                        <textarea type="text" name="Address" id="Address" placeholder="..."></textarea>
                     </div>
                     <a class="btn-save" data-id=""></a>
                 </div>
@@ -109,38 +119,3 @@
     </div>
 </div>
 <!-- end MODAL THE LOAI -->
-<!-- MANAGE IMAGE -->
-<div class="background-black"></div>
-<div class="manage-image animated bounceInDown">
-    <div class="row relative">
-        <div class="col-sm-3 list-category-img">
-            <form action="/" method="post" id="form-data">
-                <input type="file" id="upload" name="file" onchange="readURL(this);" style="display:none" />
-            </form>
-            <a href="#" id="upload-link">Chọn ảnh</a>
-            <div class="hinh-duoc-chon">
-                <img src="~/Assets/admin/css/images/alter-image.jpg" class="img-selected" />
-                <span class="image-selected">...</span>
-            </div>
-            <a href="#" id="delete-link"><i class="fa fa-trash-alt"></i></a>
-            <a href="#" id="reset-link"><i class="fa fa-undo"></i></a>
-        </div>
-        <div class="col-sm-9 list-img">
-            <div class="row search-box-img">
-                <input type="text" class="search-box" name="name" value="" />
-                <a href="#" class="btn-search"><i class="fa fa-search"></i></a>
-            </div>
-            <div class="row" id="result">
-                @*@foreach (var item in listImage)
-                    {
-                        <div class="col-sm-3 a-book">
-                            <img src="@item.path" class="hinh-anh" data-request-url="@Url.Action("deleteBook", "Book")" alt="Alternate Text" id="@item.name" />
-                            <span class="ten-hinh-anh">@item.name</span>
-                        </div>
-                    }*@
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- end MANAGE IMAGE -->

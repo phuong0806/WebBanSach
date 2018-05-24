@@ -1,4 +1,21 @@
-﻿
+﻿function toDateTime(secs) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t;
+}
+function js_yyyy_mm_dd_hh_mm_ss(date) {
+    if (date == null) {
+        return "-";
+    }
+    var now = new Date(date);
+    year = "" + now.getFullYear();
+    month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+    day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+    hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+    minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+    second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+    return day + "-" + month + "-" + year + "/" + hour + ":" + minute;
+}
 function ChangeToSlug() {
     var title, slug;
 

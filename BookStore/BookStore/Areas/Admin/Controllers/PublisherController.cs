@@ -12,24 +12,25 @@ using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
-    public class AuthorController : Controller
+    public class PublisherController : Controller
     {
-        // GET: Admin/Author
+        // GET: Admin/Publisher
         public ActionResult Index()
         {
-            setViewbagforAuthor();
+            setViewbagforPub();
             return View();
         }
 
-        public void setViewbagforAuthor()
+        public void setViewbagforPub()
         {
-            AuthorDAO author = new AuthorDAO();
-            ViewBag.listAuthor = author.getListAuthor();
+            PublisherDAO pub = new PublisherDAO();
+            ViewBag.listPub = pub.getListPublisher();
         }
+
         public JsonResult LoadData()
         {
-            setViewbagforAuthor();
-            IEnumerable<Author> model = new AuthorDAO().getListAuthor();
+            setViewbagforPub();
+            IEnumerable<Publisher> model = new PublisherDAO().getListPublisher();
             model = model.OrderBy(x => x.Name);
             var TotalRow = model.Count();
             return Json(new
@@ -41,21 +42,21 @@ namespace BookStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult Save(Author author)
+        public JsonResult Save(Publisher pub)
         {
             var status = false;
-            if (author.ID > 0)
+            if (pub.ID > 0)
             {
                 return Json(new
                 {
-                    status = new AuthorDAO().UpdateAuthor(author) // Them
+                    status = new PublisherDAO().UpdatePublisher(pub) // Them
                 });
             }
             else
             {
                 return Json(new
                 {
-                    status = new AuthorDAO().Insert(author) // Them
+                    status = new PublisherDAO().Insert(pub)
                 });
             }
         }
@@ -65,7 +66,7 @@ namespace BookStore.Areas.Admin.Controllers
         {
             return Json(new
             {
-                author = new AuthorDAO().GetDetails(id)
+                pub = new PublisherDAO().GetDetails(id)
             });
         }
 
@@ -73,7 +74,7 @@ namespace BookStore.Areas.Admin.Controllers
         {
             return Json(new
             {
-                stt = new AuthorDAO().DelAuthor(id)
+                stt = new PublisherDAO().DelPublisher(id)
             });
         }
     }

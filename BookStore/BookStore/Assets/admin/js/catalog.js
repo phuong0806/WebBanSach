@@ -1,55 +1,52 @@
 ﻿$(document).ready(function () {
-    var AuthorController = {
+    var CatalogController = {
         init: function () {//load dữ liệu
-            AuthorController.LoadData();
-            AuthorController.registerEvent();
+            CatalogController.LoadData();
+            CatalogController.registerEvent();
         },
 
         registerEvent: function () {//xử lý sự kiện
             $('.btn-save').click(function () {
-                var Name = $('#name').val();
-                var Birthday = $('#date').val();
-                var Info = $('#info').val();
+                var Name = $('#title').val();
+                var Alias = $('#slug').val();
                 var id = $('#id').val();
                 var Status = true;
-                var Author = {
+                var Catalog = {
                     ID: id,
+                    Alias: Alias,
                     Name: Name,
-                    Birthday: Birthday,
-                    Info: Info,
                     Status: Status
                 };
-                AuthorController.Save(Author);
+                CatalogController.Save(Catalog);
             });
 
             $(document).on('click', '.btn-edit', function () {
                 var id = $(this).data('id');
-                AuthorController.LoadDetails(id);
+                CatalogController.LoadDetails(id);
             });
 
             $(document).on('click', '.btn-create', function () {
-                AuthorController.reset();
+                CatalogController.reset();
             });
 
             $(document).on('click', '.btn-delete', function () {
-                if (confirm("Ban co muon xoa hong")) {
+                if (confirm("Bạn chắc chắn xóa?")) {
                     var id = $(this).data('id');
-                    AuthorController.Del(id);
+                    CatalogController.Del(id);
                 }
             });
 
         },
         //Lấy toàn bộ tác giả
         reset: function () {
-            $('#name').val('');
-            $('#date').val('');
-            $('#info').val('');
+            $('#tittle').val('');
+            $('#slug').val('');
             $('#id').val('');
         },
 
         LoadData: function () {
             $.ajax({
-                url: "/Author/LoadData",
+                url: "/Catalog/LoadData",
                 type: "Get",
                 dataType: "json",
                 success: function (result) {
@@ -63,65 +60,61 @@
                             html += Mustache.render(template, {
                                 ID: item.ID,
                                 Name: item.Name,
-                                Info: item.Info,
-                                Birthday: item.Birthday,
+                                Alias:item.Alias,
                                 btnStatus: item.Status == true ? `<a class="my-btn btn-status btn-unpublish" data-id=${item.ID}>Unpublish</a>` : `<a class="my-btn btn-status btn-publish" data-id=${item.ID}>Publish</a>`,
                             });
                         });
-                        $('#resultAuthor').html(html);
+                        $('#resultCatalog').html(html);
                     }
 
                 }
             });
         },
         // thêm tác giả mới
-        Save: function (Author) {
+        Save: function (Catalog) {
             $.ajax({
-                url: "/Author/Save",
-                data:{
-                    author:Author
+                url: "/Catalog/Save",
+                data: {
+                    catalog: Catalog
                 },
                 type: "Post",
                 dataType: "json",
                 success: function (result) {
-                    if(result.status==true)
-                    {
-                        AuthorController.LoadData();
+                    if (result.status == true) {
+                        CatalogController.LoadData();
                     }
                 }
             })
         },
 
-
         //Load dữ liệu dựa theo id tác giả
         LoadDetails: function (id) {
             $.ajax({
-                url: "/Author/LoadDetails",
+                url: "/Catalog/LoadDetails",
                 data: { id: id },
                 type: "Post",
                 dataType: "json",
                 success: function (result) { // result nhận json
-                    var data = result.author
+                    var data = result.ca
                     $('#id').val(data.ID);
-                    $('#name').val(data.Name);
-                    $('#date').val(data.Birthday);
-                    $('#info').val(data.Info);
+                    $('#title').val(data.Name);
+                    $('#slug').val(data.Alias);
                 }
             });
         },
 
         Del: function (id) {
             $.ajax({
-                url: "/Author/Del",
+                url: "/Catalog/Del",
                 data: { id: id },
                 type: "Post",
                 dataType: "json",
                 success: function (result) { // result nhận json
-                    AuthorController.LoadData();
+                    CatalogController.LoadData();
                 }
             });
         },
 
     };
-    AuthorController.init();//chạy đầu tiên
+    CatalogController.init();//chạy đầu tiên
 })

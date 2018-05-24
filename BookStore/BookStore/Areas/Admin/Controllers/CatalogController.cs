@@ -12,25 +12,25 @@ using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
-    public class AuthorController : Controller
+    public class CatalogController : Controller
     {
-        // GET: Admin/Author
+        // GET: Admin/Catalog
         public ActionResult Index()
         {
-            setViewbagforAuthor();
+            setViewbagforCatalog();
             return View();
         }
 
-        public void setViewbagforAuthor()
+        public void setViewbagforCatalog()
         {
-            AuthorDAO author = new AuthorDAO();
-            ViewBag.listAuthor = author.getListAuthor();
+            BookCatalogDAO catalog = new BookCatalogDAO();
+            ViewBag.listcatalog = catalog.getListBookCatalog();
         }
         public JsonResult LoadData()
         {
-            setViewbagforAuthor();
-            IEnumerable<Author> model = new AuthorDAO().getListAuthor();
-            model = model.OrderBy(x => x.Name);
+            setViewbagforCatalog();
+            IEnumerable<BookCatalog> model = new BookCatalogDAO().getListBookCatalog();
+            model = model.OrderBy(x => x.DisplayOrder);
             var TotalRow = model.Count();
             return Json(new
             {
@@ -41,21 +41,21 @@ namespace BookStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult Save(Author author)
+        public JsonResult Save(BookCatalog catalog)
         {
             var status = false;
-            if (author.ID > 0)
+            if (catalog.ID > 0)
             {
                 return Json(new
                 {
-                    status = new AuthorDAO().UpdateAuthor(author) // Them
+                    status = new BookCatalogDAO().UpdateAuthor(catalog) // Them
                 });
             }
             else
             {
                 return Json(new
                 {
-                    status = new AuthorDAO().Insert(author) // Them
+                    status = new BookCatalogDAO().Insert(catalog)
                 });
             }
         }
@@ -65,7 +65,7 @@ namespace BookStore.Areas.Admin.Controllers
         {
             return Json(new
             {
-                author = new AuthorDAO().GetDetails(id)
+                ca = new BookCatalogDAO().GetDetails(id)
             });
         }
 
@@ -73,7 +73,7 @@ namespace BookStore.Areas.Admin.Controllers
         {
             return Json(new
             {
-                stt = new AuthorDAO().DelAuthor(id)
+                stt = new BookCatalogDAO().DelCatalog(id)
             });
         }
     }

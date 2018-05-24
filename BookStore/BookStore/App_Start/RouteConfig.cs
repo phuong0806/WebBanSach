@@ -22,8 +22,8 @@ namespace BookStore
 
             routes.MapRoute(
              name: "Chi tiết sản phẩm",
-             url: "chi-tiet-san-pham",
-             defaults: new { controller = "Detail", action = "Index", id = UrlParameter.Optional },
+             url: "{Alias}",
+             defaults: new { controller = "Detail", action = "GetDetail", id = UrlParameter.Optional },
              namespaces: new[] { "BookStore.Controllers" }
             );
 
@@ -53,6 +53,13 @@ namespace BookStore
              name: "Default",
              url: "{controller}/{action}/{id}",
              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+             namespaces: new[] { "BookStore.Controllers" }
+            );
+
+            routes.MapRoute(
+             name: "Liên hệ",
+             url: "lien-he",
+             defaults: new { controller = "Address", action = "Index", id = UrlParameter.Optional },
              namespaces: new[] { "BookStore.Controllers" }
             );
         }

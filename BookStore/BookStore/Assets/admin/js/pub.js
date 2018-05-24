@@ -1,55 +1,58 @@
 ﻿$(document).ready(function () {
-    var AuthorController = {
+    var PubController = {
         init: function () {//load dữ liệu
-            AuthorController.LoadData();
-            AuthorController.registerEvent();
+            PubController.LoadData();
+            PubController.registerEvent();
         },
 
         registerEvent: function () {//xử lý sự kiện
             $('.btn-save').click(function () {
-                var Name = $('#name').val();
-                var Birthday = $('#date').val();
-                var Info = $('#info').val();
+                var Name = $('#title').val();
+                var Alias = $('#slug').val();
                 var id = $('#id').val();
+                var phone = $('#PhoneNumber').val();
+                var dc = $('#Address').val();
                 var Status = true;
-                var Author = {
+                var Pub = {
                     ID: id,
+                    Alias: Alias,
                     Name: Name,
-                    Birthday: Birthday,
-                    Info: Info,
+                    Address: dc,
+                    PhoneNumber:phone,
                     Status: Status
                 };
-                AuthorController.Save(Author);
+                PubController.Save(Pub);
             });
 
             $(document).on('click', '.btn-edit', function () {
                 var id = $(this).data('id');
-                AuthorController.LoadDetails(id);
+                PubController.LoadDetails(id);
             });
 
             $(document).on('click', '.btn-create', function () {
-                AuthorController.reset();
+                PubController.reset();
             });
 
             $(document).on('click', '.btn-delete', function () {
-                if (confirm("Ban co muon xoa hong")) {
+                if (confirm("Bạn chắc chắn xóa?")) {
                     var id = $(this).data('id');
-                    AuthorController.Del(id);
+                    PubController.Del(id);
                 }
             });
 
         },
         //Lấy toàn bộ tác giả
         reset: function () {
-            $('#name').val('');
-            $('#date').val('');
-            $('#info').val('');
+            $('#tittle').val('');
+            $('#slug').val('');
             $('#id').val('');
+            $('#Address').val('');
+            $('#PhoneNumber').val('');
         },
 
         LoadData: function () {
             $.ajax({
-                url: "/Author/LoadData",
+                url: "/Publisher/LoadData",
                 type: "Get",
                 dataType: "json",
                 success: function (result) {
@@ -57,71 +60,69 @@
                         var data = result.data;
                         var template = $('#data-template').html();
                         var html = '';
-
                         $.each(data, function (i, item) {//dòng foreach chạy dữ liệu
-                            var a = js_yyyy_mm_dd_hh_mm_ss(toDateTime(item.Birthday));
                             html += Mustache.render(template, {
                                 ID: item.ID,
                                 Name: item.Name,
-                                Info: item.Info,
-                                Birthday: item.Birthday,
+                                Alias: item.Alias,
+                                Address: item.Address,
+                                PhoneNumber: item.PhoneNumber,
                                 btnStatus: item.Status == true ? `<a class="my-btn btn-status btn-unpublish" data-id=${item.ID}>Unpublish</a>` : `<a class="my-btn btn-status btn-publish" data-id=${item.ID}>Publish</a>`,
                             });
                         });
-                        $('#resultAuthor').html(html);
+                        $('#resultPub').html(html);
                     }
 
                 }
             });
         },
         // thêm tác giả mới
-        Save: function (Author) {
+        Save: function (Pub) {
             $.ajax({
-                url: "/Author/Save",
-                data:{
-                    author:Author
+                url: "/Publisher/Save",
+                data: {
+                    pub: Pub
                 },
                 type: "Post",
                 dataType: "json",
                 success: function (result) {
-                    if(result.status==true)
-                    {
-                        AuthorController.LoadData();
+                    if (result.status == true) {
+                        PubController.LoadData();
                     }
                 }
             })
         },
 
-
         //Load dữ liệu dựa theo id tác giả
         LoadDetails: function (id) {
             $.ajax({
-                url: "/Author/LoadDetails",
+                url: "/Publisher/LoadDetails",
                 data: { id: id },
                 type: "Post",
                 dataType: "json",
                 success: function (result) { // result nhận json
-                    var data = result.author
+                    var data = result.pub
                     $('#id').val(data.ID);
-                    $('#name').val(data.Name);
-                    $('#date').val(data.Birthday);
-                    $('#info').val(data.Info);
+                    $('#title').val(data.Name);
+                    $('#slug').val(data.Alias);
+                    $('#PhoneNumber').val(data.PhoneNumber);
+                    $('#Address').val(data.Address);
                 }
             });
         },
 
         Del: function (id) {
             $.ajax({
-                url: "/Author/Del",
+                url: "/Publisher/Del",
                 data: { id: id },
                 type: "Post",
                 dataType: "json",
                 success: function (result) { // result nhận json
-                    AuthorController.LoadData();
+                    PubController.LoadData();
                 }
             });
         },
 
     };
-    AuthorController.init();//chạy đầu tiên
+    PubController.init();//chạy đầu tiên
 })

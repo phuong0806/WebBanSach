@@ -36,5 +36,29 @@ namespace Model.DAO
                 return false;
             }
         }
+
+        public Author GetDetails(int id)
+        {
+            var author=db.Authors.Find(id);
+            return author;
+        }
+
+        public bool UpdateAuthor(Author a)
+        {
+            var model = db.Authors.Find(a.ID);
+            model.Name = a.Name;
+            model.Birthday = a.Birthday;
+            model.Info = a.Info;
+            db.SaveChanges();
+            return true;
+        }
+
+        public bool DelAuthor(int id)
+        {
+            var model = db.Authors.Find(id);
+            db.Authors.Remove(model);
+            db.SaveChanges();
+            return true;
+        }
     }
 }
