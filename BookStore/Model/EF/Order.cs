@@ -20,10 +20,18 @@ namespace Model.EF
 
         public int? Status { get; set; }
 
+        public bool? isFinish { get; set; }
+
+        public DateTime? FinishDate { get; set; }
+
         public DateTime? CreatedDate { get; set; }
 
-        [StringLength(50)]
-        public string CreatedBy { get; set; }
+        public DateTime? ConfirmDate { get; set; }
+
+        [StringLength(250)]
+        public string ConfirmBy { get; set; }
+
+        public bool? isConfirm { get; set; }
 
         public int? TotalCost { get; set; }
 

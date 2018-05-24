@@ -105,11 +105,6 @@ namespace BookStore.Areas.Admin.Controllers
                 {
                     newBook.Image = imgHelper.saveImage(file);
                 }
-                else
-                {
-                    newBook.Image = book.Image;
-                }
-
                 var author_book = new Author_Book_DAO();
                 if (author_book.insertAuthorBook(newBook, Authors) > 0)
                 {

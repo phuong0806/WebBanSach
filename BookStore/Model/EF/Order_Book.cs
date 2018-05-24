@@ -20,6 +20,8 @@ namespace Model.EF
 
         public int? Number { get; set; }
 
+        public string TotalCost { get; set; }
+
         public virtual Book Book { get; set; }
 
         public virtual Order Order { get; set; }

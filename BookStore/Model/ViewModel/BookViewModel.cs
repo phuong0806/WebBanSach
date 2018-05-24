@@ -21,7 +21,7 @@ namespace Model.ViewModel
         public string Alias { get; set; }
 
         [Required(ErrorMessage = "Bạn phải nhập giá tiền")]
-        public decimal? Price { get; set; }
+        public int? Price { get; set; }
 
         [Required(ErrorMessage = "Bạn phải nhập số lượng")]
         public int? Quanlity { get; set; }

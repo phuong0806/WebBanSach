@@ -33,7 +33,7 @@ html, body {
 }
 
 main {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .title-list {
@@ -158,8 +158,19 @@ main {
 }
 
 .btn-unpublish {
-    background: #dddddd;
-    color: black !important;
+    background: #E7E7E7;
+    color: #333333!important;
+}
+
+.btn-confirm {
+    background: #28a745;
+}
+
+.btn-unconfirm {
+
+background: #E7E7E7;
+
+color: #333333 !important;
 }
 
 .btn-edit {
@@ -427,6 +438,23 @@ main {
     width: 160px;
 }
 
+.btn-apply {
+    background: #1779ba;
+}
+
+.btn-back {
+    background: #28a745;
+}
+
+.btn-finish {
+    background: #ef4124;
+}
+
+.btn-unfinish {
+    background: #E7E7E7;
+    color: #333333 !important;
+}
+
 .btn-reset {
     text-decoration: none !important;
     background: #ddd;
@@ -529,7 +557,7 @@ main {
             cursor: pointer;
         }
 
-.btn-save {
+.btn-save, .btn-accept {
     cursor: pointer;
     text-decoration: none !important;
     background: #ddd !IMPORTANT;

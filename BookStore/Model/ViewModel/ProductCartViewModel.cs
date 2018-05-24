@@ -8,9 +8,12 @@ namespace Model.ViewModel
 {
     public class ProductCartViewModel
     {
-        public int id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-        public int price { get; set; }
-        public int count { get; set; }
+        public int? Price { get; set; }
+        public int? Number { get; set; }
+        public string Image { get; set; }
+        public string Alias { get; set; }
+        public string TotalCost { get; set; }
     }
 }

@@ -25,11 +25,11 @@ namespace BookStore.Areas.Admin.Controllers
             ViewBag.listImage = imgHelper.loadListImage();
             ViewBag.listAuthor = author.getListAuthor();
         }
-        [HttpPost]
-        public JsonResult LoadData()
-        {
-            IEnumerable<AuthorViewModel> model =
-        }
+        //[HttpPost]
+        //public JsonResult LoadData()
+        //{
+        //    IEnumerable<AuthorViewModel> model =
+        //}
 
     }
 }

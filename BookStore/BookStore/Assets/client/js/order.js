@@ -41,9 +41,9 @@
         var name = $('#name').val();
         var phone = $('#phone').val();
         var email = $('#email').val();
-        var province = $('#ddlProvince').val();
-        var district = $('#ddlDistrict').val();
-        var precinct = $('#ddlPrecinct').val();
+        var province = $('#ddlProvince option:selected').text();
+        var district = $('#ddlDistrict option:selected').text();
+        var precinct = $('#ddlPrecinct option:selected').text();
         var address = $('#address').val();
         var orderDetail = {
             CustomerName: name,

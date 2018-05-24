@@ -167,7 +167,11 @@
   <ItemGroup>
     <Content Include="Assets\admin\css\addBook.css" />
     <Content Include="Assets\admin\css\animate.css" />
+    <Content Include="Assets\admin\css\images\cat.png" />
     <Content Include="Assets\admin\css\images\shopping-bag.png" />
+    <Content Include="Assets\admin\css\notfound.css" />
+    <Content Include="Assets\admin\js\order.js" />
+    <Content Include="Assets\admin\js\orderdetail.js" />
     <Content Include="Assets\client\js\cart.js" />
     <Content Include="Assets\client\js\cartEvent.js" />
     <Content Include="Assets\client\css\cart.css" />
@@ -2318,6 +2322,8 @@
     <Content Include="Areas\Admin\Views\Administator\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_404.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\OrderDetail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

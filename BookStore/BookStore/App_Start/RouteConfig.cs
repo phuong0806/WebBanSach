@@ -13,12 +13,12 @@ namespace BookStore
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-           routes.MapRoute(
-            name: "Giỏ hàng",
-            url: "gio-hang",
-            defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
-            namespaces: new[] { "BookStore.Controllers" }
-           );
+            routes.MapRoute(
+             name: "Giỏ hàng",
+             url: "gio-hang",
+             defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
+             namespaces: new[] { "BookStore.Controllers" }
+            );
 
             routes.MapRoute(
              name: "Chi tiết sản phẩm",
@@ -32,24 +32,10 @@ namespace BookStore
               url: "dat-hang",
               defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional },
               namespaces: new[] { "BookStore.Controllers" }
-<<<<<<< HEAD
            );
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                                namespaces: new[] { "BookStore.Controllers" }
-
-                );
-            routes.MapRoute(
-              name: "Danh mục",
-=======
-            );
-
-            routes.MapRoute(
              name: "Danh mục",
->>>>>>> 98e8820f84feddb402b56315477d925513feea68
              url: "the-loai",
              defaults: new { controller = "Category", action = "Index", id = UrlParameter.Optional },
              namespaces: new[] { "SanGiaoDichBatDongSan.Controllers" }
@@ -60,9 +46,6 @@ namespace BookStore
              url: "the-loai/{Alias}",
              defaults: new { controller = "Category", action = "loadBookByAliasCategory", id = UrlParameter.Optional },
              namespaces: new[] { "BookStore.Controllers" }
-<<<<<<< HEAD
-         );
-=======
             );
 
             routes.MapRoute(
@@ -71,7 +54,6 @@ namespace BookStore
              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
              namespaces: new[] { "BookStore.Controllers" }
             );
->>>>>>> 98e8820f84feddb402b56315477d925513feea68
         }
     }
 }

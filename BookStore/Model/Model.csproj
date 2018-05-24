@@ -119,6 +119,7 @@
     <Compile Include="ViewModel\BusinessViewModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\ImageViewModel.cs" />
+    <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\ProductCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

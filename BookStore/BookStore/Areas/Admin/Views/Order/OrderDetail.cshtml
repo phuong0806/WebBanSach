@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "OrderDetail";
+    var order = ViewBag.Order as Model.ViewModel.OrderViewModel;
+    var listBook = ViewBag.ListBook;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter {
+    <script src="~/Assets/admin/js/orderdetail.js"></script>
+}
+
+<div class="row">
+    <div class="col-sm-12 list-book">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="row">
+            <div class="col-sm-12 mb-2">
+                <div class="float-left">
+                    <span class="title-list">ĐƠN HÀNG - #<span id="orderID">@order.ID</span></span>
+                </div>
+                <div class="float-right" style="padding-top:15px">
+                    <a href="#" class="my-btn btn-action btn-apply">status</a>
+                    @if (order.isFinish == true)
+                    {
+                        <a href="#" class="my-btn btn-isfinish btn-unfinish">unfinish</a>
+
+                    }
+                    else
+                    {
+                        <a href="#" class="my-btn btn-isfinish btn-finish">finish</a>
+                    }
+                    <a href="/Admin/Order" class="my-btn btn-back">back</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <table class="my-table table table-sm">
+                    <thead>
+                        <tr class="my-thead text-center">
+                            <td width="10%"></td>
+                            <td width="40%" class="text-left">Tên sản phẩm</td>
+                            <td width="15%">Giá</td>
+                            <td width="15%">Số lượng</td>
+                            <td width="20%">Tổng tiền</td>
+                        </tr>
+                    </thead>
+                    <tbody id="result">
+                        @foreach (var item in listBook)
+                        {
+                            <tr class="text-center" style="font-size:14px;">
+                                <td>
+                                    <img class="" alt="alt" src="@item.Image" style="width:75px" />
+                                </td>
+                                <td class="text-left">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a id="" class="title-book">@item.Name</a>
+                                            <a href="#" class="alias-book">@item.Alias</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>@item.Price đ</td>
+                                <td>@item.Number</td>
+                                <td>@item.TotalCost</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tbody id="result"></tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table class="my-table table" style="font-size:13px">
+                    <thead>
+                        <tr class="my-thead text-center">
+                            <td colspan="2" class="text-left">THÔNG TIN ĐƠN HÀNG</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Tình trạng</strong></td>
+                            <td width="65%">
+                                @if (order.Status == null)
+                                {
+                                    <span style="font-weight:bold">Đơn hàng mới</span>
+                                }
+                                else if (order.Status == 0 && order.isFinish == false)
+                                {
+                                    <span style="font-weight:bold">Đang xử lý</span>
+                                }
+                                else if (order.Status == 1 && order.isFinish == false)
+                                {
+                                    <span style="color:#17a2b8;font-weight:bold">Đang vận chuyển</span>
+                                }
+                                else
+                                {
+                                    <span style="color:#28a745;font-weight:bold">Hoàn tất</span>
+                                }
+                            </td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Người duyệt: </strong></td>
+                            <td width="65%">
+                                @if (order.ConfirmBy == null)
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                {
+                                    <a href="#">@order.ConfirmBy</a>
+                                }
+                            </td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Tổng tiền: </strong></td>
+                            <td width="65%">@order.TotalCostString đ</td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Ngày tạo: </strong></td>
+                            <td width="65%">@order.CreatedDate</td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Ngày duyệt: </strong></td>
+                            <td width="65%">
+                                @if (order.ConfirmDate == null)
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                {
+                                    @order.ConfirmDate
+                                }
+                            </td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Ngày hoàn tất: </strong></td>
+                            <td width="65%">
+                                @if (order.FinishDate == null)
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                {
+                                    @order.FinishDate
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="my-table table" style="font-size:13px">
+                    <thead>
+                        <tr class="my-thead text-center">
+                            <td colspan="2" class="text-left">THÔNG TIN GIAO HÀNG</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Khách hàng</strong></td>
+                            <td width="65%">@order.CustomerName</td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Số điện thoại</strong></td>
+                            <td width="65%">@order.Phone</td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Email</strong></td>
+                            <td width="65%">@order.Email</td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Tỉnh/Thành</strong></td>
+                            <td width="65%">@order.Province</td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Quận/Huyện</strong></td>
+                            <td width="65%">@order.District</td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Phường/Xã</strong></td>
+                            <td width="65%">@order.Precinct</td>
+                        </tr>
+                        <tr class="text-left">
+                            <td width="35%"><strong>Địa chỉ</strong></td>
+                            <td width="65%">@order.Address</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blurBackground"></div>
+<div id="#modalBox" class="modalBox animated" style="width:500px;margin-left:-250px">
+    <div class="closeModalBox">
+        <span><i class="ti-close"></i></span>
+    </div>
+    <div class="container">
+        <form class="form-category" role="form" id="form-save">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box">
+                        TÌNH TRẠNG ĐƠN HÀNG
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <select class="form-control" id="statusOrder" name="statusOrder">
+                                @if(order.isConfirm == true)
+                                {
+                                    if (order.Status == 0 && order.isFinish == false)
+                                    {
+                                        <option value="0" selected>Đang xử lý</option>
+                                        <option value="1">Đang vận chuyển</option>
+                                    }
+                                    else if (order.Status == 1 && order.isFinish == false)
+                                    {
+                                        <option value="0" selected>Đang vận chuyển</option>
+                                        <option value="1">Đang vận chuyển</option>
+                                    }
+                                    else
+                                    {
+                                        <option disabled selected>-- Hoàn tất --</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option disabled selected>-- Đơn hàng chưa xác thực --</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

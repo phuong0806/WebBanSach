@@ -1,0 +1,13 @@
+﻿.container {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 125px;
+}
+
+.cat {
+}
+
+.not-found {
+    text-align: center;
+    font-size: 60px;
+}

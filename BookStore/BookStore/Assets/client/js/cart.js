@@ -2,11 +2,11 @@
 
     var cart = [];
 
-    function Item(id,name, price, count) {
-        this.id = id;
-        this.name = name;
-        this.count = count;
-        this.price = price;
+    function Item(id,name, Price, Number) {
+        this.ID = id;
+        this.Name = name;
+        this.Number = Number;
+        this.Price = Price;
     };
 
     function saveCart() {
@@ -20,45 +20,35 @@
     //Public methods and properties
     var obj = {};
 
-    obj.addItemToCart = function (id,name, price) { // add a item
+    obj.addItemToCart = function (id,name, Price) { // add a item
         for (var i in cart) {
-            if (cart[i].id === id) {
+            if (cart[i].ID === id) {
                 return;
             }
         }
-        var item = new Item(id,name, price, 1);
+        var item = new Item(id,name, Price, 1);
         if (cart === null)
             cart = [];
         cart.push(item);
         saveCart();
     }
 
-    obj.increaseItemInCart = function (id, count) { // add a item
+    obj.increaseItemInCart = function (id, Number) { // add a item
         for (var i in cart) {
-            if (cart[i].id === id) {
-                cart[i].count += count;
+            if (cart[i].ID === id) {
+                cart[i].Number += Number;
                 saveCart();
-                return cart[i].count;
+                return cart[i].Number;
             }
         }
     }
 
-    obj.increaseItemInCart = function (id, count) { // add a item
+    obj.decreaseItemInCart = function (id, Number) {
         for (var i in cart) {
-            if (cart[i].id === id) {
-                cart[i].count += count;
+            if (cart[i].ID === id && cart[i].Number > 1) {
+                cart[i].Number -= Number;
                 saveCart();
-                return cart[i].count;
-            }
-        }
-    }
-
-    obj.decreaseItemInCart = function (id, count) {
-        for (var i in cart) {
-            if (cart[i].id === id && cart[i].count > 1) {
-                cart[i].count -= count;
-                saveCart();
-                return cart[i].count;
+                return cart[i].Number;
             } else {
                 return 1;
             }
@@ -67,7 +57,7 @@
 
     obj.displayNumberItem = function () {
         for (var i in cart) {
-            $('.number.id' + cart[i].id).val(cart[i].count);
+            $('.Number.id' + cart[i].ID).val(cart[i].Number);
         }
     }
 
@@ -83,9 +73,9 @@
     obj.loadCart = function () {
         var output = "";
         for (var i in cart) {
-            output += '<div class="product id'+ cart[i].id +'" data-id="' + cart[i].id + '">';
-            output += '<div class="title-product"><span>' + cart[i].count + '</span> x ' + cart[i].name + ' </div>';
-            output += '<div class="price"> ' + obj.format_money(cart[i].price) + '</div>';
+            output += '<div class="product id'+ cart[i].ID +'" data-id="' + cart[i].ID + '">';
+            output += '<div class="title-product"><span>' + cart[i].Number + '</span> x ' + cart[i].Name + ' </div>';
+            output += '<div class="Price"> ' + obj.format_money(cart[i].Price) + '</div>';
             output += '</div>';
         };
         $('.list-product').html(output);
@@ -96,7 +86,7 @@
     obj.totalItem = function () {
         var total = 0;
         for (var i in cart) {
-            total += cart[i].count;
+            total += cart[i].Number;
         }
         $('.total-product').html(total);
     }
@@ -104,7 +94,7 @@
     obj.totalCost = function () {
         var total = 0;
         for (var i in cart) {
-            total += cart[i].price * cart[i].count;
+            total += cart[i].Price * cart[i].Number;
         }
         $('.cost').html(obj.format_money(total));
     }
@@ -112,14 +102,14 @@
     obj.returnTotalCost = function () {
         var total = 0;
         for (var i in cart) {
-            total += cart[i].price * cart[i].count;
+            total += cart[i].Price * cart[i].Number;
         }
         return total;
     }
 
     obj.removeItemInCart = function (id) {
         for (var i in cart) {
-            if (cart[i].id === id) {
+            if (cart[i].ID === id) {
                 cart.splice(i, 1);
                 saveCart();
                 return;
@@ -127,20 +117,20 @@
         }
     }
 
-    obj.countItemInCart = function (id) {
+    obj.NumberItemInCart = function () {
         if (cart == null) {
             cart = [];
         }
         $('.number-item-cart').html(cart.length);
     }
 
-    obj.format_money = function (number) {
-        return number.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });;
+    obj.format_money = function (Number) {
+        return Number.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });;
     }
 
     loadCart();
 
-    obj.countItemInCart();
+    obj.NumberItemInCart();
 
     return obj;
 })();
@@ -148,10 +138,10 @@
 $('.add-to-cart').click(function (event) { // thêm sản phẩm vào giỏ hàng
     event.preventDefault();
     var id = $(this).data('id');
-    var price = $(this).data('price');
+    var Price = $(this).data('Price');
     var name = $(this).data('name');
-    BookStore.addItemToCart(id,name, price);
-    BookStore.countItemInCart();
+    BookStore.addItemToCart(id,name, Price);
+    BookStore.NumberItemInCart();
 });
 
 

@@ -1,15 +1,4 @@
 ﻿$(document).ready(function () {
-    //parse date
-    //function convertParseJsonDate(str) {
-    //    var str = new Date(parseInt(str.replace('/Date(', ''))); //parse date from json to string
-    //    //foarmat dd-MM-yyyy
-    //    var date = new Date(str),
-    //        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-    //        day = ("0" + date.getDate()).slice(-2);
-    //    return [mnth, date.getFullYear()].join("-");
-    //}
-
-
     $(document).on('click', '.title-book', function () {
         var id = $(this).attr('id');
         $('#detail-book-' + id).toggle();
@@ -62,13 +51,12 @@
                     if (response.status == true) {
                         notify({
                             type: "success", //alert | success | error | warning | info
-                            title: "Thông báo",
-                            message: "Thay đổi thành công.",
+                            title: "Thay đổi thành công",
                             position: {
                                 x: "right", //right | left | center
                                 y: "top" //top | bottom | center
                             },
-                            size: "normal",
+                            size: "small",
                             autoHide: true
                         });
                         bookController.loadData();
@@ -161,7 +149,7 @@
 
             $('#pagination').twbsPagination({
                 totalPages: totalPage,
-                visiblePages: 7,
+                visiblePages: 999999,
                 first: "Đầu",
                 next: "Tiếp",
                 last: "Cuối",
@@ -176,47 +164,3 @@
     bookController.init();
 });
 
-//loadData: function (changePageSize) {
-//    var searchText = $('#search-text').val();
-//    var statusSelect = $('.sel-list').val();
-//    $.ajax({
-//        url: '/Admin/Book/loadData',
-//        type: "GET",
-//        data: {
-//            searchText: searchText,
-//            statusSelect: statusSelect,
-//            page: bookConfig.pageIndex,
-//            pageSize: bookConfig.pageSize
-//        },
-//        dataType: 'json',
-//        success: function (response) {
-//            if (response.status == true) {
-//                var data = response.data;
-//                var html = '';
-//                var template = $('#data-template').html();
-//                $.each(data, function (i, item) {
-//                    html += Mustache.render(template, {
-//                        ID: item.ID,
-//                        Name: item.Name,
-//                        Alias: item.Alias,
-//                        Price: item.Price,
-//                        Quanlity: item.Quanlity,
-//                        ViewCount: item.ViewCount,
-//                        Status: item.Status == true ? "<span class=\"badge badge-success\">ON</span>" : "<span class=\"badge badge-secondary\">OFF</span>",
-//                        Image: item.Image != null ? item.Image : "/Assets/admin/css/images/alter-image.jpg",
-//                        PublicationDate: convertParseJsonDate(item.PublicationDate),
-//                        BookCover: item.BookCover,
-//                        Catalog: item.CatalogName,
-//                        Publisher: item.PublisherName,
-//                        Category: item.CategoryName,
-//                        Author: item.Authors,
-//                    });
-//                });
-//                $('.amount').html(response.totalRow);
-//                $('#resultBook').html(html);
-//                bookController.paging(response.totalRow, function () {
-//                    bookController.loadData();
-//                }, changePageSize);
-//            }
-//        }
-//    });
