@@ -144,12 +144,15 @@
     <Compile Include="Areas\Admin\Controllers\AdministatorController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthorController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PublisherController.cs" />
     <Compile Include="Areas\Admin\Models\BusinessModel\AuthorizeBusiness.cs" />
     <Compile Include="Areas\Admin\Models\BusinessModel\MyReflectionController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
@@ -169,9 +172,15 @@
     <Content Include="Assets\admin\css\animate.css" />
     <Content Include="Assets\admin\css\images\cat.png" />
     <Content Include="Assets\admin\css\images\shopping-bag.png" />
+<<<<<<< HEAD
     <Content Include="Assets\admin\css\notfound.css" />
     <Content Include="Assets\admin\js\order.js" />
     <Content Include="Assets\admin\js\orderdetail.js" />
+=======
+    <Content Include="Assets\admin\js\author.js" />
+    <Content Include="Assets\admin\js\catalog.js" />
+    <Content Include="Assets\admin\js\pub.js" />
+>>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
     <Content Include="Assets\client\js\cart.js" />
     <Content Include="Assets\client\js\cartEvent.js" />
     <Content Include="Assets\client\css\cart.css" />
@@ -2322,8 +2331,15 @@
     <Content Include="Areas\Admin\Views\Administator\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_404.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Areas\Admin\Views\OrderDetail\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Order\OrderDetail.cshtml" />
+=======
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Author\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Catalog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Publisher\Index.cshtml" />
+>>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2358,10 +2374,10 @@
     <Content Include="Views\Detail\Index.cshtml" />
     <Content Include="Views\Cart\emptyCart.cshtml" />
     <Content Include="Views\Order\SuccessOrder.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Author\" />
     <Folder Include="Areas\Admin\Views\Common\" />
     <Folder Include="Assets\admin\img\upload\" />
     <Folder Include="Helpers\" />

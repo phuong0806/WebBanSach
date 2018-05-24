@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    var details = ViewBag.Details as Model.EF.Book;
+    var lienquan = ViewBag.lienquan as List<Model.EF.Book>;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,238 +15,194 @@
 }
 
 <!-- CATEGORIES SLIDES -->
-<div class="book">
-    <div class="img-book">
-        <img src="../a.jpg">
-    </div>
-    <div class="info">
-        <div class="top">
-            <div class="title">Trở Về Nơi Hoang Dã</div>
-            <div class="author">Tác giả: <a href="">Trang Nguyễn</a> <a href="">Bìa mềm</a></div>
+@if (details != null)
+{
+    <div class="book">
+        <div class="img-book">
+            <img src="../a.jpg">
         </div>
-        <div class="bot">
-            <div class="left">
+        <div class="info">
+            <div class="top">
+                <div class="title">details.Name</div>
+                <div class="author">
+                    Tác giả: @foreach (var item in details.Authors)
+                    {
+                        <a href="">@item.Name , </a>
+                    } <a href="">
+                        details.BookCover
+                    </a>
+                </div>
+            </div>
+            <div class="bot">
+                <div class="left">
+                    <div class="price">
+                        <div class="price-sale"><span>details.Price đ</span> Đã có VAT</div>
+                        <div class="promotion-price">Tiết kiệm: <span>16%</span> (25,000đ)</div>
+                        <div class="price-market">Giá thị trường: 140,000 đ</div>
+                    </div>
+                    <div class="info-dif">
+                        <ul>
+                            <li><i class="ti-angle-right"></i> Đổi trả hàng trong vòng 7 ngày</li>
+                            <li><i class="ti-angle-right"></i> Sử dụng mỗi 3.000 BBxu để được giảm 10.000đ</li>
+                            <li><i class="ti-angle-right"></i> Miễn phí vận chuyển nội thành Sài Gòn từ 150.000đ*. Chi tiết tại: Phương thức vận chuyển</li>
+                            <li><i class="ti-angle-right"></i> Miễn phí vận chuyển toàn quốc từ 250.000đ</li>
+                        </ul>
+                    </div>
+                    <div class="btn-add-cart">
+                        <a href="#" class="add-to-cart" data-price="details.Price" data-id="details.ID" data-name="details.Name"><i class="ti-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class=item>
+                        <i class="ti-info-alt"></i>
+                        <div class="text">
+                            Thông tin dành cho khách hàng thân thiết
+                        </div>
+                    </div>
+                    <div class=item>
+                        <i class="ti-mobile"></i>
+                        <div class="text">
+                            <b>Liên hệ</b>
+                            <br>
+                            <span>HOTLINE: 1900 6035</span>
+                            <br>
+                            <small>(1.000đ/phút, 8-21h cả T7, CN)</small>
+                        </div>
+                    </div>
+                    <div class=item>
+                        <i class="ti-email"></i>
+                        <div class="text">
+                            <span>Email: hotro@tiki.vn</span>
+                        </div>
+                    </div>
+                    <div class=item>
+                        <i class="ti-truck"></i>
+                        <div class="text">
+                            <span>Để được miễn phí vận chuyển</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper2">
+        <div class="book-discription">
+            <span class="title">THÔNG TIN CHI TIẾT</span>
+            <table class="table">
+                <tr>
+                    <td class="title-table">Nhà xuất bản</td>
+                    <td class="text-table">details.Publisher</td>
+                </tr>
+                <tr>
+                    <td class="title-table">Tác giả</td>
+                    <td class="text-table">
+                        @foreach (var item in details.Authors)
+                        {
+                            <a href="">@item.Name , </a>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-table">Kích thước</td>
+                    <td class="text-table">details.Size cm</td>
+                </tr>
+                <tr>
+                    <td class="title-table">Loại bìa</td>
+                    <td class="text-table">details.BookCover</td>
+                </tr>
+                <tr>
+                    <td class="title-table">Số trang</td>
+                    <td class="text-table">details.NumberPages</td>
+                </tr>
+                <tr>
+                    <td class="title-table">Ngày xuất bản</td>
+                    <td class="text-table">details.CreatedDate</td>
+                </tr>
+            </table>
+            <div class="content-book">
+                <span class="title">GIỚI THIỆU SÁCH</span>
+                <div class="content">
+                    <div class="title-book">details.Name </div>
+                    <div>
+                        details.Content
+                    </div>
+                </div>
+            </div>
+            }
+
+            @if (lienquan != null)
+            {
+                foreach (var item in lienquan)
+                {
+                    <div class="list-book">
+                        <div class="header-list-book-hot">
+                            <a href="">SẢN PHẨM LIÊN QUAN</a>
+                        </div>
+                        <div class="owl-carousel owl-theme">
+                            <div class="a-book">
+                                <div class="top">
+                                    <a href="">
+                                        <img class="owl-lazy" src="@item.Image" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="bot">
+                                    <a href="" class="title-book-sug">@item.Name</a>
+                                    @foreach (var tg in item.Authors)
+                                    {
+                                        <a href="" class="author-sug">@tg.Name ,</a>
+                                    }
+
+                                    <span class="price-sale-sug">@item.Price ₫</span>
+                                    <span class="price-regular">@item.Price ₫</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            }
+
+            <!-- end /LIST BOOK HOT -->
+        </div>
+        <div class="book-hot">
+            <span>SẢN PHẨM BÁN CHẠY</span>
+            <div class="a-book-hot">
+                <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
+                <a href="">Alo hello moto</a>
                 <div class="price">
-                    <div class="price-sale"><span>165,000 đ</span> Đã có VAT</div>
-                    <div class="promotion-price">Tiết kiệm: <span>16%</span> (25,000đ)</div>
-                    <div class="price-market">Giá thị trường: 140,000 đ</div>
-                </div>
-                <div class="info-dif">
-                    <ul>
-                        <li><i class="ti-angle-right"></i> Đổi trả hàng trong vòng 7 ngày</li>
-                        <li><i class="ti-angle-right"></i> Sử dụng mỗi 3.000 BBxu để được giảm 10.000đ</li>
-                        <li><i class="ti-angle-right"></i> Miễn phí vận chuyển nội thành Sài Gòn từ 150.000đ*. Chi tiết tại: Phương thức vận chuyển</li>
-                        <li><i class="ti-angle-right"></i> Miễn phí vận chuyển toàn quốc từ 250.000đ</li>
-                    </ul>
-                </div>
-                <div class="btn-add-cart">
-                    <a href="#" class="add-to-cart" data-price="60000" data-id="0" data-name="Nhà giả kim"><i class="ti-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
+                    <div class="price-sale">89,000₫</div>
+                    <div class="price-market">105,000₫</div>
+                    <div class="price-promotion">(25%)</div>
                 </div>
             </div>
-            <div class="right">
-                <div class=item>
-                    <i class="ti-info-alt"></i>
-                    <div class="text">
-                        Thông tin dành cho khách hàng thân thiết
-                    </div>
+            <div class="a-book-hot">
+                <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
+                <a href="">Nhà giả kim</a>
+                <div class="price">
+                    <div class="price-sale">89,000₫</div>
+                    <div class="price-market">105,000₫</div>
+                    <div class="price-promotion">(25%)</div>
                 </div>
-                <div class=item>
-                    <i class="ti-mobile"></i>
-                    <div class="text">
-                        <b>Liên hệ</b>
-                        <br>
-                        <span>HOTLINE: 1900 6035</span>
-                        <br>
-                        <small>(1.000đ/phút, 8-21h cả T7, CN)</small>
-                    </div>
+            </div>
+            <div class="a-book-hot">
+                <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
+                <a href="">Bé tập hát</a>
+                <div class="price">
+                    <div class="price-sale">89,000₫</div>
+                    <div class="price-market">105,000₫</div>
+                    <div class="price-promotion">(25%)</div>
                 </div>
-                <div class=item>
-                    <i class="ti-email"></i>
-                    <div class="text">
-                        <span>Email: hotro@tiki.vn</span>
-                    </div>
-                </div>
-                <div class=item>
-                    <i class="ti-truck"></i>
-                    <div class="text">
-                        <span>Để được miễn phí vận chuyển</span>
-                    </div>
+            </div>
+            <div class="a-book-hot">
+                <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
+                <a href="">Mình là cá việc của mình là bơi</a>
+                <div class="price">
+                    <div class="price-sale">89,000₫</div>
+                    <div class="price-market">105,000₫</div>
+                    <div class="price-promotion">(25%)</div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="wrapper2">
-    <div class="book-discription">
-        <span class="title">THÔNG TIN CHI TIẾT</span>
-        <table class="table">
-            <tr>
-                <td class="title-table">Nhà xuất bản</td>
-                <td class="text-table">Nhà Xuất Bản Hội Nhà Văn</td>
-            </tr>
-            <tr>
-                <td class="title-table">Tác giả</td>
-                <td class="text-table">Rosie Nguyễn</td>
-            </tr>
-            <tr>
-                <td class="title-table">Kích thước</td>
-                <td class="text-table">14 x 20.5 cm</td>
-            </tr>
-            <tr>
-                <td class="title-table">Loại bìa</td>
-                <td class="text-table">Bìa mềm</td>
-            </tr>
-            <tr>
-                <td class="title-table">Số trang</td>
-                <td class="text-table">285</td>
-            </tr>
-            <tr>
-                <td class="title-table">Ngày xuất bản</td>
-                <td class="text-table">10-2016</td>
-            </tr>
-        </table>
-        <div class="content-book">
-            <span class="title">GIỚI THIỆU SÁCH</span>
-            <div class="content">
-                <div class="title-book">Tuổi Trẻ Đáng Giá Bao Nhiêu </div>
-                <p>"Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ. Bạn trải qua những ngày tháng nhạt nhẽo với công việc bạn căm ghét, người ta chẳng hề bận lòng. </p>
-                <p>Bạn có chết mòn nơi xó tường với những ước mơ dang dở, đó không phải là việc của họ. Suy cho cùng, quyết định là ở bạn. Muốn có điều gì hay không là tùy bạn. Nên hãy làm những điều bạn thích. Hãy đi theo tiếng nói trái tim. </p>
-                <p>Hãy sống theo cách bạn cho là mình nên sống. Vì sau tất cả, chẳng ai quan tâm." Nhận định "Tôi đã đọc quyển sách này một cách thích thú. Có nhiều kiến thức và kinh nghiệm hữu ích, những điều mới mẻ ngay cả với người gần trung niên như tôi. Tuổi trẻ đáng giá bao nhiêu? được tác giả chia làm 3 phần: HỌC, LÀM, ĐI. </p>
-                <p> Nhưng tôi thấy cuốn sách còn thể hiện một phần thứ tư nữa, đó là ĐỌC. Hãy đọc sách, nếu bạn đọc sách một cách bền bỉ, sẽ đến lúc bạn bị thôi thúc không ngừng bởi ý muốn viết nên cuốn sách của riêng mình. Nếu tôi còn ở tuổi đôi mươi, hẳn là tôi sẽ đọc Tuổi trẻ đáng giá bao nhiêu? nhiều hơn một lần." (Đặng Nguyễn Đông Vy, tác giả, nhà báo)</p>
-            </div>
-        </div>
-        <div class="list-book">
-            <div class="header-list-book-hot">
-                <a href="">SẢN PHẨM LIÊN QUAN</a>
-            </div>
-            <div class="owl-carousel owl-theme">
-                <div class="a-book">
-                    <div class="top">
-                        <a href="">
-                            <img class="owl-lazy" src="../img/books/ca_phe_cung_tony.jpg" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="bot">
-                        <a href="" class="title-book-sug">Diệt Slime Suốt 300 Năm Tôi Level Max Lúc...</a>
-                        <a href="" class="author-sug">Morita Kisetsu, Benio</a>
-                        <span class="price-sale-sug">83.300 ₫</span>
-                        <span class="price-regular">98.000 ₫</span>
-                    </div>
-                </div>
-                <div class="a-book">
-                    <div class="top">
-                        <a href="">
-                            <img class="owl-lazy" src="../img/books/nha_gia_kim.jpg" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="bot">
-                        <a href="" class="title-book-sug">Diệt Slime Suốt 300 Năm Tôi Level Max Lúc...</a>
-                        <a href="" class="author-sug">Morita Kisetsu, Benio</a>
-                        <span class="price-sale-sug">83.300 ₫</span>
-                        <span class="price-regular">98.000 ₫</span>
-                    </div>
-                </div>
-                <div class="a-book">
-                    <div class="top">
-                        <img class="owl-lazy" src="../img/books/mac_ke_thien_ha_song_nhu_nguoi_nhat.jpg" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
-                    </div>
-                    <div class="bot">
-                        <a href="" class="title-book-sug">Diệt Slime Suốt 300 Năm Tôi Level Max Lúc...</a>
-                        <a href="" class="author-sug">Morita Kisetsu, Benio</a>
-                        <span class="price-sale-sug">83.300 ₫</span>
-                        <span class="price-regular">98.000 ₫</span>
-                    </div>
-                </div>
-                <div class="a-book">
-                    <div class="top">
-                        <img class="owl-lazy" src="../img/books/khi_hoi_thoi_hoa_thinh_khong.jpg" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
-                    </div>
-                    <div class="bot">
-                        <a href="" class="title-book-sug">Diệt Slime Suốt 300 Năm Tôi Level Max Lúc...</a>
-                        <a href="" class="author-sug">Morita Kisetsu, Benio</a>
-                        <span class="price-sale-sug">83.300 ₫</span>
-                        <span class="price-regular">98.000 ₫</span>
-                    </div>
-                </div>
-                <div class="a-book">
-                    <div class="top">
-                        <img class="owl-lazy" src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
-                    </div>
-                    <div class="bot">
-                        <a href="" class="title-book-sug">Diệt Slime Suốt 300 Năm Tôi Level Max Lúc...</a>
-                        <a href="" class="author-sug">Morita Kisetsu, Benio</a>
-                        <span class="price-sale-sug">83.300 ₫</span>
-                        <span class="price-regular">98.000 ₫</span>
-                    </div>
-                </div>
-                <div class="a-book">
-                    <div class="top">
-                        <a href="">
-                            <img class="owl-lazy" src="../img/books/ca_phe_cung_tony.jpg" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="bot">
-                        <a href="" class="title-book-sug">Diệt Slime Suốt 300 Năm Tôi Level Max Lúc...</a>
-                        <a href="" class="author-sug">Morita Kisetsu, Benio</a>
-                        <span class="price-sale-sug">83.300 ₫</span>
-                        <span class="price-regular">98.000 ₫</span>
-                    </div>
-                </div>
-                <div class="a-book">
-                    <div class="top">
-                        <a href="">
-                            <img class="owl-lazy" src="../img/books/nha_gia_kim.jpg" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="bot">
-                        <a href="" class="title-book-sug">Diệt Slime Suốt 300 Năm Tôi Level Max Lúc...</a>
-                        <a href="" class="author-sug">Morita Kisetsu, Benio</a>
-                        <span class="price-sale-sug">83.300 ₫</span>
-                        <span class="price-regular">98.000 ₫</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end /LIST BOOK HOT -->
-    </div>
-    <div class="book-hot">
-        <span>SẢN PHẨM BÁN CHẠY</span>
-        <div class="a-book-hot">
-            <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
-            <a href="">Alo hello moto</a>
-            <div class="price">
-                <div class="price-sale">89,000₫</div>
-                <div class="price-market">105,000₫</div>
-                <div class="price-promotion">(25%)</div>
-            </div>
-        </div>
-        <div class="a-book-hot">
-            <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
-            <a href="">Nhà giả kim</a>
-            <div class="price">
-                <div class="price-sale">89,000₫</div>
-                <div class="price-market">105,000₫</div>
-                <div class="price-promotion">(25%)</div>
-            </div>
-        </div>
-        <div class="a-book-hot">
-            <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
-            <a href="">Bé tập hát</a>
-            <div class="price">
-                <div class="price-sale">89,000₫</div>
-                <div class="price-market">105,000₫</div>
-                <div class="price-promotion">(25%)</div>
-            </div>
-        </div>
-        <div class="a-book-hot">
-            <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
-            <a href="">Mình là cá việc của mình là bơi</a>
-            <div class="price">
-                <div class="price-sale">89,000₫</div>
-                <div class="price-market">105,000₫</div>
-                <div class="price-promotion">(25%)</div>
-            </div>
-        </div>
-    </div>
-</div>
 

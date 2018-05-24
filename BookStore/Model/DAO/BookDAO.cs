@@ -330,5 +330,16 @@ namespace Model.DAO
                             }).ToList();
             return listBook;
         }
+
+        public List<Book>Detail(string Alias)
+        {
+            
+            return db.Books.Where(x => x.Alias == Alias).ToList();
+        }
+        
+        public List<Book>Same(int? id=null)
+        {
+            return db.Books.Where(x => x.CategoryID == id).ToList();
+        }
     }
 }

@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 ﻿function js_yyyy_mm_dd_hh_mm_ss(date) {
+=======
+﻿function toDateTime(secs) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t;
+}
+function js_yyyy_mm_dd_hh_mm_ss(date) {
+>>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
     if (date == null) {
         return "-";
     }
@@ -11,11 +20,14 @@
     second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
     return day + "-" + month + "-" + year + "/" + hour + ":" + minute;
 }
+<<<<<<< HEAD
 
 function format_money(number) {
     return number.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });;
 }
 
+=======
+>>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
 function ChangeToSlug() {
     var title, slug;
 

@@ -1,12 +1,12 @@
 ﻿
-    @{
-        ViewBag.Title = "Index";
-        var ListBook = ViewBag.ListBook;
-        var ListBookPre = ViewBag.ListBookPre;
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+@{
+    ViewBag.Title = "Index";
+    var ListBook = ViewBag.ListBook;
+    var ListBookPre = ViewBag.ListBookPre;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
- <!-- CATEGORIES SLIDES -->
+<!-- CATEGORIES SLIDES -->
 <section id="categories-slides">
     <aside id="categories">
         <ul>
@@ -114,64 +114,7 @@
 <!-- CONTENT -->
 <section id="content">
     <!-- LIST BOOK HOT -->
-    <div class="list-book">
-        <div class="header-list-book-hot">
-            <a href="">SÁCH BÁN CHẠY THÁNG <span id="premonth"></span></a>
-        </div>
-        <div class="owl-carousel owl-theme">
-            @foreach (var item in ListBookPre)
-            {
-                <div class="a-book">
-                    <div class="top">
-                        <a href="/@item.Alias">
-                            <img class="owl-lazy" src="@item.Image" alt="">
-                        </a>
-                    </div>
-                    <div class="bot">
-                        <a href="" class="title">@item.Name</a>
-                        <a href="" class="author">
-                            @foreach (var author in item.Authors)
-                            {
-                                @author.Name
-                            }
-                        </a>
-                        <span class="price-sale">@item.Price ₫</span>
-                        <span class="price-regular">@item.Price ₫</span>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-    <!-- end /LIST BOOK HOT -->
-    <!-- LIST NEW BOOK -->
-    <div class="list-book">
-        <div class="header-list-book-hot">
-            <a href="">SÁCH MỚI TRONG <span id="newmonth"></span></a>
-        </div>
-        <div class="owl-carousel owl-theme">
-            @foreach (var item in ListBook)
-            {
-                <div class="a-book">
-                    <div class="top">
-                        <a href="/@item.Alias">
-                            <img class="owl-lazy" src="@item.Image" alt="">
-                        </a>
-                    </div>
-                    <div class="bot">
-                        <a href="/@item.Alias" class="title">@item.Name</a>
-                        <a href="" class="author">
-                            @foreach (var author in item.Authors)
-                            { 
-                                @author.Name
-                            }    
-                        </a>
-                        <span class="price-sale">@item.Price ₫</span>
-                        <span class="price-regular">@item.Price ₫</span>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
+    
     <!-- end /LIST NEW BOOK -->
 </section>
 <script type="text/javascript">

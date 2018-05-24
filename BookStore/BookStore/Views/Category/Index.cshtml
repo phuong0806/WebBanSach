@@ -43,10 +43,12 @@
         {
             <div class="book">
                 <div class="book-top">
-                    <img src="@item.Image" />
+                    <a href="/@item.Alias">
+                        <img class="owl-lazy" src="@item.Image" alt="">
+                    </a>
                 </div>
                 <div class="book-bot">
-                    <a href="#" class="title-book">@item.Name</a>
+                    <a href="@item.Alias" class="title-book">@item.Name</a>
                     <a href="#" class="name-author">@item.Authors</a>
                     <div class="price">
                         <span class="price-market">@item.Price đ</span>

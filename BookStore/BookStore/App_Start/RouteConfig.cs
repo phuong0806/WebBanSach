@@ -22,8 +22,8 @@ namespace BookStore
 
             routes.MapRoute(
              name: "Chi tiết sản phẩm",
-             url: "chi-tiet-san-pham",
-             defaults: new { controller = "Detail", action = "Index", id = UrlParameter.Optional },
+             url: "{Alias}",
+             defaults: new { controller = "Detail", action = "GetDetail", id = UrlParameter.Optional },
              namespaces: new[] { "BookStore.Controllers" }
             );
 
@@ -33,6 +33,10 @@ namespace BookStore
               defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional },
               namespaces: new[] { "BookStore.Controllers" }
            );
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
 
             routes.MapRoute(
              name: "Danh mục",
@@ -54,6 +58,16 @@ namespace BookStore
              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
              namespaces: new[] { "BookStore.Controllers" }
             );
+<<<<<<< HEAD
+=======
+
+            routes.MapRoute(
+             name: "Liên hệ",
+             url: "lien-he",
+             defaults: new { controller = "Address", action = "Index", id = UrlParameter.Optional },
+             namespaces: new[] { "BookStore.Controllers" }
+            );
+>>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
         }
     }
 }

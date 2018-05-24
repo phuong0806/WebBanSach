@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Danh mục";
+    var listCatalog = ViewBag.listcatalog;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section cssHeader {
+}
+
+@section jsFooter {
+    <script src="~/Assets/admin/js/catalog.js"></script>
+}
+<div class="row">
+    <div class="col-sm-12 list-book">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-list">
+                    <div class="float-left">
+                        <span class="title-list">DANH SÁCH - Danh mục</span><span class="result-list"> (<span class="amount"></span> results)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row  mt-3 mb-3">
+            <div class="col-sm-12">
+                <div class="display-search">
+                    <div class="float-left">
+                        <input type="text" name="searchText" id="search-text" value="" class="search-box" placeholder="Search" />
+                        <select name="sel-list" class="sel-list">
+                            <option value="">All</option>
+                            <option value="true">Publish</option>
+                            <option value="false">Unpublish</option>
+                        </select>
+                        <a href="#" class="btn-reset">Reset</a>
+                    </div>
+                    <div class="float-right">
+                        <a class="my-btn btn-action btn-create">create</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="my-table table table-sm">
+                    <thead>
+                        <tr class="my-thead text-center">
+                            <td width="79%" class="text-left">DANH MỤC</td>
+                            <td width="21%"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="resultCatalog"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr class="text-center" style="font-size:14px;">
+        <td class="text-left">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a id="{{ID}}" class="title-book">{{Name}}</a>
+                    <a href="#" class="alias-book">{{Alias}}</a>
+                </div>
+            </div>
+        </td>
+        <td class="text-left">
+            <a class="my-btn btn-action btn-edit" data-id="{{ID}}">Edit</a>
+            <a class="my-btn btn-delete" data-id="{{ID}}">Delete</a>
+            {{{btnStatus}}}
+        </td>
+    </tr>
+</script>
+
+<!-- MODAL THE LOAI -->
+<div class="blurBackground"></div>
+<div id="#modalBox" class="modalBox animated" style="width:560px;margin-left:-280px">
+    <div class="closeModalBox">
+        <span><i class="ti-close"></i></span>
+    </div>
+    <div class="container">
+        <form class="form-category" role="form" id="form-save">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box">
+                        <span class="title-modal"></span> DANH MỤC
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="AuthorModal">Danh mục</label>
+                        <input type="text" class="form-control" name="tittle" onkeyup="ChangeToSlug();" id="title" placeholder="...">
+                        <input type="hidden" id="id" value="" name="id">
+                    </div>
+                    <div class="form-group">
+                        <label for="AuthorModal">URL</label>
+                        <textarea name="slug" id="slug" placeholder="..."></textarea>
+                    </div>
+                    <a class="btn-save" data-id=""></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- end MODAL THE LOAI -->
