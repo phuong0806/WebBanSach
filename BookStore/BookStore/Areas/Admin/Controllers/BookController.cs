@@ -11,6 +11,11 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Common;
 using BookStore.Areas.Admin.Models.BusinessModel;
+using System.Globalization;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.Drawing;
+using OfficeOpenXml.Table;
 
 namespace BookStore.Areas.Admin.Controllers
 {
@@ -53,7 +58,8 @@ namespace BookStore.Areas.Admin.Controllers
             var totalRow = model.Count();
 
             //model = model.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
-            return Json(new {
+            return Json(new
+            {
                 data = model,
                 totalRow = totalRow,
                 status = true
@@ -224,6 +230,164 @@ namespace BookStore.Areas.Admin.Controllers
             {
                 status = new BookDAO().changeStatus(id)
             });
+        }
+
+        //public JsonResult BookExport(string searchText, string statusSelect)
+        //{
+        //    ExportToExcel(searchText, statusSelect);
+        //    return Json(new
+        //    {
+        //        status = true
+        //    });
+        //}
+
+        //private Stream CreateExcelFile(Stream stream = null)
+        //{
+        //    IEnumerable<BookViewModel> list;
+        //    BookDAO dao = new BookDAO();
+
+        //     list = dao.getListBook();
+
+        //    var totalRecord = list.Count();
+
+
+        //    ViewBag.totalRecord = totalRecord;
+
+        //    using (var excelPackage = new ExcelPackage(stream ?? new MemoryStream()))
+        //    {
+        //        // Tạo author cho file Excel
+        //        excelPackage.Workbook.Properties.Author = "Hanker";
+        //        // Tạo title cho file Excel
+        //        excelPackage.Workbook.Properties.Title = "EPP test background";
+        //        // thêm tí comments vào làm màu 
+        //        excelPackage.Workbook.Properties.Comments = "This is my fucking generated Comments";
+        //        // Add Sheet vào file Excel
+        //        excelPackage.Workbook.Worksheets.Add("First Sheet");
+        //        // Lấy Sheet bạn vừa mới tạo ra để thao tác 
+        //        var workSheet = excelPackage.Workbook.Worksheets[1];
+        //        // Đổ data vào Excel file
+        //        workSheet.Cells[1, 1].LoadFromCollection(list, true, TableStyles.Dark9);
+        //        // BindingFormatForExcel(workSheet, list);
+        //        excelPackage.Save();
+        //        return excelPackage.Stream;
+        //    }
+        //}
+
+        //public void Export(string searchText, string statusSelect)
+        //{
+        //    // Gọi lại hàm để tạo file excel
+        //    var stream = CreateExcelFile();
+        //    // Tạo buffer memory strean để hứng file excel
+        //    var buffer = stream as MemoryStream;
+        //    // Đây là content Type dành cho file excel, còn rất nhiều content-type khác nhưng cái này mình thấy okay nhất
+        //    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        //    // Dòng này rất quan trọng, vì chạy trên firefox hay IE thì dòng này sẽ hiện Save As dialog cho người dùng chọn thư mục để lưu
+        //    // File name của Excel này là ExcelDemo
+        //    Response.AddHeader("Content-Disposition", "attachment; filename=ExcelDemo.xlsx");
+        //    // Lưu file excel của chúng ta như 1 mảng byte để trả về response
+        //    Response.BinaryWrite(buffer.ToArray());
+        //    // Send tất cả ouput bytes về phía clients
+        //    Response.Flush();
+        //    Response.End();
+        //    // Redirect về luôn trang index <img draggable="false" class="emoji" alt="😀" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/1f600.svg">
+        //}
+
+        public ActionResult ExportToExcel(string searchText, string statusSelect)
+        {
+            IEnumerable<BookViewModel> list;
+            BookDAO dao = new BookDAO();
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                list = dao.getListBookBySearchText(searchText);
+            }
+            else
+            {
+                list = dao.getListBook();
+            }
+
+
+            if (!string.IsNullOrEmpty(statusSelect))
+            {
+                var status = bool.Parse(statusSelect);
+                list = list.Where(x => x.Status == status);
+            }
+
+            var totalRecord = list.Count();
+
+
+            ViewBag.totalRecord = totalRecord;
+            ExcelPackage excel = new ExcelPackage();
+            ExcelWorksheet ws = excel.Workbook.Worksheets.Add("sheet1");
+
+            ws.Cells["A1"].Value = "Cửa hàng:";
+            ws.Cells["B1"].Value = "UnicornBookShop.vn";
+
+            ws.Cells["A2"].Value = "Thời gian";
+            ws.Cells["B2"].Value = string.Format("{0:dd/MM/yyyy} lúc {0:H: mm tt}", DateTimeOffset.Now);
+
+            ws.Cells["A3"].Value = "Thống kê - Báo cáo:";
+            ws.Cells["B3"].Value = "DANH SÁCH - SÁCH";
+
+            ws.Cells["A6"].Value = "Có " + totalRecord + "  quyển sách.";
+
+            ws.Cells["A7"].Value = "Mã sách";
+            ws.Cells["B7"].Value = "Tên sách";
+            ws.Cells["C7"].Value = "URL";
+            ws.Cells["D7"].Value = "Giá";
+            ws.Cells["E7"].Value = "Tác giả";
+            ws.Cells["F7"].Value = "Thể loại";
+            ws.Cells["G7"].Value = "Trạng thái";
+            ws.Cells["H7"].Value = "Hình ảnh";
+            ws.Cells["I7"].Value = "Ngày xuất bản";
+            ws.Cells["J7"].Value = "Nhà xuất bản";
+
+
+            CultureInfo culture = new CultureInfo("vi-VN");
+            var rowStart = 8;
+            foreach (var item in list)
+            {
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.ID;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Name;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Alias;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = "";
+                ws.Cells[string.Format("E{0}", rowStart)].Value = "";
+                ws.Cells[string.Format("F{0}", rowStart)].Value = "";
+                ws.Cells[string.Format("G{0}", rowStart)].Value = "";
+                ws.Cells[string.Format("H{0}", rowStart)].Value = "";
+                ws.Cells[string.Format("I{0}", rowStart)].Value = "";
+                ws.Cells[string.Format("J{0}", rowStart)].Value = "";
+                rowStart++;
+            }
+
+
+            //using (var range = ws.Cells[string.Format("A1:I{0}", rowStart)])
+            //{
+            //    //align cnter in Excel
+            //    range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            //    //Convert date Datetime from C# to excel
+            //    ws.Cells[string.Format("I8:I{0}", rowStart)].Style.Numberformat.Format = "dd/MM/yyyy";
+            //    ws.Cells["A:AZ"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+            //    ws.Cells[string.Format("A1:K6", rowStart)].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 217, 235));
+            //    ws.Cells[string.Format("A7:K7", rowStart)].Style.Font.Color.SetColor(Color.Black);
+            //    ws.Cells[string.Format("A7:K7", rowStart)].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(66, 130, 189));
+            //    ws.Cells[string.Format("A8:K{0}", rowStart)].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 217, 235));
+            //}
+
+            ws.Cells["A:AZ"].AutoFitColumns();
+
+            var excelName = "report-books";
+
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment; filename=" + excelName + ".xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+            return RedirectToAction("Index");
         }
     }
 }

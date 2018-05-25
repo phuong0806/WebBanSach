@@ -1,13 +1,15 @@
-<<<<<<< HEAD
-﻿function js_yyyy_mm_dd_hh_mm_ss(date) {
-=======
 ﻿function toDateTime(secs) {
     var t = new Date(1970, 0, 1); // Epoch
     t.setSeconds(secs);
     return t;
 }
+
+function getFormattedDate(date) {
+    var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    return str;
+}
+
 function js_yyyy_mm_dd_hh_mm_ss(date) {
->>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
     if (date == null) {
         return "-";
     }
@@ -20,14 +22,23 @@ function js_yyyy_mm_dd_hh_mm_ss(date) {
     second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
     return day + "-" + month + "-" + year + "/" + hour + ":" + minute;
 }
-<<<<<<< HEAD
+
+function js_dd_MM_yyyy(date) {
+    if (date == null) {
+        return "-";
+    }
+    var now = new Date(date);
+    year = "" + now.getFullYear();
+    month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+    day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+    return day + "-" + month + "-" + year;
+}
+
 
 function format_money(number) {
     return number.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });;
 }
 
-=======
->>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
 function ChangeToSlug() {
     var title, slug;
 
@@ -117,14 +128,17 @@ function hideModal() {
     setTimeout(function () {
         $('.modalBox').removeClass('active');
         $('.modalBox').removeClass('fadeInDown');
+        $('.modal-body').removeClass('active');
     }, 500);
     $('.modalBox').addClass('fadeOut');
     $('.blurBackground').removeClass('active');
+    
 };
 
 $(document).on('click', '.btn-action', function () {
     $('.modalBox').removeClass('fadeOut');
     $('.modalBox').addClass('active');
+    $('.modal-body').addClass('active');
     $('.modalBox').addClass('fadeInDown');
     $('.blurBackground').addClass('active');
     if ($(this).hasClass('btn-edit')) {
@@ -141,6 +155,7 @@ $(document).on('click', '.ti-close', function () {
     setTimeout(function () {
         $('.modalBox').removeClass('active');
         $('.modalBox').removeClass('fadeInDown');
+        $('.modal-body').removeClass('active');
     }, 200);
     $('.modalBox').addClass('fadeOut');
     $('.blurBackground').removeClass('active');

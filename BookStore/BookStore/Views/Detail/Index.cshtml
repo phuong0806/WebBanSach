@@ -23,20 +23,20 @@
         </div>
         <div class="info">
             <div class="top">
-                <div class="title">details.Name</div>
+                <div class="title">@details.Name</div>
                 <div class="author">
                     Tác giả: @foreach (var item in details.Authors)
                     {
-                        <a href="">@item.Name , </a>
+                        <a href="">@item.Name </a>
                     } <a href="">
-                        details.BookCover
+                        @details.BookCover
                     </a>
                 </div>
             </div>
             <div class="bot">
                 <div class="left">
                     <div class="price">
-                        <div class="price-sale"><span>details.Price đ</span> Đã có VAT</div>
+                        <div class="price-sale"><span>@details.Price đ</span> Đã có VAT</div>
                         <div class="promotion-price">Tiết kiệm: <span>16%</span> (25,000đ)</div>
                         <div class="price-market">Giá thị trường: 140,000 đ</div>
                     </div>
@@ -206,3 +206,4 @@
         </div>
     </div>
 
+}

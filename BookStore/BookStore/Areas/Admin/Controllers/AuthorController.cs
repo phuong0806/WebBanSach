@@ -3,6 +3,7 @@ using Common;
 using Model.DAO;
 using Model.EF;
 using Model.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,26 +27,41 @@ namespace BookStore.Areas.Admin.Controllers
             AuthorDAO author = new AuthorDAO();
             ViewBag.listAuthor = author.getListAuthor();
         }
-<<<<<<< HEAD
         //[HttpPost]
         //public JsonResult LoadData()
         //{
         //    IEnumerable<AuthorViewModel> model =
         //}
-=======
+        //public JsonResult LoadData()
+        //{
+        //    setViewbagforAuthor();
+        //    List<Author> model = new AuthorDAO().getListAuthor();
+        //    model = model.OrderBy(x => x.Name).ToList();
+        //    var TotalRow = model.Count();
+        //    return Json(new
+        //    {
+        //        data = model,
+        //        totalRow = TotalRow,
+        //        status = true
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
+
         public JsonResult LoadData()
         {
             setViewbagforAuthor();
-            IEnumerable<Author> model = new AuthorDAO().getListAuthor();
-            model = model.OrderBy(x => x.Name);
+            List<Author> model = new AuthorDAO().getListAuthor();
+            model = model.OrderBy(x => x.Name).ToList();
             var TotalRow = model.Count();
+            var output = JsonConvert.SerializeObject(model, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
             return Json(new
             {
-                data = model,
+                data = output,
                 totalRow = TotalRow,
                 status = true
             }, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpPost]
         public JsonResult Save(Author author)
@@ -66,7 +82,6 @@ namespace BookStore.Areas.Admin.Controllers
                 });
             }
         }
->>>>>>> 149dc1acc6dc06e33bb7deca7049da37a951bfd9
 
         [HttpPost]
         public JsonResult LoadDetails(int id)

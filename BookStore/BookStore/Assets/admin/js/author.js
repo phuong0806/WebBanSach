@@ -54,17 +54,15 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.status == true) {
-                        var data = result.data;
+                        var data = JSON.parse(result.data);
                         var template = $('#data-template').html();
                         var html = '';
-
                         $.each(data, function (i, item) {//dòng foreach chạy dữ liệu
-                            var a = js_yyyy_mm_dd_hh_mm_ss(toDateTime(item.Birthday));
                             html += Mustache.render(template, {
                                 ID: item.ID,
                                 Name: item.Name,
                                 Info: item.Info,
-                                Birthday: item.Birthday,
+                                Birthday: js_dd_MM_yyyy(item.Birthday),
                                 btnStatus: item.Status == true ? `<a class="my-btn btn-status btn-unpublish" data-id=${item.ID}>Unpublish</a>` : `<a class="my-btn btn-status btn-publish" data-id=${item.ID}>Publish</a>`,
                             });
                         });
