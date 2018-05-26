@@ -66,7 +66,6 @@ namespace BookStore.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult Save(Author author)
         {
-            var status = false;
             if (author.ID > 0)
             {
                 return Json(new

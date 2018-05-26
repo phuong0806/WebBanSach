@@ -51,7 +51,7 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.status == true) {
-                        var data = result.data;
+                        var data = JSON.parse(result.data);
                         var template = $('#data-template').html();
                         var html = '';
 

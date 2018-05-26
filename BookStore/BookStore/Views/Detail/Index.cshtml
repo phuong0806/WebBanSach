@@ -15,8 +15,6 @@
 }
 
 <!-- CATEGORIES SLIDES -->
-@if (details != null)
-{
     <div class="book">
         <div class="img-book">
             <img src="../a.jpg">
@@ -49,7 +47,7 @@
                         </ul>
                     </div>
                     <div class="btn-add-cart">
-                        <a href="#" class="add-to-cart" data-price="details.Price" data-id="details.ID" data-name="details.Name"><i class="ti-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
+                        <a href="#" class="add-to-cart" data-price="@details.Price" data-id="@details.ID" data-name="@details.Name"><i class="ti-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
                     </div>
                 </div>
                 <div class="right">
@@ -104,31 +102,29 @@
                 </tr>
                 <tr>
                     <td class="title-table">Kích thước</td>
-                    <td class="text-table">details.Size cm</td>
+                    <td class="text-table">@details.Size cm</td>
                 </tr>
                 <tr>
                     <td class="title-table">Loại bìa</td>
-                    <td class="text-table">details.BookCover</td>
+                    <td class="text-table">@details.BookCover</td>
                 </tr>
                 <tr>
                     <td class="title-table">Số trang</td>
-                    <td class="text-table">details.NumberPages</td>
+                    <td class="text-table">@details.NumberPages</td>
                 </tr>
                 <tr>
                     <td class="title-table">Ngày xuất bản</td>
-                    <td class="text-table">details.CreatedDate</td>
+                    <td class="text-table">@details.CreatedDate</td>
                 </tr>
             </table>
             <div class="content-book">
                 <span class="title">GIỚI THIỆU SÁCH</span>
                 <div class="content">
-                    <div class="title-book">details.Name </div>
-                    <div>
-                        details.Content
-                    </div>
+                    <div class="title-book">@details.Name </div>
+                     @Html.Raw(details.Content)
                 </div>
             </div>
-            }
+            
 
             @if (lienquan != null)
             {
@@ -206,4 +202,3 @@
         </div>
     </div>
 
-}

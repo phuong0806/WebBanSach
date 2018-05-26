@@ -15,6 +15,7 @@ namespace BookStore.Controllers
         {
             ViewBag.ListBook = bookDao.GetBook();
             ViewBag.ListBookPre = bookDao.GetBookPre();
+            ViewBag.ListCatalogi = new BookCategoryDAO().GetCTL();
             return View();
         }
 

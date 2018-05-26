@@ -3,6 +3,7 @@ using Common;
 using Model.DAO;
 using Model.EF;
 using Model.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,10 @@ namespace BookStore.Areas.Admin.Controllers
             IEnumerable<BookCatalog> model = new BookCatalogDAO().getListBookCatalog();
             model = model.OrderBy(x => x.DisplayOrder);
             var TotalRow = model.Count();
+            var output = JsonConvert.SerializeObject(model, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             return Json(new
             {
-                data = model,
+                data = output,
                 totalRow = TotalRow,
                 status = true
             }, JsonRequestBehavior.AllowGet);

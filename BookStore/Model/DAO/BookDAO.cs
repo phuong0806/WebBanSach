@@ -291,29 +291,29 @@ namespace Model.DAO
             return listBook;
         }
 
-        public List<BookViewModel> GetBookByAliasCategory(string Alias)
+        public List<Book> GetBookByAliasCategory(string Alias)
         {
             var ctlg = db.BookCategories.Where(x => x.Alias == Alias).FirstOrDefault();
-            var listBook = (from book in db.Books
-                            from author in book.Authors
-                            join author_book in db.Books on book.ID equals author_book.ID
-                            where book.Status == true && book.CategoryID == ctlg.ID
-                            select new BookViewModel()
-                            {
-                                AuthorsName = author.Name,
-                                Name = book.Name,
-                                Image = book.Image,
-                                Price = book.Price,
-                                Alias = book.Alias
+            var listBook = db.Books.Where(x => x.CategoryID == ctlg.ID && x.Status == true).ToList();
+            //var listBook = (from book in db.Books
+            //                from author in book.Authors
+            //                join author_book in db.Books on book.ID equals author_book.ID
+            //                where book.Status == true && book.CategoryID == ctlg.ID
+            //                select new BookViewModel()
+            //                {
+            //                    AuthorsName = author.Name,
+            //                    Name = book.Name,
+            //                    Image = book.Image,
+            //                    Price = book.Price,
+            //                    Alias = book.Alias
 
-                            }).ToList();
+            //                }).ToList();
             return listBook;
         }
         public List<BookViewModel> GetNewBook()
         {
             DateTime a = DateTime.Now;
             int month = a.Month;
-
             var listBook = (from book in db.Books
                             from author in book.Authors
                             join author_book in db.Books on book.ID equals author_book.ID
@@ -333,7 +333,10 @@ namespace Model.DAO
 
         public List<Book>Detail(string Alias)
         {
-            
+            var sach= db.Books.Where(x => x.Alias == Alias).FirstOrDefault();
+            var tim = db.Books.Find(sach.ID);
+            tim.ViewCount += 1;
+            db.SaveChanges();
             return db.Books.Where(x => x.Alias == Alias).ToList();
         }
         
