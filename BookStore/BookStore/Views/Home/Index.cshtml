@@ -3,6 +3,7 @@
         ViewBag.Title = "Index";
         var ListBook = ViewBag.ListBook;
         var ListBookPre = ViewBag.ListBookPre;
+        var ctg = ViewBag.ListCatalogi;
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
@@ -10,70 +11,16 @@
 <section id="categories-slides">
     <aside id="categories">
         <ul>
-            <li>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top"><a href="">Nổi bật <i class="fa fa-chevron-right"></i></a></div>
-                        <div class="bot">Best-seller, sách hay...</div>
+            @foreach (var item in ctg)
+            {
+                <li>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="top"><a href="/the-loai/@item.Alias">@item.Name <i class="fa fa-chevron-right"></i></a></div>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top"><a href="">Sách văn học <i class="fa fa-chevron-right"></i></a></div>
-                        <div class="bot">Văn học Việt Nam, nước ngoài...</div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top"><a href="">Sách kinh tế <i class="fa fa-chevron-right"></i></a></div>
-                        <div class="bot">Quản trị, marketing...</div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top"><a href="">Sách Kỹ năng <i class="fa fa-chevron-right"></i></a></div>
-                        <div class="bot">Kỹ năng làm việc, cuộc sống...</div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top"><a href="">Sách khoa học <i class="fa fa-chevron-right"></i></a></div>
-                        <div class="bot">Phi lý trí, khoa học...</div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top"><a href="">Sách lịch sử <i class="fa fa-chevron-right"></i></a></div>
-                        <div class="bot">Lược sử loài người...</div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top"><a href="">Sách khác <i class="fa fa-chevron-right"></i></a></div>
-                        <div class="bot">Sức khỏe, gia đình, ẩm thực...</div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top"><a href="">Quà tặng <i class="fa fa-chevron-right"></i></a></div>
-                        <div class="bot">Quà lưu niệm, văn phòng phẩm...</div>
-                    </div>
-                </div>
-            </li>
+                </li>
+            }
         </ul>
     </aside>
     <article id="slides">

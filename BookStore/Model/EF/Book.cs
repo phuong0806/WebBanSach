@@ -43,9 +43,9 @@ namespace Model.EF
 
         public string Content { get; set; }
 
-        public int? Price { get; set; }
+        public decimal? Price { get; set; }
 
-        public int? PromotionPrice { get; set; }
+        public decimal? PromotionPrice { get; set; }
 
         public int? ViewCount { get; set; }
 
