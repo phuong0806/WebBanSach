@@ -519,7 +519,6 @@ color: #333333 !important;
 .modalBox.active, .modalBoxAdd.active {
     display: block;
     background: whitesmoke;
-    position: relative;
     top: 30px;
     left: 0px;
     opacity: 1;
@@ -529,7 +528,8 @@ color: #333333 !important;
     padding-bottom: 25px;
     border-radius: 8px;
     animation-duration: 0.4s;
-    margin-bottom: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
 }
 
  .modal-body{

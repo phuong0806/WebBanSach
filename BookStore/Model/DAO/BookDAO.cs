@@ -38,6 +38,7 @@ namespace Model.DAO
                      select new BookViewModel()
                      {
                          ID = book.ID,
+                         Authors = book.Authors,
                          Name = book.Name,
                          Alias = book.Alias,
                          Price = book.Price,
@@ -49,35 +50,50 @@ namespace Model.DAO
                      }).ToList();
             return result;
         }
+        
 
-        //public IEnumerable<BookViewModel> getListBooks()
-        //{
-        //    var result =
-        //        (from book in db.Books
-        //         from author in book.Authors
-        //         join author_book in db.Books on book.ID equals author_book.ID
-        //         join publisher in db.Publishers on book.PublisherID equals publisher.ID
-        //         join category in db.BookCategories on book.CategoryID equals category.ID
-        //         join catalog in db.BookCatalogs on category.catalogID equals catalog.ID
-        //         select new BookViewModel()
-        //         {
-        //             ID = book.ID,
-        //             Name = book.Name,
-        //             Alias = book.Alias,
-        //             Price = book.Price,
-        //             Quanlity = book.Quanlity,
-        //             ViewCount = book.ViewCount,
-        //             Status = book.Status,
-        //             Image = book.Image,
-        //             MoreImages = book.MoreImages,
-        //             PublicationDate = book.PublicationDate,
-        //             BookCover = book.BookCover,
-        //             CatalogName = catalog.Name,
-        //             CategoryName = category.Name,
-        //             PublisherName = publisher.Name,
-        //         }).ToList();
-        //    return result;
-        //}
+        public IEnumerable<BookViewModel> getBookExport()
+        {
+            var result = (from book in db.Books
+                          join publish in db.Publishers on book.PublisherID equals publish.ID
+                          join category in db.BookCategories on book.CategoryID equals category.ID
+                          select new BookViewModel()
+                          {
+                              ID = book.ID,
+                              Name = book.Name,
+                              Alias = book.Alias,
+                              Price = book.Price,
+                              Quanlity = book.Quanlity,
+                              PublicationDate = book.PublicationDate,
+                              PublisherName = publish.Name,
+                              CategoryName = category.Name,
+                              Authors = book.Authors,
+                          }).ToList();
+
+            return result;
+        }
+
+        public IEnumerable<BookViewModel> getBookExportBySearchText(string searchText)
+        {
+            var result = (from book in db.Books
+                          join publish in db.Publishers on book.PublisherID equals publish.ID
+                          join category in db.BookCategories on book.CategoryID equals category.ID
+                          where book.Name.Contains(searchText)
+                          select new BookViewModel()
+                          {
+                              ID = book.ID,
+                              Name = book.Name,
+                              Alias = book.Alias,
+                              Price = book.Price,
+                              Quanlity = book.Quanlity,
+                              PublicationDate = book.PublicationDate,
+                              PublisherName = publish.Name,
+                              CategoryName = category.Name,
+                              Authors = book.Authors,
+                          }).ToList();
+
+            return result;
+        }
 
         public IEnumerable<BookViewModel> getListBook()
         {

@@ -40,7 +40,6 @@ namespace Model.DAO
             else
             {
                 model = db.Orders.Where(x => x.ID.ToString().Contains(searchText)).OrderByDescending(x => x.CreatedDate).ToList();
-
             }
 
             if (fromDate != "" && toDate != "")

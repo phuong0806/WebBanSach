@@ -232,78 +232,19 @@ namespace BookStore.Areas.Admin.Controllers
             });
         }
 
-        //public JsonResult BookExport(string searchText, string statusSelect)
-        //{
-        //    ExportToExcel(searchText, statusSelect);
-        //    return Json(new
-        //    {
-        //        status = true
-        //    });
-        //}
 
-        //private Stream CreateExcelFile(Stream stream = null)
-        //{
-        //    IEnumerable<BookViewModel> list;
-        //    BookDAO dao = new BookDAO();
-
-        //     list = dao.getListBook();
-
-        //    var totalRecord = list.Count();
-
-
-        //    ViewBag.totalRecord = totalRecord;
-
-        //    using (var excelPackage = new ExcelPackage(stream ?? new MemoryStream()))
-        //    {
-        //        // Tạo author cho file Excel
-        //        excelPackage.Workbook.Properties.Author = "Hanker";
-        //        // Tạo title cho file Excel
-        //        excelPackage.Workbook.Properties.Title = "EPP test background";
-        //        // thêm tí comments vào làm màu 
-        //        excelPackage.Workbook.Properties.Comments = "This is my fucking generated Comments";
-        //        // Add Sheet vào file Excel
-        //        excelPackage.Workbook.Worksheets.Add("First Sheet");
-        //        // Lấy Sheet bạn vừa mới tạo ra để thao tác 
-        //        var workSheet = excelPackage.Workbook.Worksheets[1];
-        //        // Đổ data vào Excel file
-        //        workSheet.Cells[1, 1].LoadFromCollection(list, true, TableStyles.Dark9);
-        //        // BindingFormatForExcel(workSheet, list);
-        //        excelPackage.Save();
-        //        return excelPackage.Stream;
-        //    }
-        //}
-
-        //public void Export(string searchText, string statusSelect)
-        //{
-        //    // Gọi lại hàm để tạo file excel
-        //    var stream = CreateExcelFile();
-        //    // Tạo buffer memory strean để hứng file excel
-        //    var buffer = stream as MemoryStream;
-        //    // Đây là content Type dành cho file excel, còn rất nhiều content-type khác nhưng cái này mình thấy okay nhất
-        //    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-        //    // Dòng này rất quan trọng, vì chạy trên firefox hay IE thì dòng này sẽ hiện Save As dialog cho người dùng chọn thư mục để lưu
-        //    // File name của Excel này là ExcelDemo
-        //    Response.AddHeader("Content-Disposition", "attachment; filename=ExcelDemo.xlsx");
-        //    // Lưu file excel của chúng ta như 1 mảng byte để trả về response
-        //    Response.BinaryWrite(buffer.ToArray());
-        //    // Send tất cả ouput bytes về phía clients
-        //    Response.Flush();
-        //    Response.End();
-        //    // Redirect về luôn trang index <img draggable="false" class="emoji" alt="😀" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/1f600.svg">
-        //}
-
-        public ActionResult ExportToExcel(string searchText, string statusSelect)
+        public ActionResult ExportToExcel(string name, string searchText, string statusSelect)
         {
             IEnumerable<BookViewModel> list;
             BookDAO dao = new BookDAO();
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                list = dao.getListBookBySearchText(searchText);
+                list = dao.getBookExportBySearchText(searchText);
             }
             else
             {
-                list = dao.getListBook();
+                list = dao.getBookExport();
             }
 
 
@@ -338,50 +279,46 @@ namespace BookStore.Areas.Admin.Controllers
             ws.Cells["E7"].Value = "Tác giả";
             ws.Cells["F7"].Value = "Thể loại";
             ws.Cells["G7"].Value = "Trạng thái";
-            ws.Cells["H7"].Value = "Hình ảnh";
-            ws.Cells["I7"].Value = "Ngày xuất bản";
-            ws.Cells["J7"].Value = "Nhà xuất bản";
+            ws.Cells["H7"].Value = "Ngày xuất bản";
+            ws.Cells["I7"].Value = "Nhà xuất bản";
 
 
             CultureInfo culture = new CultureInfo("vi-VN");
             var rowStart = 8;
             foreach (var item in list)
             {
+                string author = "";
+                int count = 0;
+                foreach (var i in item.Authors)
+                {
+                    if (item.Authors.Count == count)
+                    {
+                        author += i.Name;
+                    }
+                    else
+                    {
+                        author += i.Name + ",";
+                    }
+                    count++;
+                }
                 ws.Cells[string.Format("A{0}", rowStart)].Value = item.ID;
                 ws.Cells[string.Format("B{0}", rowStart)].Value = item.Name;
                 ws.Cells[string.Format("C{0}", rowStart)].Value = item.Alias;
-                ws.Cells[string.Format("D{0}", rowStart)].Value = "";
-                ws.Cells[string.Format("E{0}", rowStart)].Value = "";
-                ws.Cells[string.Format("F{0}", rowStart)].Value = "";
-                ws.Cells[string.Format("G{0}", rowStart)].Value = "";
-                ws.Cells[string.Format("H{0}", rowStart)].Value = "";
-                ws.Cells[string.Format("I{0}", rowStart)].Value = "";
-                ws.Cells[string.Format("J{0}", rowStart)].Value = "";
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.Price.Value.ToString("c", culture);
+                ws.Cells[string.Format("E{0}", rowStart)].Value = author;
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.CategoryName;
+                ws.Cells[string.Format("G{0}", rowStart)].Value = item.Quanlity;
+                ws.Cells[string.Format("H{0}", rowStart)].Value = item.PublicationDate;
+                ws.Cells[string.Format("I{0}", rowStart)].Value = item.PublisherName;
                 rowStart++;
             }
 
-
-            //using (var range = ws.Cells[string.Format("A1:I{0}", rowStart)])
-            //{
-            //    //align cnter in Excel
-            //    range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            //    //Convert date Datetime from C# to excel
-            //    ws.Cells[string.Format("I8:I{0}", rowStart)].Style.Numberformat.Format = "dd/MM/yyyy";
-            //    ws.Cells["A:AZ"].Style.Fill.PatternType = ExcelFillStyle.Solid;
-            //    ws.Cells[string.Format("A1:K6", rowStart)].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 217, 235));
-            //    ws.Cells[string.Format("A7:K7", rowStart)].Style.Font.Color.SetColor(Color.Black);
-            //    ws.Cells[string.Format("A7:K7", rowStart)].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(66, 130, 189));
-            //    ws.Cells[string.Format("A8:K{0}", rowStart)].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 217, 235));
-            //}
-
             ws.Cells["A:AZ"].AutoFitColumns();
-
-            var excelName = "report-books";
 
             using (var memoryStream = new MemoryStream())
             {
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment; filename=" + excelName + ".xlsx");
+                Response.AddHeader("content-disposition", "attachment; filename=" + name + ".xlsx");
                 excel.SaveAs(memoryStream);
                 memoryStream.WriteTo(Response.OutputStream);
                 Response.Flush();

@@ -39,6 +39,17 @@
             });
 
             $('.btn-export').off('click').on('click', function (e) {
+                var path = '';
+                var searchText = $('#search-text').val();
+                var statusSelect = $('.sel-list').val();
+                if (searchText != "" && searchText != null) {
+                    path += "&searchText=" + searchText;
+                }
+                if (statusSelect != "" && statusSelect != null) {
+                    path += "&statusSelect=" + statusSelect;
+                }
+
+                window.location = '/Admin/Book/ExportToExcel?name=report-book' + path;
             });
 
         },
