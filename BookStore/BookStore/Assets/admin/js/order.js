@@ -27,6 +27,19 @@
             $('#toDate').change(function () {
                 orderController.loadData();
             });
+
+            $('.btn-export').off('click').on('click', function (e) {
+                var path = '';
+                var searchText = $('#search-text').val();
+                var statusSelect = $('.sel-list').val();
+                var fromDate = $('#fromDate').val();
+                var toDate = $('#toDate').val();
+                path += "&searchText=" + searchText;
+                path += "&statusSelect=" + statusSelect;
+                path += "&fromDate=" + fromDate;
+                path += "&toDate=" + toDate;
+                window.location = '/Admin/Order/ExportToExcel?name=report-order' + path;
+            });
         },
 
         confirmOrder: function (id) {

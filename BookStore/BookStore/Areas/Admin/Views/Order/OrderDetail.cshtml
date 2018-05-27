@@ -191,50 +191,52 @@
 </div>
 
 <div class="blurBackground"></div>
-<div id="#modalBox" class="modalBox animated" style="width:500px;margin-left:-250px">
-    <div class="closeModalBox">
-        <span><i class="ti-close"></i></span>
-    </div>
-    <div class="container">
-        <form class="form-category" role="form" id="form-save">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="title-box">
-                        TÌNH TRẠNG ĐƠN HÀNG
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <select class="form-control" id="statusOrder" name="statusOrder">
-                                @if(order.isConfirm == true)
-                                {
-                                    if (order.Status == 0 && order.isFinish == false)
-                                    {
-                                        <option value="0" selected>Đang xử lý</option>
-                                        <option value="1">Đang vận chuyển</option>
-                                    }
-                                    else if (order.Status == 1 && order.isFinish == false)
-                                    {
-                                        <option value="0" selected>Đang vận chuyển</option>
-                                        <option value="1">Đang vận chuyển</option>
-                                    }
-                                    else
-                                    {
-                                        <option disabled selected>-- Hoàn tất --</option>
-                                    }
-                                }
-                                else
-                                {
-                                    <option disabled selected>-- Đơn hàng chưa xác thực --</option>
-                                }
-                            </select>
+<div class="modal-body">
+    <div id="#modalBox" class="modalBox animated" style="width:500px;">
+        <div class="closeModalBox">
+            <span><i class="ti-close"></i></span>
+        </div>
+        <div class="container">
+            <form class="form-category" role="form" id="form-save">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="title-box">
+                            TÌNH TRẠNG ĐƠN HÀNG
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <select class="form-control" id="statusOrder" name="statusOrder">
+                                    @if (order.isConfirm == true)
+                                    {
+                                        if (order.Status == 0 && order.isFinish == false)
+                                        {
+                                            <option value="0" selected>Đang xử lý</option>
+                                            <option value="1">Đang vận chuyển</option>
+                                        }
+                                        else if (order.Status == 1 && order.isFinish == false)
+                                        {
+                                            <option value="0">Đơn hàng mới</option>
+                                            <option value="1" selected>Đang vận chuyển</option>
+                                        }
+                                        else
+                                        {
+                                            <option disabled selected>-- Hoàn tất --</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled selected>-- Đơn hàng chưa xác thực --</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
