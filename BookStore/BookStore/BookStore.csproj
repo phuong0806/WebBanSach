@@ -2161,6 +2161,7 @@
     <Content Include="Assets\client\img\slides\slide2.jpg" />
     <Content Include="Assets\client\img\slides\slide3.jpg" />
     <Content Include="Assets\client\img\slides\slide4.jpg" />
+    <Content Include="Assets\client\js\index.js" />
     <Content Include="Assets\client\js\loadAddress.js" />
     <Content Include="Assets\client\js\order.js" />
     <Content Include="Content\bootstrap.css" />

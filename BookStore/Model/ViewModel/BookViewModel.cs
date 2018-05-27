@@ -69,5 +69,7 @@ namespace Model.ViewModel
         public virtual ICollection<Author> Authors { get; set; }
 
         public string AuthorName { get; set; }
+
+        public string NumberProduct { get; set; }
     };
 }

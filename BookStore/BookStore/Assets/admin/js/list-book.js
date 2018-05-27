@@ -130,7 +130,7 @@
                             ID: item.ID,
                             Name: item.Name,
                             Alias: item.Alias,
-                            Price: item.Price,
+                            Price: format_money(item.Price),
                             Quanlity: item.Quanlity,
                             ViewCount: item.ViewCount,
                             Status: item.Status == true ? "<span class=\"badge badge-success\">ON</span>" : "<span class=\"badge badge-secondary\">OFF</span>",

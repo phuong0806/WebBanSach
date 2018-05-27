@@ -1,13 +1,13 @@
 ﻿
-    @{
-        ViewBag.Title = "Index";
-        var ListBook = ViewBag.ListBook;
-        var ListBookPre = ViewBag.ListBookPre;
-        var ctg = ViewBag.ListCatalogi;
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+@{
+    ViewBag.Title = "Index";
+    var ListBook = ViewBag.ListBook;
+    var ListBookPre = ViewBag.ListBookPre;
+    var ctg = ViewBag.ListCatalogi;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
- <!-- CATEGORIES SLIDES -->
+<!-- CATEGORIES SLIDES -->
 <section id="categories-slides">
     <aside id="categories">
         <ul>
@@ -82,7 +82,8 @@
                                 @author.Name
                             }
                         </a>
-                        <span class="price-sale">@item.Price ₫</span>
+                        <span class="price-sale">
+                        <script>format_money(@item.Price)</script>₫</span>
                         <span class="price-regular">@item.Price ₫</span>
                     </div>
                 </div>
@@ -108,9 +109,9 @@
                         <a href="/@item.Alias" class="title">@item.Name</a>
                         <a href="" class="author">
                             @foreach (var author in item.Authors)
-                            { 
+                            {
                                 @author.Name
-                            }    
+                            }
                         </a>
                         <span class="price-sale">@item.Price ₫</span>
                         <span class="price-regular">@item.Price ₫</span>
@@ -122,17 +123,15 @@
     <!-- end /LIST NEW BOOK -->
 </section>
 <script type="text/javascript">
-function refrClock()
-{
-var d=new Date();
-var month=d.getMonth();
-var year=d.getFullYear();
-var months=new Array("1","2","3","4","5","6","7","8","9","10","11","12");
-document.getElementById("premonth").innerHTML = months[month-1] + "/" + year;
-document.getElementById("newmonth").innerHTML = months[month] + "/" + year;
+    function refrClock() {
+        var d = new Date();
+        var month = d.getMonth();
+        var year = d.getFullYear();
+        var months = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+        document.getElementById("premonth").innerHTML = months[month - 1] + "/" + year;
+        document.getElementById("newmonth").innerHTML = months[month] + "/" + year;
 
-}
-refrClock();
-
+    }
+    refrClock();
 </script>
 <!-- end /CONTENT -->

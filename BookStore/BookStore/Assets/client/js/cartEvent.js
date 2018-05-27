@@ -50,8 +50,9 @@ var cartController = {
                             Name: item.Name,
                             Authors: item.Authors[0].Name,
                             BookCover: item.BookCover,
-                            Price: item.Price,
+                            Price: format_money(item.Price),
                             Image: item.Image,
+                            Number: BookStore.loadNumberOfProduct(item.ID)
                         });
                     });
                     $('.list-product').html(html);

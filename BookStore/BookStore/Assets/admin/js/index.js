@@ -36,7 +36,7 @@ function js_dd_MM_yyyy(date) {
 
 
 function format_money(number) {
-    return number.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });;
+    return number.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 }
 
 function ChangeToSlug() {

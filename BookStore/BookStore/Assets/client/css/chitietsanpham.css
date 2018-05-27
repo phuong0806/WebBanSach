@@ -13,7 +13,8 @@
 }
 
 .book .img-book img {
-    width: 360px;
+    width: 236px;
+    max-height: 351px;
 }
 
 .book .info {
