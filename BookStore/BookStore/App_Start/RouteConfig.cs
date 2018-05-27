@@ -22,7 +22,7 @@ namespace BookStore
 
             routes.MapRoute(
              name: "Chi tiết sản phẩm",
-             url: "{Alias}",
+             url: "chi-tiet-sach/{Alias}",
              defaults: new { controller = "Detail", action = "GetDetail", id = UrlParameter.Optional },
              namespaces: new[] { "BookStore.Controllers" }
             );

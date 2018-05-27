@@ -18,11 +18,20 @@ namespace BookStore.Controllers
 
         public ActionResult GetDetail(string Alias)
         {
-            var model = new BookDAO().Detail(Alias).SingleOrDefault();
-            //var cungloai = bDao.Same(model.CategoryID);
-            ViewBag.Details = model;
-            //ViewBag.lienquan = cungloai;
-            return View("Index");
+            try
+            {
+                var model = new BookDAO().Detail(Alias).SingleOrDefault();
+                var cungloai = bDao.Same(model.CategoryID);
+                ViewBag.Details = model;
+                ViewBag.lienquan = cungloai;
+                return View("Index");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
     }
 }
