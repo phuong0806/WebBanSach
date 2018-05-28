@@ -326,25 +326,26 @@ namespace Model.DAO
             //                }).ToList();
             return listBook;
         }
-        public List<BookViewModel> GetNewBook()
+        public List<Book> GetNewBook()
         {
             DateTime a = DateTime.Now;
             int month = a.Month;
-            var listBook = (from book in db.Books
-                            from author in book.Authors
-                            join author_book in db.Books on book.ID equals author_book.ID
-                            where book.Status == true && book.PublicationDate.Value.Month == month
-                            select new BookViewModel()
-                            {
-                                AuthorsName = author.Name,
-                                Name = book.Name,
-                                Image = book.Image,
-                                Price = book.Price,
-                                Alias = book.Alias,
-                                PublicationDate = book.PublicationDate
+            var book= db.Books.Where(x => x.Status == true &&x.CreatedDate.Value.Month==month).ToList();
+            //var listBook = (from book in db.Books
+            //                from author in book.Authors
+            //                join author_book in db.Books on book.ID equals author_book.ID
+            //                where book.Status == true && book.PublicationDate.Value.Month == month
+            //                select new BookViewModel()
+            //                {
+            //                    AuthorsName = author.Name,
+            //                    Name = book.Name,
+            //                    Image = book.Image,
+            //                    Price = book.Price,
+            //                    Alias = book.Alias,
+            //                    PublicationDate = book.PublicationDate
 
-                            }).ToList();
-            return listBook;
+            //                }).ToList();
+            return book;
         }
 
         public List<Book>Detail(string Alias)
@@ -359,6 +360,11 @@ namespace Model.DAO
         public List<Book>Same(int? id=null)
         {
             return db.Books.Where(x => x.CategoryID == id).ToList();
+        }
+
+        public List<Book>Hot()
+        {
+            return db.Books.Where(x => x.ViewCount >= 10).ToList();
         }
     }
 }

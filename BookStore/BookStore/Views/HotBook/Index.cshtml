@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    var hot = ViewBag.Hot;
     var ListCTL = ViewBag.ListBookCTL;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,7 +17,7 @@
             <div class="a-book category" data-id="@item.Alias">
                 <div class="top">
                     <a href="/the-loai/@item.Alias">
-                        <img class="owl-lazy" src="@item.Image" alt="">
+                        <img class="owl-lazy" src="~/Assets/admin/img/upload/ong.jpg" alt="">
                     </a>
                 </div>
                 <div class="bot">
@@ -30,16 +31,16 @@
 <div id="title-category">
     <div class="middle-bar"></div>
     <div class="title">
-        <span>Sách @ViewBag.CTLG</span>
+        <span>Sách Bán Chạy</span>
     </div>
 </div>
 <!-- end /LIST BOOK CATEGORY -->
 <!-- LIST BOOK -->
 <div id="list-book">
     <!-- BOOK -->
-    @if (ViewBag.ListBook != null)
+    @if (hot != null)
     {
-        foreach (var item in ViewBag.ListBook)
+        foreach (var item in hot)
         {
             <div class="book">
                 <div class="book-top">
@@ -51,10 +52,10 @@
                     <a href="/chi-tiet-sach/@item.Alias" class="title-book">@item.Name</a>
                     @foreach (var itm in item.Authors)
                     {<a href="#" class="name-author">
-                    @itm.Name ,
+                        @itm.Name ,
                     </a>
                     }
-                    
+
                     <div class="price">
                         <span class="price-market">@item.Price đ</span>
                         <span class="price-promotion">@item.Price đ</span>

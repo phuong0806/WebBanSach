@@ -54,6 +54,13 @@ namespace BookStore
                defaults: new { controller = "Address", action = "Index", id = UrlParameter.Optional },
                namespaces: new[] { "BookStore.Controllers" }
               );
+
+            routes.MapRoute(
+               name: "Sách bán chạy",
+               url: "hot-book",
+               defaults: new { controller = "HotBook", action = "Index", id = UrlParameter.Optional },
+               namespaces: new[] { "BookStore.Controllers" }
+              );
             routes.MapRoute(
              name: "Default",
              url: "{controller}/{action}/{id}",

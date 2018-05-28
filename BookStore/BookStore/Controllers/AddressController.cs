@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,7 @@ namespace BookStore.Controllers
         public ActionResult Index()
         {
             return View();
+            ViewBag.ListCatalogi = new BookCategoryDAO().GetCTL();
         }
     }
 }

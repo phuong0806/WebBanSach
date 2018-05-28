@@ -162,6 +162,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HotBookController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2374,6 +2375,7 @@
     <Content Include="Views\Cart\emptyCart.cshtml" />
     <Content Include="Views\Order\SuccessOrder.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
+    <Content Include="Views\HotBook\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
