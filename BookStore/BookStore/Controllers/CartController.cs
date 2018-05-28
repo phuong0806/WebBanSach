@@ -22,6 +22,16 @@ namespace BookStore.Controllers
         {
             return View();
         }
+        
+        [HttpPost]
+        public JsonResult Confirm()
+        {
+            Session["confirm"] = true;
+            return Json(new
+            {
+                status = true
+            });
+        }
 
         [HttpPost]
         public JsonResult loadData(string listCartString)

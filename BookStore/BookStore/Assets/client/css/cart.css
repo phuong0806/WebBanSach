@@ -199,13 +199,19 @@
     text-align: center;
     background: #ff424e;
     border-color: #ff424e;
-    color: white;
+    color: white !important;
     padding: 7px 20px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 5px;
     margin-top: 10px;
     cursor: pointer;
+    display: block;
+    text-decoration: none !important;
+    margin-bottom: 30px;
+}
+
+a.btn-order a {
 }
 
     .btn-order:hover {

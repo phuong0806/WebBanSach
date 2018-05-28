@@ -137,13 +137,6 @@ namespace BookStore.Areas.Admin.Controllers
             ViewBag.Publisher = new SelectList(publisherDAO.getListPublisher(), "ID", "Name");
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public JsonResult deleteImage(string filename)
-        {
-            return Json(imgHelper.DeleteImageByfilename(filename), JsonRequestBehavior.AllowGet);
-        }
-
 
         [HttpGet]
         public ActionResult UpdateBook(int id, HttpPostedFileBase file)

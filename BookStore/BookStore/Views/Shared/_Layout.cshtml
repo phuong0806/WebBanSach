@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>WEB BÁN SÁCH</title>
@@ -22,9 +21,6 @@
     <link href="~/Content/plugins/themify-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     @RenderSection("cssHeader", required: false)
-    @section jsFooter {
-
-    }
 </head>
 <body>
     <div id="page" class="content">
@@ -152,6 +148,7 @@
     <script src="~/Content/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Content/plugins/mustache.js"></script>
     <script src="~/Assets/client/img/libs/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Assets/client/js/index.js"></script>
     @RenderSection("jsFooter", required: false)
 </body>
 </html>
@@ -177,7 +174,18 @@ $(document).ready(function() {
         autoPlayHoverPause: true
     });
 
+    var productRef = $('#productRef');
+    owlCategory.owlCarousel({
+        items: 4,
+        loop: true,
+        margin: 0,
+        autoPlay: true,
+        autoPlayTimeout: 1000,
+        autoPlayHoverPause: true
+    });
+
 })
+
 function refrClock() {
     var d = new Date();
     var month = d.getMonth();
