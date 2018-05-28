@@ -8,6 +8,19 @@
 
 @section jsFooter {
     <script src="~/Assets/client/js/cart.js"></script>
+    <script>
+        $(document).ready(function () {
+            var owl = $('.productRef.owl-carousel.owl-theme');
+            owl.owlCarousel({
+                items: 4,
+                loop: true,
+                margin: 15,
+                autoPlay: true,
+                autoPlayTimeout: 1000,
+                autoPlayHoverPause: true
+            });
+        });
+    </script>
 }
 
 @section cssHeader {
@@ -15,11 +28,7 @@
 }
 
 <!-- CATEGORIES SLIDES -->
-<<<<<<< HEAD
-    <div class="book">
-        <div class="img-book">
-            <img src=".@details.Image">
-=======
+
 <div class="book">
     <div class="img-book">
         <img src="@details.Image">
@@ -35,7 +44,6 @@
                     @details.BookCover
                 </a>
             </div>
->>>>>>> a72058c77f07b8ca8d48e99a89ac8c8679727d9f
         </div>
         <div class="bot">
             <div class="left">
@@ -133,19 +141,20 @@
 
 
 
-        @if (lienquan != null)
-            {
-                foreach (var item in lienquan)
+
+        <div class="list-book">
+            <div class="header-list-book-hot">
+                <a href="">SẢN PHẨM LIÊN QUAN</a>
+            </div>
+            <div id="productRef" class="productRef owl-carousel owl-theme">
+                @if (lienquan != null)
                 {
-                <div class="list-book">
-                    <div class="header-list-book-hot">
-                        <a href="">SẢN PHẨM LIÊN QUAN</a>
-                    </div>
-                    <div class="owl-carousel owl-theme">
+                    foreach (var item in lienquan)
+                    {
                         <div class="a-book">
-                            <div class="top">
+                            <div class="top" style="text-align:center;padding-bottom:7px">
                                 <a href="">
-                                    <img class="owl-lazy" src="@item.Image" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
+                                    <img class="owl-lazy" width="130px" src="@item.Image" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
                                 </a>
                             </div>
                             <div class="bot">
@@ -159,12 +168,11 @@
                                 <span class="price-regular">@item.Price ₫</span>
                             </div>
                         </div>
+                    }
+                }
+            </div>
+        </div>
 
-                    </div>
-                </div>
-            }
-
-        }
 
         <!-- end /LIST BOOK HOT -->
     </div>
@@ -208,4 +216,3 @@
         </div>
     </div>
 </div>
-

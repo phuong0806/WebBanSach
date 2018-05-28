@@ -22,6 +22,7 @@ namespace BookStore.Controllers
 
         public ActionResult SuccessOrder(int id)
         {
+            Session["confirm"] = null;
             ViewBag.ID = Request["id"];
             return View();
         }

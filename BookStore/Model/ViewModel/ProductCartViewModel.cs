@@ -15,5 +15,6 @@ namespace Model.ViewModel
         public string Image { get; set; }
         public string Alias { get; set; }
         public string TotalCost { get; set; }
+        public string PriceString { get; set; }
     }
 }

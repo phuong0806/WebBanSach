@@ -76,8 +76,7 @@ color: #333;
     text-align: center;
     /* margin-bottom: 50px; */
     /* padding: 20px; */
-    height: 350px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     /* padding: 0px 2px; */
 }
 
@@ -91,8 +90,7 @@ padding: 10px 15px;
 }
 
 #list-book .book .book-top img {
-    width: 183.333333px;
-    height: 183.333333px;
+    width: 140px;
 }
 
 #list-book .book .book-bot .title-book {
@@ -183,7 +181,8 @@ text-decoration: none;
 #list-carousel-category .a-book .top {}
 
 #list-carousel-category .a-book .top img {
-    width: 130px;
+    width: 75px;
+    padding-bottom: 7px;
 }
 
 #list-carousel-category .a-book .bot {}

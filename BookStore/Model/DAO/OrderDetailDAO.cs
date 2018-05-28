@@ -59,6 +59,15 @@ namespace Model.DAO
                              Alias = book.Alias,
                              TotalCost = order.TotalCost
                          }).ToList();
+
+            CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+            foreach (var item in model)
+            {
+                item.PriceString = double.Parse(item.Price.ToString()).ToString("#,###", cul.NumberFormat);
+            }
+
+
+
             return model;
         }
 

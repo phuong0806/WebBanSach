@@ -151,6 +151,7 @@
     <Compile Include="Areas\Admin\Controllers\BusinessController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommonController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
@@ -2381,6 +2382,7 @@
     <Folder Include="Areas\Admin\Views\Common\" />
     <Folder Include="Assets\admin\img\upload\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Views\Common\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>

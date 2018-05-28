@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>WEB BÁN SÁCH</title>
@@ -178,7 +177,18 @@ $(document).ready(function() {
         autoPlayHoverPause: true
     });
 
+    var productRef = $('#productRef');
+    owlCategory.owlCarousel({
+        items: 4,
+        loop: true,
+        margin: 0,
+        autoPlay: true,
+        autoPlayTimeout: 1000,
+        autoPlayHoverPause: true
+    });
+
 })
+
 function refrClock() {
     var d = new Date();
     var month = d.getMonth();

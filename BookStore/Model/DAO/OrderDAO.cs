@@ -118,7 +118,7 @@ namespace Model.DAO
             Order.CreatedDate = DateTime.Now;
             Order.ConfirmBy = null;
             Order.TotalCost = totalCost;
-            Order.Status = 0;
+            Order.Status = null;
             Order.isFinish = false;
             Order.isConfirm = false;
 

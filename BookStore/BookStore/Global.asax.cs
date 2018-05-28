@@ -22,6 +22,7 @@ namespace BookStore
 
         protected void Session_start()
         {
+            Session["confirm"] = null;
             Session["Username"] = null;
             Session["Password"] = null;
             Session["Image"] = null;
