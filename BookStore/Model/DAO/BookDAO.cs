@@ -366,5 +366,15 @@ namespace Model.DAO
         {
             return db.Books.Where(x => x.ViewCount >= 10).ToList();
         }
+
+        public List<string> ListName(string tukhoa)
+        {
+            return db.Books.Where(x => x.Name.Contains(tukhoa)).Select(x => x.Name).ToList();
+        }
+
+        public List<Book> Search(string tukhoa)
+        {
+            return db.Books.Where(x => x.Name.Contains(tukhoa)).ToList();
+        }
     }
 }

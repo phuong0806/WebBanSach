@@ -20,20 +20,20 @@ namespace Model.EF
 
         public int? Status { get; set; }
 
-        public bool? isFinish { get; set; }
-
-        public DateTime? FinishDate { get; set; }
-
         public DateTime? CreatedDate { get; set; }
 
         public DateTime? ConfirmDate { get; set; }
 
+        public DateTime? FinishDate { get; set; }
+
         [StringLength(250)]
         public string ConfirmBy { get; set; }
 
+        public int? TotalCost { get; set; }
+
         public bool? isConfirm { get; set; }
 
-        public int? TotalCost { get; set; }
+        public bool? isFinish { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Book> Order_Book { get; set; }

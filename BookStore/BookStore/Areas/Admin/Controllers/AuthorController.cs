@@ -64,6 +64,7 @@ namespace BookStore.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         public JsonResult Save(Author author)
         {
             if (author.ID > 0)

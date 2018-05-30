@@ -20,6 +20,7 @@
     <link href="~/Assets/client/css/trangchu.css" rel="stylesheet" />
     <link href="~/Content/plugins/themify-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link href="~/Assets/client/css/jquery-ui.css" rel="stylesheet" />
     @RenderSection("cssHeader", required: false)
 </head>
 <body>
@@ -34,8 +35,10 @@
                     <div class="search-question">Bạn muốn tìm sách gì? </div>
                     <div class="center-search">
                         <div class="group-search">
-                            <input type="text" placeholder="Nhập tên sách, tác giả, thể loại..." class="search-box">
-                            <button class=btn-search><i class="fa fa-search"></i></button>
+                            <form action="/tim-kiem" method="get">
+                                <input type="text" placeholder="Nhập tên sách cần tìm" class="search-box" name="tukhoa" id="txttukhoa">
+                                <button class=btn-search><i class="fa fa-search"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -142,6 +145,7 @@
     <!-- JS -->
     <!-- jquery -->
     <script src="~/Content/jquery-2.2.4.js"></script>
+    <script src="~/Assets/client/js/jquery-ui.js"></script>
     <!-- boostrap js -->
     <script src="~/Content/bootstrap.min.js"></script>
     <script src="~/Content/jquery.validate.min.js"></script>
@@ -149,6 +153,7 @@
     <script src="~/Content/plugins/mustache.js"></script>
     <script src="~/Assets/client/img/libs/owl-carousel/owl.carousel.min.js"></script>
     <script src="~/Assets/client/js/index.js"></script>
+    <script src="~/Assets/client/js/timkiem.js"></script>
     @RenderSection("jsFooter", required: false)
 </body>
 </html>

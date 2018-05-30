@@ -12,6 +12,7 @@ namespace Model.EF
         {
         }
 
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<BookCatalog> BookCatalogs { get; set; }
@@ -62,6 +63,14 @@ namespace Model.EF
             modelBuilder.Entity<Book>()
                 .Property(e => e.Alias)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Book>()
+                .Property(e => e.Price)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<Book>()
+                .Property(e => e.PromotionPrice)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Book>()
                 .HasMany(e => e.Order_Book)

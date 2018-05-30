@@ -165,6 +165,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotBookController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\TimkiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,6 +186,7 @@
     <Content Include="Assets\admin\js\author.js" />
     <Content Include="Assets\admin\js\catalog.js" />
     <Content Include="Assets\admin\js\pub.js" />
+    <Content Include="Assets\client\css\jquery-ui.css" />
     <Content Include="Assets\client\js\cart.js" />
     <Content Include="Assets\client\js\cartEvent.js" />
     <Content Include="Assets\client\css\cart.css" />
@@ -2164,8 +2166,13 @@
     <Content Include="Assets\client\img\slides\slide3.jpg" />
     <Content Include="Assets\client\img\slides\slide4.jpg" />
     <Content Include="Assets\client\js\index.js" />
+    <Content Include="Assets\client\js\jquery-1.12.4.js" />
+    <Content Include="Assets\client\js\jquery-3.3.1.min.js" />
+    <Content Include="Assets\client\js\jquery-ui.js" />
+    <Content Include="Assets\client\js\jquery.circliful.min.js" />
     <Content Include="Assets\client\js\loadAddress.js" />
     <Content Include="Assets\client\js\order.js" />
+    <Content Include="Assets\client\js\timkiem.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.js" />
@@ -2378,6 +2385,7 @@
     <Content Include="Views\Order\SuccessOrder.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\HotBook\Index.cshtml" />
+    <Content Include="Views\Timkiem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

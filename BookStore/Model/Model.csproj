@@ -96,6 +96,7 @@
     <Compile Include="DAO\OrderDetailDAO.cs" />
     <Compile Include="DAO\PublisherDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
+    <Compile Include="EF\Admin.cs" />
     <Compile Include="EF\Administrator.cs" />
     <Compile Include="EF\Author.cs" />
     <Compile Include="EF\Book.cs" />

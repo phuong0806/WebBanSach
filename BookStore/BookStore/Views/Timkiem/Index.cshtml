@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- CATEGORIES SLIDES -->
+<div id="list-book">
+    <!-- BOOK -->
+    @if (ViewBag.KQ != null)
+    {
+        foreach (var item in ViewBag.KQ)
+        {
+            <div class="book">
+                <div class="book-top">
+                    <a href="/chi-tiet-sach/@item.Alias">
+                        <img class="owl-lazy" src="@item.Image" alt="">
+                    </a>
+                </div>
+                <div class="book-bot">
+                    <a href="/chi-tiet-sach/@item.Alias" class="title-book">@item.Name</a>
+                    @foreach (var itm in item.Authors)
+                    {<a href="#" class="name-author">
+                        @itm.Name ,
+                    </a>
+                    }
+
+                    <div class="price">
+                        <span class="price-market">@item.Price đ</span>
+                        <span class="price-promotion">@item.Price đ</span>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    <!-- end /BOOK -->
+</div>
+<!-- end /CATEGORIES SLIDES -->
+<div class="box-shadown"></div>
+<!-- CONTENT -->
+<section id="content">
+    <!-- LIST BOOK HOT -->
+    <!-- end /LIST NEW BOOK -->
+</section>
+<script type="text/javascript">
+function refrClock()
+{
+var d=new Date();
+var month=d.getMonth();
+var year=d.getFullYear();
+var months=new Array("1","2","3","4","5","6","7","8","9","10","11","12");
+document.getElementById("premonth").innerHTML = months[month-1] + "/" + year;
+document.getElementById("newmonth").innerHTML = months[month] + "/" + year;
+
+}
+refrClock();
+
+</script>
+<!-- end /CONTENT -->

@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Model.DAO;
+
+namespace BookStore.Controllers
+{
+    public class TimkiemController : Controller
+    {
+        BookDAO book = new BookDAO();
+        // GET: Timkiem
+        public ActionResult Index()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Search(string tukhoa)
+        {
+            var model = book.Search(tukhoa);
+            ViewBag.KQ = model;
+            return View();
+        }
+
+        public JsonResult ListName(string term)
+        {
+            var model = book.ListName(term);
+            return Json(new
+            {
+                data = model,
+                status = true
+            },JsonRequestBehavior.AllowGet);
+        }
+    }
+}

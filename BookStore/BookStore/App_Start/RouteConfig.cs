@@ -67,7 +67,13 @@ namespace BookStore
              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
              namespaces: new[] { "BookStore.Controllers" }
             );
-          
+            routes.MapRoute(
+             name: "Tìm kiếm sách",
+             url: "tim-kiem",
+             defaults: new { controller = "Timkiem", action = "Search", id = UrlParameter.Optional },
+             namespaces: new[] { "BookStore.Controllers" }
+            );
+
         }
     }
 }
