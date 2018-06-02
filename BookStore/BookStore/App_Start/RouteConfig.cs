@@ -62,16 +62,30 @@ namespace BookStore
                namespaces: new[] { "BookStore.Controllers" }
               );
             routes.MapRoute(
-             name: "Default",
-             url: "{controller}/{action}/{id}",
-             defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-             namespaces: new[] { "BookStore.Controllers" }
+                name: "Tìm kiếm sách",
+                url: "tim-kiem",
+                defaults: new { controller = "Timkiem", action = "Search", id = UrlParameter.Optional },
+                namespaces: new[] { "BookStore.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Thành viên đăng ký",
+                url: "dang-ky",
+                defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },
+                namespaces: new[] { "BookStore.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Thành viên đăng nhập",
+                url: "dang-nhap",
+                defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
+                namespaces: new[] { "BookStore.Controllers" }
             );
             routes.MapRoute(
-             name: "Tìm kiếm sách",
-             url: "tim-kiem",
-             defaults: new { controller = "Timkiem", action = "Search", id = UrlParameter.Optional },
-             namespaces: new[] { "BookStore.Controllers" }
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "BookStore.Controllers" }
             );
 
         }

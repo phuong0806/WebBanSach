@@ -1,4 +1,5 @@
-﻿using Model.DAO;
+﻿using Common;
+using Model.DAO;
 using Model.EF;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace BookStore.Areas.Admin.Controllers
                 return View();
             }
 
-            string passwordMD5 = Common.Encryptor.MD5Hash(password);
+            string passwordMD5 = Encryptor.MD5Hash(password);
 
             var user = userDAO.getUser(username, passwordMD5);
 

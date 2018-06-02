@@ -92,6 +92,7 @@
     <Compile Include="DAO\BookCategoryDAO.cs" />
     <Compile Include="DAO\BookDAO.cs" />
     <Compile Include="DAO\BusinessDAO.cs" />
+    <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\OrderDAO.cs" />
     <Compile Include="DAO\OrderDetailDAO.cs" />
     <Compile Include="DAO\PublisherDAO.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="EF\BookCategory.cs" />
     <Compile Include="EF\BookStoreDbContext.cs" />
     <Compile Include="EF\Business.cs" />
+    <Compile Include="EF\Customer.cs" />
     <Compile Include="EF\Menu.cs" />
     <Compile Include="EF\MenuGroup.cs" />
     <Compile Include="EF\Order.cs" />
