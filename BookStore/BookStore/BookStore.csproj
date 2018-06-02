@@ -47,6 +47,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BotDetect, Version=4.3.2.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.3.2\lib\net46\BotDetect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.3.2.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.3.2\lib\net46\BotDetect.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -202,6 +210,7 @@
     <Content Include="Assets\client\css\bootstrap-social.css" />
     <Content Include="Assets\client\css\jquery-ui.css" />
     <Content Include="Assets\client\img\books\Facebook-48.png" />
+    <Content Include="Assets\client\img\icons\icons8-facebook-48.png" />
     <Content Include="Assets\client\js\cart.js" />
     <Content Include="Assets\client\js\cartEvent.js" />
     <Content Include="Assets\client\css\cart.css" />

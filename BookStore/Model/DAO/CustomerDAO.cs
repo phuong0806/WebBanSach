@@ -30,6 +30,21 @@ namespace Model.DAO
                 return false;
             }
         }
+
+        public int InsertFB(Customer cus)
+        {
+            var Cus = db.Customers.SingleOrDefault(x => x.Username == cus.Username);
+            if (Cus == null)
+            {
+                db.Customers.Add(cus);
+                db.SaveChanges();
+                return cus.ID;
+            }
+            else
+            {
+                return Cus.ID;
+            }
+        }
         public bool CheckUser(string name)
         {
             return db.Customers.Count(x => x.Username == name) > 0;

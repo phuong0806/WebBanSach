@@ -10,6 +10,7 @@ using Model.DAO;
 using Model.EF;
 using Common;
 using BookStore.Common;
+using BotDetect.Web.Mvc;
 
 namespace BookStore.Controllers
 {
@@ -17,17 +18,17 @@ namespace BookStore.Controllers
     {
         CustomerDAO CusDao = new CustomerDAO();
 
-        //private Uri RedirectUri
-        //{
-        //    get
-        //    {
-        //        var uriBuilder = new UriBuilder(Request.Url);
-        //        uriBuilder.Query = null;
-        //        uriBuilder.Fragment = null;
-        //        uriBuilder.Path = Url.Action("FaceBookCallBack");
-        //        return uriBuilder.Uri;
-        //    }
-        //}
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FaceBookCallBack");
+                return uriBuilder.Uri;
+            }
+        }
         // GET: User
         [HttpGet]
         public ActionResult Register()
@@ -71,6 +72,7 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidation("CaptchaCode", "registerCapcha", "Sai mã xác nhận!")]
         public ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
@@ -96,7 +98,7 @@ namespace BookStore.Controllers
                     var result = CusDao.Insert(cus);
                     if(result==true)
                     {
-                        ModelState.AddModelError("", "Đăng ký thành công");
+                        ViewBag.Suc = "Đăng ký thành công";
                         model = new RegisterModel();
                     }
                     else
@@ -109,37 +111,60 @@ namespace BookStore.Controllers
         }
 
 
-        //public ActionResult LoginFB()
-        //{
-        //    var fb = new FacebookClient();
-        //    var logUrl = fb.GetLoginUrl(new
-        //    {
-        //        client_id=ConfigurationManager.AppSettings["FbAppId"],
-        //        client_secret= ConfigurationManager.AppSettings["FbAppSecret"],
-        //        redirect_uri=RedirectUri.AbsoluteUri,
-        //        respone_type="code",
-        //        scope="email",
-        //    });
-        //    return Redirect(logUrl.AbsoluteUri);
-        //}
+        public ActionResult LoginFB()
+        {
+            var fb = new FacebookClient();
+            var logUrl = fb.GetLoginUrl(new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppId"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                respone_type = "code",
+                scope = "email",
+            });
+            return Redirect(logUrl.AbsoluteUri);
+        }
 
-        //public ActionResult FaceBookCallBack(string code)
-        //{
-        //    var fb = new FacebookClient();
-        //    dynamic result = fb.Post("oauth/access_token", new
-        //    {
-        //        client_id = ConfigurationManager.AppSettings["FbAppId"],
-        //        client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
-        //        redirect_uri = RedirectUri.AbsoluteUri,
-        //        code = code
-        //    });
-        //    var accessToken = result.access_token;
-        //    if(!string.IsNullOrEmpty(accessToken))
-        //    {
-        //        dynamic me = fb.Get("me?fields=first_name,middel_name,last_name,id,email");
+        public ActionResult FaceBookCallBack(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppId"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                code = code
+            });
+            var accessToken = result.access_token;
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                fb.AccessToken = accessToken;
+                dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+                string email = me.email;
+                string username = me.username;
+                string firstname = me.first_name;
+                string middlename = me.middle_name;
+                string lastname = me.last_name;
 
-        //    }
+                var Customer = new Customer();
+                Customer.Email = email;
+                Customer.Username = username;
+                Customer.Name = firstname + " " + middlename + " " + lastname;
+                var res = CusDao.InsertFB(Customer);
+                if (res>0)
+                {
+                    var userSession = "";
+                    userSession = Customer.Name;
 
-        //}
+                    Session.Add(CommonConstants.USER_SESSION, userSession);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Đăng nhập thất bại");
+                }
+            }
+            return Redirect("/");
+
+        }
     }
 }
