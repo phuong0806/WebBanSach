@@ -7,6 +7,7 @@
 <!-- CATEGORIES SLIDES -->
 <div id="list-book">
     <!-- BOOK -->
+    <h3>Kết quả tìm kiếm với từ khóa "@ViewBag.key"</h3>
     @if (ViewBag.KQ != null)
     {
         foreach (var item in ViewBag.KQ)
@@ -27,7 +28,6 @@
 
                     <div class="price">
                         <span class="price-market">@item.Price đ</span>
-                        <span class="price-promotion">@item.Price đ</span>
                     </div>
                 </div>
             </div>

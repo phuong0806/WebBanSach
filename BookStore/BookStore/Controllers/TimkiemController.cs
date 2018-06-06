@@ -15,12 +15,14 @@ namespace BookStore.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult Search(string tukhoa)
+
+        public ActionResult Search()
         {
-            var model = book.Search(tukhoa);
+            var key = Request["tukhoa"];
+            var model = book.Search(key);
             ViewBag.KQ = model;
-            return View();
+            ViewBag.key = key;
+            return View("Index");
         }
 
         public JsonResult ListName(string term)

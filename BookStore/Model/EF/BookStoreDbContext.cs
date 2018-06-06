@@ -19,6 +19,7 @@ namespace Model.EF
         public virtual DbSet<BookCategory> BookCategories { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Business> Businesses { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<MenuGroup> MenuGroups { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Order_Book> Order_Book { get; set; }

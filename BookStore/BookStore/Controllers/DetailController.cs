@@ -22,8 +22,10 @@ namespace BookStore.Controllers
             {
                 var model = new BookDAO().Detail(Alias).SingleOrDefault();
                 var cungloai = bDao.Same(model.CategoryID);
+                var hot = bDao.Hot();
                 ViewBag.Details = model;
                 ViewBag.lienquan = cungloai;
+                ViewBag.HB = hot;
                 return View("Index");
             }
             catch (Exception)

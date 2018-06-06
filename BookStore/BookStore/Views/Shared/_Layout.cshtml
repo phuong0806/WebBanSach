@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +11,7 @@
 
     <!-- boostrap css -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/client/css/bootstrap-social.css" rel="stylesheet" />
     <!--  font awesome -->
     <link href="~/Assets/client/img/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!-- font chữ -->
@@ -37,7 +39,7 @@
                         <div class="group-search">
                             <form action="/tim-kiem" method="get">
                                 <input type="text" placeholder="Nhập tên sách cần tìm" class="search-box" name="tukhoa" id="txttukhoa">
-                                <button class=btn-search><i class="fa fa-search"></i></button>
+                                <button type="submit" class=btn-search><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
@@ -45,7 +47,23 @@
             </div>
             <div class="right-header">
                 <div class="user-account">
-                    <a href="#">Đăng nhập </a> | <a href=""> Đăng ký</a>
+                    @{
+                        var session = Session[BookStore.Common.CommonConstants.USER_SESSION];
+                    }
+                    @if (session == null)
+                    {
+                        <a href="dang-nhap"> Đăng nhập </a> <a> | </a>
+                        <a href = "dang-ky" > Đăng ký </a>
+                        <a href="/User/LoginFB"><img src="~/Assets/client/img/icons/icons8-facebook-48.png" /></a>
+
+                    }
+                    else
+                    {
+                        <a>Xin chào @session</a> <a> | </a>
+                        <a>@Html.ActionLink("Thoát", "Logout", "User")</a>
+                    }
+
+
                 </div>
                 <div class="cart ">
                     <a href="/gio-hang">
@@ -58,15 +76,15 @@
         <!-- NAVIGATION -->
         <nav id="top-menu">
             <ul>
-                <li class="active"><a href="http://localhost:51250/">Trang chủ</a></li>
-                <li><a href="/the-loai/new-book">Sách mới tháng <span id="month"></span></a></li>
-                <li><a href="/hot-book">Sách bán chạy</a></li>
-                <li><a href="">Sách khuyến mãi</a></li>
-                <li><a href="/lien-he">Liên hệ</a></li>
-                <li class="date-now">
-                    <span id="date-now"></span>
-                </li>
-            </ul>
+                    <li class="active"><a href="http://localhost:51250/">Trang chủ</a></li>
+                    <li><a href="/the-loai/new-book">Sách mới tháng <span id="month"></span></a></li>
+                    <li><a href="/hot-book">Sách bán chạy</a></li>
+                    <li><a href="">Sách khuyến mãi</a></li>
+                    <li><a href="/lien-he">Liên hệ</a></li>
+                    <li class="date-now">
+                        <span id="date-now"></span>
+                    </li>
+                </ul>
         </nav>
         <div class="clear-fix"></div>
         <!-- end /NAVIGATION -->

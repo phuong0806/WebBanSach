@@ -3,6 +3,7 @@
     ViewBag.Title = "Index";
     var details = ViewBag.Details as Model.EF.Book;
     var lienquan = ViewBag.lienquan as List<Model.EF.Book>;
+    var hot = ViewBag.HB;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -153,12 +154,12 @@
                     {
                         <div class="a-book">
                             <div class="top" style="text-align:center;padding-bottom:7px">
-                                <a href="">
+                                <a href="/the-loai/@item.Alias">
                                     <img class="owl-lazy" width="130px" src="@item.Image" src-retina="../img/books/ca_phe_cung_tony.jpg" alt="">
                                 </a>
                             </div>
                             <div class="bot">
-                                <a href="" class="title-book-sug">@item.Name</a>
+                                <a href="/the-loai/@item.Alias" class="title-book-sug">@item.Name</a>
                                 @foreach (var tg in item.Authors)
                                 {
                                     <a href="" class="author-sug">@tg.Name ,</a>
@@ -178,41 +179,21 @@
     </div>
     <div class="book-hot">
         <span>SẢN PHẨM BÁN CHẠY</span>
-        <div class="a-book-hot">
-            <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
-            <a href="">Alo hello moto</a>
-            <div class="price">
-                <div class="price-sale">89,000₫</div>
-                <div class="price-market">105,000₫</div>
-                <div class="price-promotion">(25%)</div>
-            </div>
-        </div>
-        <div class="a-book-hot">
-            <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
-            <a href="">Nhà giả kim</a>
-            <div class="price">
-                <div class="price-sale">89,000₫</div>
-                <div class="price-market">105,000₫</div>
-                <div class="price-promotion">(25%)</div>
-            </div>
-        </div>
-        <div class="a-book-hot">
-            <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
-            <a href="">Bé tập hát</a>
-            <div class="price">
-                <div class="price-sale">89,000₫</div>
-                <div class="price-market">105,000₫</div>
-                <div class="price-promotion">(25%)</div>
-            </div>
-        </div>
-        <div class="a-book-hot">
-            <img src="../img/books/minh_la_ca_viec_cua_minh_la_boi.jpg" alt="">
-            <a href="">Mình là cá việc của mình là bơi</a>
-            <div class="price">
-                <div class="price-sale">89,000₫</div>
-                <div class="price-market">105,000₫</div>
-                <div class="price-promotion">(25%)</div>
-            </div>
-        </div>
+        
+            @if (hot != null)
+            {
+                foreach (var item in hot)
+                {
+                    <div class="a-book-hot">
+                        <a href="/the-loai/@item.Alias"><img src="@item.Image" alt=""></a>
+                        <a href="/the-loai/@item.Alias">Alo hello moto</a>
+                        <div class="price">
+                            <div class="price-sale">@item.Price₫</div>
+                            <div class="price-market">@item.Price₫</div>
+                            <div class="price-promotion">(0%)</div>
+                        </div>
+                    </div>
+                }
+            }
     </div>
 </div>
