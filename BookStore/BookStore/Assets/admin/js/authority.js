@@ -28,10 +28,10 @@
                 authorityController.loadBusiness(username);
             });
             
-            //$(document).on('click', '.btn-status', function () {
-            //    var business = $(this).data('id');
-            //    authorityController.updateBusiness(business);
-            //});
+            $(document).on('click', '.btn-author', function () {
+                var business = $(this).data('id');
+                authorityController.updateBusiness(business);
+            });
 
             $(document).on('click', '.btn-status', function () {
                 var user = $(this).data('id');

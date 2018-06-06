@@ -1,4 +1,5 @@
-﻿using Model.DAO;
+﻿using BookStore.Areas.Admin.Models.BusinessModel;
+using Model.DAO;
 using Model.EF;
 using Newtonsoft.Json;
 using OfficeOpenXml;
@@ -15,6 +16,7 @@ using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class OrderController : Controller
     {
 

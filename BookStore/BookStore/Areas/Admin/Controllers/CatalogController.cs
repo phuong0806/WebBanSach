@@ -13,6 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class CatalogController : Controller
     {
         // GET: Admin/Catalog
@@ -45,7 +46,6 @@ namespace BookStore.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult Save(BookCatalog catalog)
         {
-            var status = false;
             if (catalog.ID > 0)
             {
                 return Json(new

@@ -501,7 +501,7 @@ color: #333333 !important;
     display: none;
 }
 
-.blurBackground {
+.blurBackground, .blurBackgroundAdd {
     position: fixed;
     background: #878788;
     top: 0;
@@ -512,7 +512,7 @@ color: #333333 !important;
     visibility: hidden;
 }
 
-    .blurBackground.active {
+    .blurBackground.active, .blurBackgroundAdd.active {
         visibility: visible;
     }
 
@@ -532,7 +532,7 @@ color: #333333 !important;
     margin-top: 20px;
 }
 
- .modal-body{
+ .modal-body, .modal-body-add {
     top: 0;
     position: fixed;
     left: 0;
@@ -545,7 +545,7 @@ color: #333333 !important;
     padding:0px;
 }
 
-.modal-body.active {
+.modal-body.active, .modal-body-add.active {
     visibility:visible;
     display:block;
 }

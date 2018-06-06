@@ -24,7 +24,6 @@
                     bookController.deleteBook(id);
                 }
             });
-
             $(document).on('keyup', '.search-box', function () {
                 bookController.loadData(true);
             });
@@ -48,10 +47,16 @@
                 if (statusSelect != "" && statusSelect != null) {
                     path += "&statusSelect=" + statusSelect;
                 }
-
                 window.location = '/Admin/Book/ExportToExcel?name=report-book' + path;
             });
 
+            $(document).on('click',".btn-import", function (e) {
+                $("#file-import:hidden").trigger('click');
+            });
+
+            $(document).on('change', '#file-import', function () {
+                alert("AA");
+            });
         },
 
 

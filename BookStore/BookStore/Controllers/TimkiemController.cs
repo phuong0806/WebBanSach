@@ -9,7 +9,7 @@ namespace BookStore.Controllers
 {
     public class TimkiemController : Controller
     {
-        BookDAO book = new BookDAO();
+       BookDAO book = new BookDAO();
         // GET: Timkiem
         public ActionResult Index()
         {

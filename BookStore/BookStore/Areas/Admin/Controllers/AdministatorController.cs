@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using BookStore.Areas.Admin.Models.BusinessModel;
+using Common;
 using Model.DAO;
 using Model.EF;
 using Model.ViewModel;
@@ -12,6 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class AdministatorController : Controller
     {
         // GET: Admin/Administator

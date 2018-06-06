@@ -23,6 +23,17 @@ function js_yyyy_mm_dd_hh_mm_ss(date) {
     return day + "-" + month + "-" + year + "/" + hour + ":" + minute;
 }
 
+function js_yyyy_MM_dd(date) {
+    if (date == null) {
+        return "-";
+    }
+    var now = new Date(date);
+    year = "" + now.getFullYear();
+    month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+    day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+    return year + "-" + month + "-" + day;
+}
+
 function js_dd_MM_yyyy(date) {
     if (date == null) {
         return "-";
@@ -100,7 +111,7 @@ function reset() {
 $(document).on('click', '#result .hinh-anh', function () {
     var urlImg = $(this).attr('src');
     var idImg = $(this).attr('id');
-    $('#result .hinh-anh').removeClass('active');
+    //$('#result .hinh-anh').removeClass('active');
     $(this).toggleClass('active');
     $('.img-selected').attr('src', urlImg)
     $('#img-book').val(urlImg);
@@ -117,7 +128,6 @@ $(document).on('click', '#delete-link', function () {
             data: { filename: filename },
             success: function (result) {
                 reset();
-                console.log(result);
                 alert("Xóa thành công");
                 var html = "";
                 for (var i = 0; i < result.length; i++) {

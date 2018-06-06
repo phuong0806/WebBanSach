@@ -8,15 +8,15 @@
         registerEvent: function () {//xử lý sự kiện
             $('.btn-save').click(function () {
                 var Name = $('#name').val();
-                var Birthday = $('#date').val();
-                var Info = $('#info').val();
+                var Birthday = js_dd_MM_yyyy($('#date').val());
                 var id = $('#id').val();
+                var info = CKEDITOR.instances.info.getData();
                 var Status = true;
                 var Author = {
                     ID: id,
                     Name: Name,
                     Birthday: Birthday,
-                    Info: Info,
+                    Info: info,
                     Status: Status
                 };
                 AuthorController.Save(Author);
@@ -28,6 +28,7 @@
             });
 
             $(document).on('click', '.btn-create', function () {
+                CKEDITOR.instances.info.setData("");
                 AuthorController.reset();
             });
 
@@ -75,7 +76,7 @@
         // thêm tác giả mới
         Save: function (Author) {
             $.ajax({
-                url: "/Author/Save",
+                url: "/Admin/Author/Save",
                 data:{
                     author:Author
                 },
@@ -99,11 +100,11 @@
                 type: "Post",
                 dataType: "json",
                 success: function (result) { // result nhận json
-                    var data = result.author
+                    var data = JSON.parse(result.author);
                     $('#id').val(data.ID);
                     $('#name').val(data.Name);
-                    $('#date').val(data.Birthday);
-                    $('#info').val(data.Info);
+                    $('#date').val(js_yyyy_MM_dd(data.Birthday));
+                    CKEDITOR.instances.info.setData(data.Info);
                 }
             });
         },
