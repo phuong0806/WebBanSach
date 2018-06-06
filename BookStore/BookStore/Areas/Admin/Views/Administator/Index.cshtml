@@ -63,24 +63,26 @@
             $('.modalBoxAdd').removeClass('fadeOut');
             $('.modalBoxAdd').addClass('active');
             $('.modalBoxAdd').addClass('fadeInDown');
-            $('.blurBackground').addClass('active');
+            $('.modal-body-add').addClass('active');
+            $('.blurBackgroundAdd').addClass('active');
         });
         $(document).on('click', '.ti-close', function () {
             setTimeout(function () {
                 $('.modalBoxAdd').removeClass('active');
                 $('.modalBoxAdd').removeClass('fadeInDown');
+                $('.modal-body-add').removeClass('active');
             }, 200);
             $('.modalBoxAdd').addClass('fadeOut');
-            $('.blurBackground').removeClass('active');
+            $('.blurBackgroundAdd').removeClass('active');
         });
 
         /* end MODAL BOX ADD/UPDATE */
     </script>
 }
-<div id="fakeLoader"></div>
+
+
 <div class="row">
     <div class="col-sm-12 list-book">
-        <!-- PAGE CONTENT BEGINS -->
         <div class="row mb-3">
             <div class="col-sm-12">
                 <div class="title-list">
@@ -98,9 +100,8 @@
                 <table class="my-table table table-sm">
                     <thead>
                         <tr class="my-thead text-center">
-                            <td width="7%"></td>
                             <td width="32%" class="text-left">Name</td>
-                            <td width="20%">Email</td>
+                            <td width="27%">Email</td>
                             <td width="20%">Authority</td>
                             <td width="21%"></td>
                         </tr>
@@ -113,9 +114,6 @@
 </div>
 <script id="data-template" type="x-tmpl-mustache">
     <tr class="text-center" style="font-size:14px;">
-        <td>
-            <img class="" alt="alt" src="{{Image}}" style="width:55px" />
-        </td>
         <td class="text-left">
             <div class="row">
                 <div class="col-sm-12">
@@ -135,9 +133,9 @@
 </script>
 
 <!-- MODAL -->
-<div class="blurBackground"> </div>
-<div class="container-modal">
-    <div id="modalBox" class="modalBox animated" style="width:680px;margin-left:-340px;top:4%">
+<div class="blurBackground"></div>
+<div class="modal-body">
+    <div id="modalBox" class="modalBox animated" style="width:760px">
         <div class="closeModalBox">
             <span><i class="ti-close"></i></span>
         </div>
@@ -154,7 +152,7 @@
                     <div class="col-sm-12">
                         <input type="hidden" class="username" value="">
                         <div class="form-group" id="result-business">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -166,18 +164,16 @@
     <div class="form-group">
         <a>{{ID}} - {{Name}}</a>
         <div class="material-switch float-right">
-            <input id="{{ID}}-{{Name}}" name="{{ID}}-{{Name}}" type="checkbox" {{Status}}/>
-            <label for="{{ID}}-{{Name}}" data-id="{{ID}}" class="label-default btn-status"></label>
+            <input id="{{ID}}-{{Name}}" name="{{ID}}-{{Name}}" type="checkbox" {{Status}} />
+            <label for="{{ID}}-{{Name}}" data-id="{{ID}}" class="label-default btn-author"></label>
         </div>
     </div>
 </script>
 <!-- end MODAL -->
-
-
 <!-- MODAL create-->
-<div class="blurBackground"> </div>
-<div class="container-modal">
-    <div id="modalBox" class="modalBoxAdd animated" style="width:680px;margin-left:-340px;top:4%">
+<div class="blurBackgroundAdd"></div>
+<div class="modal-body-add">
+    <div id="modalBoxAdd" class="modalBoxAdd animated" style="width:760px">
         <div class="closeModalBox">
             <span><i class="ti-close"></i></span>
         </div>

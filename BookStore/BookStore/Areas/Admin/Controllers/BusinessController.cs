@@ -12,6 +12,7 @@ using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class BusinessController : Controller
     {
         BookStoreDbContext db = new BookStoreDbContext();
@@ -28,11 +29,10 @@ namespace BookStore.Areas.Admin.Controllers
             List<string> listControllerOld = new BusinessDAO().getListBusiness().Select(x => x.ID).ToList();
             foreach (var item in listControllerType)
             {
-                if (!listControllerOld.Contains(item.Name))
+                if (!listControllerOld.Contains(item.Name) & item.Name != "CommonController")
                 {
                     var url = "/Admin/" + item.Name.Replace("Controller", "") + "/Index";
                     Business b = new Business() { ID = item.Name, Name = "Empty", Url = url };
-
                     db.Businesses.Add(b);
                 }
             }

@@ -13,6 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
+    [AuthorizeBusiness]
     public class PublisherController : Controller
     {
         // GET: Admin/Publisher
@@ -35,18 +36,19 @@ namespace BookStore.Areas.Admin.Controllers
             model = model.OrderBy(x => x.Name);
             var TotalRow = model.Count();
             var output = JsonConvert.SerializeObject(model, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-            return Json(new
+            var jsonresult = Json(new
             {
                 data = output,
                 totalRow = TotalRow,
                 status = true
             }, JsonRequestBehavior.AllowGet);
+            jsonresult.MaxJsonLength = int.MaxValue;
+            return jsonresult;
         }
 
         [HttpPost]
         public JsonResult Save(Publisher pub)
         {
-            var status = false;
             if (pub.ID > 0)
             {
                 return Json(new

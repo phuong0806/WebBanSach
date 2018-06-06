@@ -12,8 +12,8 @@ namespace BookStore.Controllers
         // GET: Address
         public ActionResult Index()
         {
-            return View();
             ViewBag.ListCatalogi = new BookCategoryDAO().GetCTL();
+            return View();
         }
     }
 }

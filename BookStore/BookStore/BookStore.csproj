@@ -2421,6 +2421,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Common\" />
+    <Folder Include="Assets\admin\files\upload\" />
     <Folder Include="Assets\admin\img\upload\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\Common\" />
