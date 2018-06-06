@@ -13,7 +13,7 @@ namespace BookStore.Controllers
         // GET: Detail
         public ActionResult Index()
         {
-            return View();
+            return View("Error");
         }
 
         public ActionResult GetDetail(string Alias)
@@ -30,7 +30,7 @@ namespace BookStore.Controllers
             }
             catch (Exception)
             {
-
+                return View("Error");
                 throw;
             }
             

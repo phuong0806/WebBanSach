@@ -268,7 +268,7 @@ namespace Model.DAO
         {
             DateTime a = DateTime.Now;
             int month = a.Month;
-            var listBook = db.Books.ToList();
+            var listBook = db.Books.Where(x=>x.CreatedDate.Value.Month==month).ToList();
             //var listBook = (from book in db.Books
             //                from author in book.Authors
             //                join author_book in db.Books on book.ID equals author_book.ID

@@ -188,6 +188,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChangeModel.cs" />
     <Compile Include="Models\DistrictModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PrecinctModel.cs" />
@@ -2414,6 +2415,8 @@
     <Content Include="Views\Timkiem\Index.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Detail\Error.cshtml" />
+    <Content Include="Views\User\Change.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

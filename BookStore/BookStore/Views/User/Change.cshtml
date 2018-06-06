@@ -1,30 +1,27 @@
-﻿@model BookStore.Models.RegisterModel
-@using BotDetect.Web.Mvc;
-<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
-      rel="stylesheet" type="text/css" />
-@{ MvcCaptcha registerCapcha = new MvcCaptcha("registerCapcha"); }
+﻿@model BookStore.Models.ChangeModel
+
 @{
-    ViewBag.Title = "Đăng ký";
+    ViewBag.Title = "Change";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="content">
 
-    @using (Html.BeginForm("Register","User",FormMethod.Post))
+<div class="content">
+    @using (Html.BeginForm("Change", "User", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Đăng ký thành viên</h4>
+            <h4>ChangeModel</h4>
             <hr />
-            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-            @if (ViewBag.Suc!=null)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @if (ViewBag.Suc != null)
             {
                 <div class="alert alert-success">@ViewBag.Suc</div>
             }
             <div class="form-group">
                 @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control"  } })
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @readonly = "readonly", @Value = @Session[BookStore.Common.CommonConstants.USER_SESSION] })
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -38,17 +35,25 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.NewPassword, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    @Html.PasswordFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmNewPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.ConfirmNewPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmNewPassword, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @Value = @Session[BookStore.Common.CommonConstants.Name] })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -56,7 +61,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @Value = @Session[BookStore.Common.CommonConstants.Address] })
                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -64,7 +69,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @Value = @Session[BookStore.Common.CommonConstants.Mail] })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -72,23 +77,21 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @Value = @Session[BookStore.Common.CommonConstants.Phone] })
                     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.Captcha(registerCapcha)
-                    @Html.TextBox("CaptchaCode")
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Đăng ký" class="btn btn-default" />
+                    <input type="submit" value="Thay Đổi" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
 </div>
+<script type="text/javascript">
+    $(function () {
+        $("#Address").html(@Session[BookStore.Common.CommonConstants.Address]);
+    });
+</script>

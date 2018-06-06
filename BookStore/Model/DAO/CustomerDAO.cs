@@ -31,6 +31,18 @@ namespace Model.DAO
             }
         }
 
+        public bool UpdateCus(Customer cus)
+        {
+            var model = db.Customers.Find(cus.Username);
+            model.Pass = cus.Pass;
+            model.Name = cus.Name;
+            model.Email = cus.Email;
+            model.Phone = cus.Phone;
+            model.Address = cus.Address;
+            db.SaveChanges();
+            return true;
+        }
+
         public int InsertFB(Customer cus)
         {
             var Cus = db.Customers.SingleOrDefault(x => x.Username == cus.Username);
@@ -54,6 +66,15 @@ namespace Model.DAO
         {
             return db.Customers.Count(x => x.Email == email) > 0;
         }
+
+        public bool CheckEmailUp(string email,string us)
+        {
+            if (db.Customers.Count(x => x.Email == email && x.Username.Equals(us))>0)
+                return true;
+            else
+                return false;
+        }
+
 
         public Customer GetByUN(string UserName)
         {

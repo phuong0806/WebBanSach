@@ -84,6 +84,20 @@ namespace BookStore
                 defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
                 namespaces: new[] { "BookStore.Controllers" }
             );
+
+            routes.MapRoute(
+                name: "Thành viên đăng xuất",
+                url: "thoat",
+                defaults: new { controller = "User", action = "Logout", id = UrlParameter.Optional },
+                namespaces: new[] { "BookStore.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Thành viên thay đổi",
+                url: "thay-doi",
+                defaults: new { controller = "User", action = "Change", id = UrlParameter.Optional },
+                namespaces: new[] { "BookStore.Controllers" }
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

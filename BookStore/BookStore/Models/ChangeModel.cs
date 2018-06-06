@@ -6,23 +6,25 @@ using System.Web;
 
 namespace BookStore.Models
 {
-    public class RegisterModel
+    public class ChangeModel
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name="Tên đăng nhập")]
-        [Required(ErrorMessage ="Không bỏ trống Tên đăng nhập")]
-        [RegularExpression("^[-0-9A-Za-z_]{5,15}$", ErrorMessage = "Sai định dạng")]
+        [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
 
-        [Display(Name = "Mật khẩu")]
-        [StringLength(20,MinimumLength =6,ErrorMessage ="Ít nhất 6 ký tự")]
-        [Required(ErrorMessage = "Không bỏ trống mật khẩu")]
+        [Display(Name = "Mật khẩu cũ")]
+        [Required(ErrorMessage = "Không bỏ trống mật khẩu cũ")]
         public string Password { get; set; }
 
-        [Display(Name = "Xác nhận Mật khẩu")]
-        [Compare("Password", ErrorMessage = "Mật khẩu không trùng khớp")]
-        public string ConfirmPassword { get; set; }
+        [Display(Name = "Mật khẩu mới")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Ít nhất 6 ký tự")]
+        [Required(ErrorMessage = "Không bỏ trống mật khẩu")]
+        public string NewPassword { get; set; }
+
+        [Display(Name = "Xác nhận mật khẩu mới")]
+        [Compare("NewPassword", ErrorMessage = "Mật khẩu không trùng khớp")]
+        public string ConfirmNewPassword { get; set; }
 
         [Display(Name = "Họ và tên")]
         [Required(ErrorMessage = "Xin cho biết họ tên")]

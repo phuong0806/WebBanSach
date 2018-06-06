@@ -71,7 +71,7 @@ namespace BookStore.Areas.Admin.Controllers
             {
                 return Json(new
                 {
-                    status = new AuthorDAO().UpdateAuthor(author) // Them
+                    status = new AuthorDAO().UpdateAuthor(author) // update
                 });
             }
             else

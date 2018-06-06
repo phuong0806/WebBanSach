@@ -9,8 +9,10 @@ namespace Model.EF
     [Table("Customer")]
     public partial class Customer
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
+        [Key]
         [StringLength(250)]
         public string Username { get; set; }
 

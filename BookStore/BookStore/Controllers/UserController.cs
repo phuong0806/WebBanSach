@@ -40,14 +40,72 @@ namespace BookStore.Controllers
         {
             return View();
         }
-
+        public ActionResult Change()
+        {
+            return View();
+        }
         public ActionResult Logout()
         {
             Session[CommonConstants.USER_SESSION] = null;
             return Redirect("/");
 
         }
-
+        [HttpPost]
+        public ActionResult Change(ChangeModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = CusDao.Login(model.UserName, Encryptor.MD5Hash(model.Password));
+                if (result == true)
+                {
+                    if (CusDao.CheckEmailUp(model.Email,model.UserName)==false)
+                    {
+                        ModelState.AddModelError("", "Đã có người sử dụng email này");
+                    }
+                    else
+                    {
+                        var cus = new Customer();
+                        cus.ID = model.Id;
+                        cus.Username = model.UserName;
+                        cus.Pass = Encryptor.MD5Hash(model.NewPassword);
+                        cus.Name = model.Name;
+                        cus.Phone = model.Phone;
+                        cus.Email = model.Email;
+                        cus.Address = model.Address;
+                        var result1 = CusDao.UpdateCus(cus);
+                        if (result1 == true)
+                        {
+                            ViewBag.Suc = "Thay đổi thành công";
+                            var user = CusDao.GetByUN(model.UserName);
+                            var userSession = "";
+                            var phone = "";
+                            var mail = "";
+                            var name = "";
+                            var address = "";
+                            userSession = user.Username;
+                            phone = user.Phone;
+                            mail = user.Email;
+                            name = user.Name;
+                            address = user.Address;
+                            Session.Add(CommonConstants.USER_SESSION, userSession);
+                            Session.Add(CommonConstants.Phone, phone);
+                            Session.Add(CommonConstants.Mail, mail);
+                            Session.Add(CommonConstants.Name, name);
+                            Session.Add(CommonConstants.Address, address);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Thay đổi thất bại");
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Sai mật khẩu");
+                }
+            }
+            return View(model);
+        }
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
@@ -58,9 +116,20 @@ namespace BookStore.Controllers
                 {
                     var user = CusDao.GetByUN(model.UserName);
                     var userSession="";
+                    var phone = "";
+                    var mail = "";
+                    var name = "";
+                    var address = "";
                     userSession = user.Username;
-
+                    phone = user.Phone;
+                    mail = user.Email;
+                    name = user.Name;
+                    address = user.Address;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
+                    Session.Add(CommonConstants.Phone, phone);
+                    Session.Add(CommonConstants.Mail, mail);
+                    Session.Add(CommonConstants.Name, name);
+                    Session.Add(CommonConstants.Address, address);
                     return Redirect("/");
                 }
                 else
@@ -148,7 +217,7 @@ namespace BookStore.Controllers
 
                 var Customer = new Customer();
                 Customer.Email = email;
-                Customer.Username = username;
+                Customer.Username = firstname + middlename + lastname;
                 Customer.Name = firstname + " " + middlename + " " + lastname;
                 var res = CusDao.InsertFB(Customer);
                 if (res>0)

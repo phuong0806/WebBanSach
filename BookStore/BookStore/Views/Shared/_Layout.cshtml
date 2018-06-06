@@ -52,15 +52,27 @@
                     }
                     @if (session == null)
                     {
-                        <a href="dang-nhap"> Đăng nhập </a> <a> | </a>
-                        <a href = "dang-ky" > Đăng ký </a>
-                        <a href="/User/LoginFB"><img src="~/Assets/client/img/icons/icons8-facebook-48.png" /></a>
+                        <a href="dang-nhap"><i class="fas fa-sign-in-alt">Đăng nhập</i></a><span>|</span><a href="/User/LoginFB"><i class="fab fa-facebook-square"></i></a>
+                        <a href = "dang-ky" ><i class="fas fa-hands-helping">Đăng ký</i>  </a>
+                        
 
                     }
                     else
                     {
-                        <a>Xin chào @session</a> <a> | </a>
-                        <a>@Html.ActionLink("Thoát", "Logout", "User")</a>
+                        <table>
+                            <tr>
+                                <td rowspan="2"><a>Xin chào @session</a></td>
+                                <td>
+                                    <a href="/thoat"><i class="fas fa-sign-out-alt">Thoát</i></a>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <a href="/thay-doi"><i class="fas fa-user-tie">Cá nhân</i></a>
+                                </td>
+                            </tr>
+                        </table>
                     }
 
 
@@ -78,7 +90,7 @@
             <ul>
                     <li class="active"><a href="http://localhost:51250/">Trang chủ</a></li>
                     <li><a href="/the-loai/new-book">Sách mới tháng <span id="month"></span></a></li>
-                    <li><a href="/hot-book">Sách bán chạy</a></li>
+                    <li><a href="/hot-book">Sách xem nhiều</a></li>
                     <li><a href="">Sách khuyến mãi</a></li>
                     <li><a href="/lien-he">Liên hệ</a></li>
                     <li class="date-now">
