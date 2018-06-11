@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 ﻿using BookStore.Areas.Admin.Models.BusinessModel;
-=======
 ﻿using Common;
->>>>>>> a2c9af1656cf6a79c158a6527cee5c41ead11fe6
 using Model.DAO;
 using Model.EF;
 using System;

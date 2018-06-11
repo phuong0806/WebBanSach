@@ -61,7 +61,8 @@
         },
 
         saveData: function () {
-            var id = $('#id').val() == "" ? 0 : $('#id').val();
+            //var id = $('#id').val() == "" ? 0 : $('#id').val();
+            var id = $('#id').val();
             var Name = $('#title').val();
             var Alias = $('#slug').val();
             var CatalogID = $('#catalog').val();
