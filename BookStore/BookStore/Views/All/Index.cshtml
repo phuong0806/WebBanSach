@@ -1,10 +1,12 @@
-﻿
+﻿@using PagedList.Mvc
+@using Model.EF
+@model PagedList.PagedList<Book>
 @{
     ViewBag.Title = "Index";
-    var hot = ViewBag.Hot;
     var ListCTL = ViewBag.ListBookCTL;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 @section cssHeader {
     <link href="~/Assets/client/css/sachtheodanhmuc.css" rel="stylesheet" />
@@ -31,16 +33,14 @@
 <div id="title-category">
     <div class="middle-bar"></div>
     <div class="title">
-        <span>Sách Xem Nhiều</span>
+        <span>Tất Cả Sách</span>
     </div>
 </div>
 <!-- end /LIST BOOK CATEGORY -->
 <!-- LIST BOOK -->
 <div id="list-book">
     <!-- BOOK -->
-    @if (hot != null)
-    {
-        foreach (var item in hot)
+        @foreach (var item in Model)
         {
             <div class="book">
                 <div class="book-top">
@@ -63,10 +63,11 @@
                 </div>
             </div>
         }
-    }
     <!-- end /BOOK -->
 </div>
-<!-- end /LIST BOOK -->
-<div class="load-more">
-    <a href="#" class="">Load more...</a>
+<div class="Trang" style="display:inline;float:right">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
 </div>
+<!-- end /LIST BOOK -->
+
+

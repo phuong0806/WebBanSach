@@ -3,40 +3,44 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section cssHeader {
+    <link href="~/Assets/client/css/sachtheodanhmuc.css" rel="stylesheet" />
+}
 <!-- CATEGORIES SLIDES -->
-<div id="list-book">
     <!-- BOOK -->
     <h3>Kết quả tìm kiếm với từ khóa "@ViewBag.key"</h3>
-    @if (ViewBag.KQ != null)
-    {
-        foreach (var item in ViewBag.KQ)
-        {
-            <div class="book">
-                <div class="book-top">
-                    <a href="/chi-tiet-sach/@item.Alias">
-                        <img class="owl-lazy" src="@item.Image" alt="">
-                    </a>
-                </div>
-                <div class="book-bot">
-                    <a href="/chi-tiet-sach/@item.Alias" class="title-book">@item.Name</a>
-                    <br />
-                    @foreach (var itm in item.Authors)
-                    {<a href="#" class="name-author">
-                        @itm.Name ,
-                    </a>
-                    }
 
-                    <div class="price">
-                        <span class="price-market">@item.Price đ</span>
+    <div id="list-book">
+        @if (ViewBag.KQ != null)
+        {
+            foreach (var item in ViewBag.KQ)
+            {
+                <div class="book">
+                    <div class="book-top">
+                        <a href="/chi-tiet-sach/@item.Alias">
+                            <img class="owl-lazy" src="@item.Image" alt="">
+                        </a>
+                    </div>
+                    <div class="book-bot">
+                        <a href="/chi-tiet-sach/@item.Alias" class="title-book">@item.Name</a>
+                        <br />
+                        @foreach (var itm in item.Authors)
+                    {<a href="#" class="name-author">
+                            @itm.Name ,
+                        </a>
+                        }
+
+                        <div class="price">
+                            <span class="price-market">@item.Price đ</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
 
-    }
-    <!-- end /BOOK -->
-</div>
+        }
+    </div>
+        
+<!-- end /BOOK -->
 <!-- end /CATEGORIES SLIDES -->
 <div class="box-shadown"></div>
 <!-- CONTENT -->

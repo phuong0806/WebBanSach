@@ -286,25 +286,25 @@ namespace Model.DAO
             //return db.Books.Where(x => x.Status == true).ToList();
         }
 
-        public List<BookViewModel> GetBookPre()
+        public List<Book> GetBookPre()
         {
             DateTime a = DateTime.Now;
             int month = a.Month - 1;
+            var book = db.Books.Where(x => x.Status == true && x.CreatedDate.Value.Month == month && x.HotFlag==true).ToList();
+            //var listBook = (from book in db.Books
+            //                from author in book.Authors
+            //                join author_book in db.Books on book.ID equals author_book.ID
+            //                where book.Status == true && book.PublicationDate.Value.Month == month
+            //                select new BookViewModel()
+            //                {
+            //                    AuthorsName = author.Name,
+            //                    Name = book.Name,
+            //                    Image = book.Image,
+            //                    Price = book.Price,
+            //                    PublicationDate = book.PublicationDate
 
-            var listBook = (from book in db.Books
-                            from author in book.Authors
-                            join author_book in db.Books on book.ID equals author_book.ID
-                            where book.Status == true && book.PublicationDate.Value.Month == month
-                            select new BookViewModel()
-                            {
-                                AuthorsName = author.Name,
-                                Name = book.Name,
-                                Image = book.Image,
-                                Price = book.Price,
-                                PublicationDate = book.PublicationDate
-
-                            }).ToList();
-            return listBook;
+            //                }).ToList();
+            return book;
         }
 
         public List<Book> GetBookByAliasCategory(string Alias)
