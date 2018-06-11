@@ -48,6 +48,12 @@
                     @if (Session["Username"] != null)
                     {
                         var listMenu = new Model.DAO.BusinessDAO().getListBusinessOfUser(Session["Username"].ToString());
+                        if (listMenu.Count() == 0)
+                        {
+                            <li class="active">
+                                <a class="nav-link" href="/Admin/Business">Business<span class="sr-only">(current)</span></a>
+                            </li>
+                        }
                         foreach (var item in listMenu)
                         {
                             <li class="active">
@@ -55,6 +61,7 @@
                             </li>
                         }
                     }
+
                     <li class="nav-item dropdown float-right">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @Session["FullName"]
@@ -65,7 +72,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </nav>
     <main>

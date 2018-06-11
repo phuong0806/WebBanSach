@@ -1,14 +1,5 @@
-<<<<<<< HEAD
-﻿using BookStore.Areas.Admin.Models.BusinessModel;
-=======
-﻿using Common;
->>>>>>> a2c9af1656cf6a79c158a6527cee5c41ead11fe6
+using Common;
 using Model.DAO;
-using Model.EF;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BookStore.Areas.Admin.Controllers
@@ -72,7 +63,7 @@ namespace BookStore.Areas.Admin.Controllers
         }
 
         public ActionResult _404()
-        { 
+        {
             return View();
         }
     }

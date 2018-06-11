@@ -66,8 +66,6 @@ namespace Model.DAO
                 item.PriceString = double.Parse(item.Price.ToString()).ToString("#,###", cul.NumberFormat);
             }
 
-
-
             return model;
         }
 

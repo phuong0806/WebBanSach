@@ -167,7 +167,6 @@ main {
 }
 
 .btn-unconfirm {
-
 background: #E7E7E7;
 
 color: #333333 !important;
@@ -192,7 +191,6 @@ color: #333333 !important;
     font-size: 15px;
     line-height: 37px;
 }
-
 
     .chosen-container-single .chosen-single div b {
         background: url(chosen-sprite.png) no-repeat 0px 9px !important;
@@ -559,7 +557,6 @@ color: #333333 !important;
         right: -27px;
         top: -24px;
     }
-
 
     .closeModalBox i {
         color: white;

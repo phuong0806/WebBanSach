@@ -1,15 +1,10 @@
 ﻿using BookStore.Areas.Admin.Models.BusinessModel;
-using Common;
 using Model.DAO;
 using Model.EF;
-using Model.ViewModel;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
@@ -28,6 +23,7 @@ namespace BookStore.Areas.Admin.Controllers
             BookCatalogDAO catalog = new BookCatalogDAO();
             ViewBag.listcatalog = catalog.getListBookCatalog();
         }
+
         public JsonResult LoadData()
         {
             setViewbagforCatalog();

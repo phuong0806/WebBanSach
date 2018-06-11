@@ -1,8 +1,5 @@
 ﻿using Common;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,7 +7,8 @@ namespace BookStore.Areas.Admin.Controllers
 {
     public class CommonController : Controller
     {
-        ImageHelper imgHelper = new ImageHelper();
+        private ImageHelper imgHelper = new ImageHelper();
+
         // GET: Common
         public ActionResult Index()
         {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 
 namespace BookStore.Areas.Admin.Code
 {
@@ -11,6 +8,7 @@ namespace BookStore.Areas.Admin.Code
         {
             HttpContext.Current.Session["LoginSession"] = ses;
         }
+
         public static UserSession GetSession()
         {
             var ses = HttpContext.Current.Session["LoginSession"];

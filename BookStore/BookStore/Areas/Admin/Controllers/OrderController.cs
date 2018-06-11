@@ -6,20 +6,16 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
     [AuthorizeBusiness]
     public class OrderController : Controller
     {
-
         // GET: Admin/Order
         public ActionResult Index()
         {
@@ -108,11 +104,17 @@ namespace BookStore.Areas.Admin.Controllers
                 if (item.Status == null && item.isFinish == false)
                 {
                     statusOrder = "Đơn hàng mới";
-                } else if (item.Status == 0 && item.isFinish == false) {
+                }
+                else if (item.Status == 0 && item.isFinish == false)
+                {
                     statusOrder = "Đang xử lý";
-                } else if (item.Status == 1 && item.isFinish == false) {
+                }
+                else if (item.Status == 1 && item.isFinish == false)
+                {
                     statusOrder = "Đang vận chuyển";
-                } else {
+                }
+                else
+                {
                     statusOrder = "Hoàn tất";
                 }
                 ws.Cells[string.Format("A{0}", rowStart)].Value = item.ID;

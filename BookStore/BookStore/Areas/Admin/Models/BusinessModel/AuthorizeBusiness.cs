@@ -1,6 +1,5 @@
 ﻿using Model.DAO;
 using Model.EF;
-using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -29,7 +28,6 @@ namespace BookStore.Areas.Admin.Models.BusinessModel
                 return;
 
             var listBusiness = new BusinessDAO().getListBusinessOfUser(username);
-
 
             if (!listBusiness.Select(x => x.ID).Contains(controllerName))
             {

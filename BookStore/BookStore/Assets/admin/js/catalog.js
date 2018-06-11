@@ -35,9 +35,8 @@
                     CatalogController.Del(id);
                 }
             });
-
         },
-        //Lấy toàn bộ tác giả
+
         reset: function () {
             $('#tittle').val('');
             $('#slug').val('');
@@ -60,17 +59,16 @@
                             html += Mustache.render(template, {
                                 ID: item.ID,
                                 Name: item.Name,
-                                Alias:item.Alias,
+                                Alias: item.Alias,
                                 btnStatus: item.Status == true ? `<a class="my-btn btn-status btn-unpublish" data-id=${item.ID}>Unpublish</a>` : `<a class="my-btn btn-status btn-publish" data-id=${item.ID}>Publish</a>`,
                             });
                         });
                         $('#resultCatalog').html(html);
                     }
-
                 }
             });
         },
-        // thêm tác giả mới
+
         Save: function (Catalog) {
             $.ajax({
                 url: "/Catalog/Save",
@@ -81,13 +79,13 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.status == true) {
+                        CatalogController.reset();
                         CatalogController.LoadData();
                     }
                 }
             })
         },
 
-        //Load dữ liệu dựa theo id tác giả
         LoadDetails: function (id) {
             $.ajax({
                 url: "/Catalog/LoadDetails",
@@ -95,7 +93,7 @@
                 type: "Post",
                 dataType: "json",
                 success: function (result) { // result nhận json
-                    var data = result.ca
+                    var data = result.ca;
                     $('#id').val(data.ID);
                     $('#title').val(data.Name);
                     $('#slug').val(data.Alias);
@@ -114,7 +112,6 @@
                 }
             });
         },
-
     };
     CatalogController.init();//chạy đầu tiên
 })

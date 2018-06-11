@@ -45,7 +45,6 @@ function js_dd_MM_yyyy(date) {
     return day + "-" + month + "-" + year;
 }
 
-
 function format_money(number) {
     return number.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 }
@@ -53,7 +52,7 @@ function format_money(number) {
 function ChangeToSlug() {
     var title, slug;
 
-    //Lấy text từ thẻ input title 
+    //Lấy text từ thẻ input title
     title = document.getElementById("title").value;
 
     //Đổi chữ hoa thành chữ thường
@@ -84,7 +83,6 @@ function ChangeToSlug() {
     document.getElementById('slug').value = slug;
 }
 //$.validator.setDefaults({ ignore: ":hidden:not(select)" })
-
 
 /* MODAL IMAGE */
 $(function () {
@@ -145,8 +143,6 @@ $(document).on('click', '#delete-link', function () {
     }
 });
 
-
-
 $(document).on('click', '#reset-link', function () {
     reset();
 });
@@ -172,7 +168,6 @@ function hideModal() {
     }, 500);
     $('.modalBox').addClass('fadeOut');
     $('.blurBackground').removeClass('active');
-    
 };
 
 $(document).on('click', '.btn-action', function () {
@@ -200,6 +195,5 @@ $(document).on('click', '.ti-close', function () {
     $('.modalBox').addClass('fadeOut');
     $('.blurBackground').removeClass('active');
 });
-
 
 /* end MODAL BOX ADD/UPDATE */

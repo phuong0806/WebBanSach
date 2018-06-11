@@ -28,24 +28,18 @@ span.title {
 .login {width: 250px;margin-top: 20px;margin-left: 50px;position: relative;}
 
 .login .username {
-
 }
 
 .login .password {
-
 }
 .login .btn-action {
-
 }
 
 .login .forget-password {
-
 text-align: center;
 }
 
-
 .login .forget-password a {
-
 color: gray;
 }
 
@@ -73,7 +67,6 @@ i {
 }
 
 .error {
-
 margin-top: 24px;
 
 font-weight: bold;

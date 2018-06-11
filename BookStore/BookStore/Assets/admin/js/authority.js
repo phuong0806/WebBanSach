@@ -27,7 +27,7 @@
                 var username = $(this).data('id');
                 authorityController.loadBusiness(username);
             });
-            
+
             $(document).on('click', '.btn-author', function () {
                 var business = $(this).data('id');
                 authorityController.updateBusiness(business);
@@ -55,7 +55,7 @@
             });
         },
 
-        //function =========== 
+        //function ===========
         resetModal: function () {
             $('#username').val('');
             $('#password').val('');
@@ -107,7 +107,7 @@
             $.ajax({
                 url: '/Admin/Administator/Add',
                 data: {
-                    userStr : JSON.stringify(user)
+                    userStr: JSON.stringify(user)
                 },
                 type: 'POST',
                 dataType: 'json',
@@ -203,7 +203,7 @@
                     business: business,
                     username: username
                 },
-                type:'POST',
+                type: 'POST',
                 dataType: 'json',
                 success: function (result) {
                     if (result.status) {

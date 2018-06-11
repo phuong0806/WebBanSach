@@ -3,7 +3,6 @@ using Common;
 using Model.DAO;
 using Model.EF;
 using Model.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +14,7 @@ namespace BookStore.Areas.Admin.Controllers
     [AuthorizeBusiness]
     public class CategoryController : Controller
     {
-        ImageHelper imgHelper = new ImageHelper();
+        private ImageHelper imgHelper = new ImageHelper();
 
         // GET: Admin/Category
         public ActionResult Index()

@@ -38,7 +38,6 @@
                     AuthorController.Del(id);
                 }
             });
-
         },
         //Lấy toàn bộ tác giả
         reset: function () {
@@ -69,7 +68,6 @@
                         });
                         $('#resultAuthor').html(html);
                     }
-
                 }
             });
         },
@@ -77,20 +75,29 @@
         Save: function (Author) {
             $.ajax({
                 url: "/Admin/Author/Save",
-                data:{
-                    author:Author
+                data: {
+                    author: Author
                 },
                 type: "Post",
                 dataType: "json",
                 success: function (result) {
-                    if(result.status==true)
-                    {
+                    if (result.status == true) {
+                        notify({
+                            type: "success", //alert | success | error | warning | info
+                            title: "Thành công",
+                            position: {
+                                x: "right", //right | left | center
+                                y: "top" //top | bottom | center
+                            },
+                            size: "small",
+                            autoHide: true
+                        });
+                        hideModal();
                         AuthorController.LoadData();
                     }
                 }
             })
         },
-
 
         //Load dữ liệu dựa theo id tác giả
         LoadDetails: function (id) {
@@ -120,7 +127,6 @@
                 }
             });
         },
-
     };
     AuthorController.init();//chạy đầu tiên
 })

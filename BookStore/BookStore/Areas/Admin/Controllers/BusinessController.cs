@@ -1,12 +1,10 @@
 ﻿using BookStore.Areas.Admin.Models.BusinessModel;
-using Model.BusinessModel;
 using Model.DAO;
 using Model.EF;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -15,7 +13,8 @@ namespace BookStore.Areas.Admin.Controllers
     [AuthorizeBusiness]
     public class BusinessController : Controller
     {
-        BookStoreDbContext db = new BookStoreDbContext();
+        private BookStoreDbContext db = new BookStoreDbContext();
+
         // GET: Admin/Business
         public ActionResult Index()
         {
@@ -29,7 +28,7 @@ namespace BookStore.Areas.Admin.Controllers
             List<string> listControllerOld = new BusinessDAO().getListBusiness().Select(x => x.ID).ToList();
             foreach (var item in listControllerType)
             {
-                if (!listControllerOld.Contains(item.Name) & item.Name != "CommonController")
+                if (!listControllerOld.Contains(item.Name) && item.Name != "CommonController")
                 {
                     var url = "/Admin/" + item.Name.Replace("Controller", "") + "/Index";
                     Business b = new Business() { ID = item.Name, Name = "Empty", Url = url };
@@ -69,10 +68,10 @@ namespace BookStore.Areas.Admin.Controllers
 
             status = new BusinessDAO().updateName(business);
 
-            return Json(new {
+            return Json(new
+            {
                 status = true
             });
         }
-
     }
 }

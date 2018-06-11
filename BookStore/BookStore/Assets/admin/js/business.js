@@ -65,15 +65,15 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                        var html = '';
-                        var template = $('#data-template').html();
-                        $.each(data, function (i, item) {
-                            html += Mustache.render(template, {
-                                ID: item.ID,
-                                Name: item.Name
-                            });
+                    var html = '';
+                    var template = $('#data-template').html();
+                    $.each(data, function (i, item) {
+                        html += Mustache.render(template, {
+                            ID: item.ID,
+                            Name: item.Name
                         });
-                        $('#resultBook').html(html);
+                    });
+                    $('#resultBook').html(html);
                 },
                 error: function () {
                     alert("error");
@@ -90,8 +90,8 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                        $('#description').val(data.Name);
-                        $('#id').val(data.ID);
+                    $('#description').val(data.Name);
+                    $('#id').val(data.ID);
                 },
                 error: function () {
                     alert("loadDetail error");

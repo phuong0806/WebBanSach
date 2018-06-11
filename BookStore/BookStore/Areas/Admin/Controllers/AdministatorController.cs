@@ -4,10 +4,8 @@ using Model.DAO;
 using Model.EF;
 using Model.ViewModel;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -23,7 +21,7 @@ namespace BookStore.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public string loadData ()
+        public string loadData()
         {
             var userCurrent = Session["Username"].ToString();
             var model = new UserDAO().getListUser(userCurrent);
@@ -53,7 +51,7 @@ namespace BookStore.Areas.Admin.Controllers
                     b.Status = true;
                 }
                 else
-	            {
+                {
                     b.ID = item.ID;
                     b.Name = item.Name;
                     b.Url = item.Url;
@@ -71,7 +69,8 @@ namespace BookStore.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult updateBusiness(string username, string business)
         {
-            return Json(new {
+            return Json(new
+            {
                 status = new BusinessDAO().updateStatus(username, business)
             });
         }

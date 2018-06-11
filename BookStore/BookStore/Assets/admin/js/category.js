@@ -57,7 +57,7 @@
             var Name = $('#title').val('');
             var Alias = $('#slug').val('');
             var CatalogID = $('#catalog').val('');
-            var Image = $('.img-selected').attr('src', '/Assets/admin/css/images/alter-image.jpg');  
+            var Image = $('.img-selected').attr('src', '/Assets/admin/css/images/alter-image.jpg');
         },
 
         saveData: function () {
@@ -90,7 +90,7 @@
                         categoryController.resetModal();
                         notify({
                             type: "success", //alert | success | error | warning | info
-                            title: "Thêm thể loại thành công",
+                            title: "Thành công",
                             position: {
                                 x: "right", //right | left | center
                                 y: "top" //top | bottom | center

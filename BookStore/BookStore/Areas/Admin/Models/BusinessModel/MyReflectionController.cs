@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BookStore.Areas.Admin.Models.BusinessModel
@@ -15,7 +14,6 @@ namespace BookStore.Areas.Admin.Models.BusinessModel
             Assembly assembly = Assembly.GetExecutingAssembly();
             IEnumerable<Type> types = assembly.GetTypes().Where(type => typeof(Controller).IsAssignableFrom(type) && type.Namespace.Contains(namespaces)).OrderBy(x => x.Name);
             return types.ToList();
-
         }
 
         //Lấy danh sách actions theo controller

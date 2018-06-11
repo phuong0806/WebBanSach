@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Danh mục";
     var listPub = ViewBag.listPub;
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -80,42 +79,44 @@
 
 <!-- MODAL THE LOAI -->
 <div class="blurBackground"></div>
-<div id="#modalBox" class="modalBox animated" style="width:560px;margin-left:-280px">
-    <div class="closeModalBox">
-        <span><i class="ti-close"></i></span>
-    </div>
-    <div class="container">
-        <form class="form-category" role="form" id="form-save">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="title-box">
-                        <span class="title-modal"></span> NHÀ XUẤT BẢN
+<div class="modal-body">
+    <div id="#modalBox" class="modalBox animated" style="width:560px;">
+        <div class="closeModalBox">
+            <span><i class="ti-close"></i></span>
+        </div>
+        <div class="container">
+            <form class="form-category" role="form" id="form-save">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="title-box">
+                            <span class="title-modal"></span> NHÀ XUẤT BẢN
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="AuthorModal">Nhà xuất bản</label>
-                        <input type="text" class="form-control" name="tittle" onkeyup="ChangeToSlug();" id="title" placeholder="...">
-                        <input type="hidden" id="id" value="" name="id">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="AuthorModal">Nhà xuất bản</label>
+                            <input type="text" class="form-control" name="tittle" onkeyup="ChangeToSlug();" id="title" placeholder="...">
+                            <input type="hidden" id="id" value="" name="id">
+                        </div>
+                        <div class="form-group">
+                            <label for="AuthorModal">URL</label>
+                            <input type="text" class="form-control" name="slug" id="slug" placeholder="..." readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="AuthorModal">Số điện thoại</label>
+                            <input type="text" class="form-control" name="PhoneNumber" id="PhoneNumber" placeholder="...">
+                        </div>
+                        <div class="form-group">
+                            <label for="AuthorModal">Địa chỉ</label>
+                            <textarea class="form-control" type="text" name="Address" id="Address" placeholder="..."></textarea>
+                        </div>
+                        <a class="btn-save" data-id=""></a>
                     </div>
-                    <div class="form-group">
-                        <label for="AuthorModal">URL</label>
-                        <input type="text" name="slug" id="slug" placeholder="...">
-                    </div>
-                    <div class="form-group">
-                        <label for="AuthorModal">Số điện thoại</label>
-                        <input type="text" name="PhoneNumber" id="PhoneNumber" placeholder="...">
-                    </div>
-                    <div class="form-group">
-                        <label for="AuthorModal">Địa chỉ</label>
-                        <textarea type="text" name="Address" id="Address" placeholder="..."></textarea>
-                    </div>
-                    <a class="btn-save" data-id=""></a>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 <!-- end MODAL THE LOAI -->

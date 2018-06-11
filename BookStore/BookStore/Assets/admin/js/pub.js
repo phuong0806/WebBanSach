@@ -18,7 +18,7 @@
                     Alias: Alias,
                     Name: Name,
                     Address: dc,
-                    PhoneNumber:phone,
+                    PhoneNumber: phone,
                     Status: Status
                 };
                 PubController.Save(Pub);
@@ -39,7 +39,6 @@
                     PubController.Del(id);
                 }
             });
-
         },
         //Lấy toàn bộ tác giả
         reset: function () {
@@ -72,7 +71,6 @@
                         });
                         $('#resultPub').html(html);
                     }
-
                 }
             });
         },
@@ -122,7 +120,6 @@
                 }
             });
         },
-
     };
     PubController.init();//chạy đầu tiên
 })

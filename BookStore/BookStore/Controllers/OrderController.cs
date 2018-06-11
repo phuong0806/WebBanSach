@@ -94,7 +94,8 @@ namespace BookStore.Controllers
         public JsonResult LoadPrecinct(int districtID)
         {
             var xmlDoc = XDocument.Load(Server.MapPath(@"~/Assets/client/data/Provinces_District.xml"));
-            var xElement = xmlDoc.Element("Root").Elements("Item").Elements("Item").Single(x => x.Attribute("type").Value == "district" && int.Parse(x.Attribute("id").Value) == districtID);
+            var xElement = xmlDoc.Element("Root").Elements("Item").Elements("Item")
+                .Single(x => x.Attribute("type").Value == "district" && int.Parse(x.Attribute("id").Value) == districtID);
             var list = new List<PrecinctModel>();
             PrecinctModel precinct = null;
             foreach (var item in xElement.Elements("Item").Where(x => x.Attribute("type").Value == "precinct"))

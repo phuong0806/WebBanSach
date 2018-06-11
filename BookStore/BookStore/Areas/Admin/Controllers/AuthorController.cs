@@ -1,15 +1,10 @@
 ﻿using BookStore.Areas.Admin.Models.BusinessModel;
-using Common;
 using Model.DAO;
 using Model.EF;
-using Model.ViewModel;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace BookStore.Areas.Admin.Controllers
 {
@@ -28,6 +23,7 @@ namespace BookStore.Areas.Admin.Controllers
             AuthorDAO author = new AuthorDAO();
             ViewBag.listAuthor = author.getListAuthor();
         }
+
         //[HttpPost]
         //public JsonResult LoadData()
         //{
@@ -64,7 +60,6 @@ namespace BookStore.Areas.Admin.Controllers
             jsonresult.MaxJsonLength = int.MaxValue;
             return jsonresult;
         }
-
 
         [HttpPost]
         [AllowAnonymous, ValidateInput(false)]

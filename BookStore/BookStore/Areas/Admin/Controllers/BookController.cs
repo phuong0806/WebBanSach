@@ -1,29 +1,24 @@
-﻿using Model.DAO;
+﻿using BookStore.Areas.Admin.Models.BusinessModel;
+using Common;
+using Model.DAO;
 using Model.EF;
 using Model.ViewModel;
-using Newtonsoft.Json;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using Common;
-using BookStore.Areas.Admin.Models.BusinessModel;
-using System.Globalization;
-using OfficeOpenXml;
-using OfficeOpenXml.Style;
-using System.Drawing;
-using OfficeOpenXml.Table;
-using System.Data;
 
 namespace BookStore.Areas.Admin.Controllers
 {
     [AuthorizeBusiness]
     public class BookController : Controller
     {
-        ImageHelper imgHelper = new ImageHelper();
+        private ImageHelper imgHelper = new ImageHelper();
 
         private BookStoreDbContext db = new BookStoreDbContext();
 
@@ -66,7 +61,6 @@ namespace BookStore.Areas.Admin.Controllers
                 status = true
             }, JsonRequestBehavior.AllowGet);
         }
-
 
         [HttpGet]
         public ActionResult AddBook(bool checkInsert = false)
@@ -138,7 +132,6 @@ namespace BookStore.Areas.Admin.Controllers
             ViewBag.Publisher = new SelectList(publisherDAO.getListPublisher(), "ID", "Name");
         }
 
-
         [HttpGet]
         public ActionResult UpdateBook(int id, HttpPostedFileBase file)
         {
@@ -209,7 +202,6 @@ namespace BookStore.Areas.Admin.Controllers
                 return Json(string.Format("{0} is not available", Alias), JsonRequestBehavior.AllowGet);
             }
             return Json(true, JsonRequestBehavior.AllowGet);
-
         }
 
         [AllowAnonymous]
@@ -226,7 +218,6 @@ namespace BookStore.Areas.Admin.Controllers
             });
         }
 
-
         public ActionResult ExportToExcel(string name, string searchText, string statusSelect)
         {
             IEnumerable<BookViewModel> list;
@@ -241,7 +232,6 @@ namespace BookStore.Areas.Admin.Controllers
                 list = dao.getBookExport();
             }
 
-
             if (!string.IsNullOrEmpty(statusSelect))
             {
                 var status = bool.Parse(statusSelect);
@@ -249,7 +239,6 @@ namespace BookStore.Areas.Admin.Controllers
             }
 
             var totalRecord = list.Count();
-
 
             ViewBag.totalRecord = totalRecord;
             ExcelPackage excel = new ExcelPackage();
@@ -275,7 +264,6 @@ namespace BookStore.Areas.Admin.Controllers
             ws.Cells["G7"].Value = "Trạng thái";
             ws.Cells["H7"].Value = "Ngày xuất bản";
             ws.Cells["I7"].Value = "Nhà xuất bản";
-
 
             CultureInfo culture = new CultureInfo("vi-VN");
             var rowStart = 8;
